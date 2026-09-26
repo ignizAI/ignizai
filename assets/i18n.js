@@ -711,7 +711,7 @@
       'info-response-label': 'وقت الرد',
       'info-response-val':   'خلال يوم عمل واحد',
       'info-tz-label':       'التغطية',
-      'info-tz-val':         'أمريكا · أوروبا · آسيا والمحيط الهادئ',
+      'info-tz-val':         'الإمارات · الهند · عن بُعد',
       'pill-1': 'بلا التزام مسبق',
       'pill-2': 'اتفاقية سرية عند الطلب',
       'pill-3': 'خيارات بسعر ثابت',
@@ -752,7 +752,7 @@
       'hero-scroll': 'مرّر',
       'svc-eyebrow': 'ما نقدّمه',
       'proof-eyebrow': 'بالأرقام',
-      'journal-eyebrow': 'من المدوّنة',
+      'journal-eyebrow': 'رؤى وأدلة',
       'journal-all': 'كل المقالات ←',
       'cta-eyebrow': 'لِنبدأ',
       'cta-lead': 'نردّ خلال يوم عملٍ واحد بقراءةٍ صادقة وواقعية لمشروعك — بلا روبوتات ولا عروضٍ جاهزة.',
@@ -772,25 +772,701 @@
     }
   };
 
-  var lang = (typeof localStorage !== 'undefined' && localStorage.getItem('IgnizAI-lang')) || 'en';
+  /* ================================================================
+     Whole-page Arabic translation
+     ----------------------------------------------------------------
+     1. Elements with data-i18n / data-i18n-html use the T tables above.
+        Their original English is captured from the HTML the first time,
+        so switching back always restores exactly what the page shipped.
+     2. Every other visible text node, plus placeholder / aria-label /
+        alt / title attributes and the page <title> + meta description,
+        is translated through AR (English text -> Arabic). The original
+        English is remembered and put back when switching to English.
+     3. A MutationObserver translates text that scripts add later
+        (contact form messages, dropdowns, etc.) while Arabic is on.
+  ================================================================ */
+  var AR = {
+    "Arun Mandook, Founder & CEO of IgnizAI": "أرون ماندوك، المؤسس والرئيس التنفيذي لـ IgnizAI",
+    "Leadership": "القيادة",
+    "Meet Our": "تعرّف على",
+    "Founder & CEO": "المؤسس والرئيس التنفيذي",
+    "Arun Mandook": "أرون ماندوك",
+    "PMP | Salesforce 3x Certified": "PMP | حاصل على 3 شهادات Salesforce",
+    "Arun Mandook is the Founder and CEO of IgnizAI, bringing a strong blend of technology, product, consulting, and business experience to the company.": "أرون ماندوك هو المؤسس والرئيس التنفيذي لـ IgnizAI، ويجلب إلى الشركة مزيجاً قوياً من الخبرة في التقنية والمنتجات والاستشارات والأعمال.",
+    "Before founding IgnizAI, Arun served as Associate Vice President – Technology & Product at The House of Abhinandan Lodha, a pan-India real estate brand. In this role, he worked at the intersection of technology, product strategy, and business, gaining valuable experience in building and scaling digital solutions within a highly competitive industry.": "قبل تأسيس IgnizAI، شغل أرون منصب نائب الرئيس المساعد للتقنية والمنتجات في The House of Abhinandan Lodha، وهي علامة عقارية منتشرة في أنحاء الهند. وفي هذا الدور، عمل عند تقاطع التقنية واستراتيجية المنتجات والأعمال، واكتسب خبرة قيّمة في بناء الحلول الرقمية وتوسيعها ضمن قطاع شديد التنافس.",
+    "With extensive experience across technology, consulting, and real estate, Arun brings a practical understanding of how businesses can use technology not just to operate better, but to build stronger brands, improve customer experiences, and create meaningful digital presence.": "بفضل خبرته الواسعة في التقنية والاستشارات والعقارات، يمتلك أرون فهماً عملياً لكيفية استخدام الأعمال للتقنية، لا لتعمل بشكل أفضل فحسب، بل لبناء علامات تجارية أقوى، وتحسين تجارب العملاء، وصنع حضور رقمي ذي معنى.",
+    "At IgnizAI, his vision is simple: help genuine businesses become more visible, credible, and trusted through the right combination of technology, design, and storytelling.": "في IgnizAI، رؤيته بسيطة: مساعدة الأعمال الأصيلة على أن تصبح أكثر حضوراً ومصداقية وثقة، من خلال المزيج الصحيح من التقنية والتصميم وسرد القصص.",
+    "We turn your story into visibility.": "نحوّل قصتك إلى حضور.",
+    "We turn visibility into": "ونحوّل الحضور إلى",
+    "trust.": "ثقة.",
+    "Good businesses deserve to be seen, understood, and trusted.": "الأعمال الجيدة تستحق أن تُرى، وأن تُفهم، وأن تحظى بالثقة.",
+    "At IgnizAI, we help genuine businesses build a strong digital presence that reflects who they truly are. Every business has a story, and we turn that story into a beautiful digital experience that people can discover, understand, and trust.": "في IgnizAI، نساعد الأعمال الأصيلة على بناء حضور رقمي قوي يعكس حقيقتها. لكل نشاط تجاري قصة، ونحن نحوّل تلك القصة إلى تجربة رقمية جميلة يستطيع الناس اكتشافها وفهمها والوثوق بها.",
+    "We believe visibility is more than simply being online. It’s about presenting your business with clarity, showing what makes you different, and creating an experience that gives customers confidence to take the next step.": "نؤمن بأن الحضور أكثر من مجرد التواجد على الإنترنت. إنه تقديم نشاطك بوضوح، وإبراز ما يميّزك، وصنع تجربة تمنح العملاء الثقة لاتخاذ الخطوة التالية.",
+      "Home": "الرئيسية",
+      "Services": "الخدمات",
+      "Process": "منهجيتنا",
+      "About": "من نحن",
+      "Journal": "المدونة",
+      "Contact": "تواصل معنا",
+      "Work": "أعمالنا",
+      "Studio": "الاستوديو",
+      "Websites": "المواقع الإلكترونية",
+      "CMS Systems": "أنظمة إدارة المحتوى",
+      "Start a project →": "ابدأ مشروعك ←",
+      "Start a Project": "ابدأ مشروعك",
+      "© 2026 Igniz AI. All rights reserved.": "© 2026 Igniz AI. جميع الحقوق محفوظة.",
+      "Dubai · Ras Al Khaimah · India": "دبي · رأس الخيمة · الهند",
+      "Build. Launch. Grow. With Ignizai.": "ابنِ. أطلق. انمُ. مع Ignizai.",
+      "Primary": "القائمة الرئيسية",
+      "Igniz AI home": "الصفحة الرئيسية لـ Igniz AI",
+      "Switch language": "تغيير اللغة",
+      "Open menu": "فتح القائمة",
+      "Close menu": "إغلاق القائمة",
+      "Let's begin": "لنبدأ",
+      "Visit site": "زيارة الموقع",
+      "Read →": "اقرأ ←",
+      "July 2026": "يوليو 2026",
+      "Built to be noticed. Engineered to perform.": "مصمَّم ليُلفت الأنظار. ومهندَس ليُحقق النتائج.",
+      "Turning Ideas Into Working Digital Products": "نحوّل الأفكار إلى منتجات رقمية فعّالة",
+      "A responsive travel agency website that makes it easy for customers to explore destinations, discover travel packages, and get in touch with the agency.": "موقع متجاوب لوكالة سفر يسهّل على العملاء استكشاف الوجهات، واكتشاف الباقات السياحية، والتواصل مع الوكالة.",
+      "Key features": "أبرز الميزات",
+      "Destination and package showcase": "عرض الوجهات والباقات",
+      "Tour package details": "تفاصيل الباقات السياحية",
+      "Inquiry and booking-focused CTAs": "أزرار دعوة لاتخاذ إجراء تركّز على الاستفسار والحجز",
+      "Responsive design across devices": "تصميم متجاوب على جميع الأجهزة",
+      "Clean, conversion-focused user experience": "تجربة مستخدم نظيفة تركّز على التحويل",
+      "Project type": "نوع المشروع",
+      "Travel & Tourism": "السفر والسياحة",
+      "Goal": "الهدف",
+      "Generate inquiries and showcase travel experiences": "توليد الاستفسارات وعرض تجارب السفر",
+      "Designed for a dental clinic to build trust online, clearly present its services, and make it easy for patients to request an appointment.": "صُمّم لعيادة أسنان لبناء الثقة عبر الإنترنت، وعرض خدماتها بوضوح، وتسهيل طلب المواعيد على المرضى.",
+      "Dental services showcase": "عرض خدمات طب الأسنان",
+      "Doctor/clinic information": "معلومات الطبيب والعيادة",
+      "Appointment-focused interface": "واجهة تركّز على حجز المواعيد",
+      "Patient-friendly navigation": "تنقّل سهل للمرضى",
+      "Mobile-responsive design": "تصميم متجاوب مع الجوال",
+      "Clear contact and call-to-action sections": "أقسام واضحة للتواصل ودعوات اتخاذ الإجراء",
+      "Healthcare": "الرعاية الصحية",
+      "Build trust and increase appointment inquiries": "بناء الثقة وزيادة طلبات المواعيد",
+      "A real estate MVP that gives users a simple way to explore properties, view important details, and connect with the business for further inquiries.": "نسخة أولية (MVP) لمنصة عقارية تمنح المستخدمين طريقة بسيطة لاستكشاف العقارات، والاطلاع على التفاصيل المهمة، والتواصل مع الشركة لمزيد من الاستفسارات.",
+      "Property listings": "قوائم العقارات",
+      "Property detail pages": "صفحات تفاصيل العقار",
+      "Search and filtering experience": "تجربة بحث وتصفية",
+      "Property images and information": "صور العقارات ومعلوماتها",
+      "Inquiry/contact functionality": "خاصية الاستفسار والتواصل",
+      "Responsive design": "تصميم متجاوب",
+      "Real Estate": "العقارات",
+      "Showcase properties and generate qualified leads": "عرض العقارات وتوليد عملاء محتملين مؤهلين",
+      "Connect The World — travel agency website": "Connect The World — موقع وكالة سفر",
+      "Meridian — dental practice website": "Meridian — موقع عيادة أسنان",
+      "Aurelia — luxury real estate website": "Aurelia — موقع عقارات فاخرة",
+      "Websites & Platforms": "المواقع والمنصات",
+      "High-craft, fast, conversion-focused sites and web apps — designed and built from scratch.": "مواقع وتطبيقات ويب سريعة ومتقنة تركّز على التحويل — مصممة ومبنية من الصفر.",
+      "CMS & Content Systems": "أنظمة إدارة المحتوى",
+      "Editable, structured platforms your team can actually run — without breaking the design.": "منصات منظمة وقابلة للتعديل يستطيع فريقك إدارتها فعلاً — دون أن يتأثر التصميم.",
+      "AI & Automation": "الذكاء الاصطناعي والأتمتة",
+      "Practical AI where it earns its place — lead capture, support, and workflows that save real hours.": "ذكاء اصطناعي عملي حيث يستحق مكانه — استقطاب العملاء، والدعم، وسير عمل يوفّر ساعات حقيقية.",
+      "Care & Growth": "الرعاية والنمو",
+      "Ongoing maintenance, performance, and SEO — the quiet work that keeps you ahead.": "صيانة مستمرة، وتحسين الأداء، وتحسين محركات البحث — العمل الهادئ الذي يبقيك في المقدمة.",
+      "Digital Growth": "النمو الرقمي",
+      "Why every Ras Al Khaimah business needs a professional website in 2026": "لماذا تحتاج كل شركة في رأس الخيمة إلى موقع إلكتروني احترافي في 2026",
+      "Your website is no longer a brochure — it's your most-visited storefront. Here's what that means for RAK businesses.": "لم يعد موقعك مجرد كُتيّب — بل أصبح واجهة متجرك الأكثر زيارة. إليك ما يعنيه ذلك لشركات رأس الخيمة.",
+      "Business Growth": "نمو الأعمال",
+      "How a modern website helps your small business grow faster": "كيف يساعد الموقع الحديث شركتك الصغيرة على النمو بشكل أسرع",
+      "A good site works like a salesperson who never sleeps. We break down where that growth actually comes from.": "الموقع الجيد يعمل كمندوب مبيعات لا ينام. نوضّح لك من أين يأتي هذا النمو فعلاً.",
+      "Lead Generation": "توليد العملاء المحتملين",
+      "5 proven ways small businesses generate more leads online": "5 طرق مجرَّبة لتوليد مزيد من العملاء المحتملين للشركات الصغيرة عبر الإنترنت",
+      "From high-converting websites to SEO and content — the tactics that consistently bring qualified leads.": "من المواقع عالية التحويل إلى تحسين محركات البحث والمحتوى — الأساليب التي تجلب عملاء مؤهلين باستمرار.",
+      "Igniz AI — Digital Craft for Ambitious Businesses": "Igniz AI — حِرفة رقمية للأعمال الطموحة",
+      "Igniz AI is a boutique technology studio in the UAE and India. We design, build, and maintain websites, platforms, and AI systems for businesses that refuse to blend in.": "Igniz AI استوديو تقني متخصص في الإمارات والهند. نصمم ونبني ونصون المواقع والمنصات وأنظمة الذكاء الاصطناعي للأعمال التي ترفض أن تكون عادية.",
+      "› About": "› من نحن",
+      "Built to": "وُجدنا لكي",
+      "stay": "نبقى",
+      "not just to ship.": "لا لنُسلّم ونرحل.",
+      "( 01 — Our story )": "( 01 — قصتنا )",
+      "We started Igniz AI because good businesses kept getting": "أسسنا Igniz AI لأن الأعمال الجيدة ظلّت",
+      "let down": "تُخذَل",
+      "after launch.": "بعد الإطلاق.",
+      "Across the UAE and India, we watched the same pattern repeat: a company pays agency prices, gets a site that ships, and then slowly falls behind — because the people who built it have already moved on.": "في الإمارات والهند، رأينا النمط ذاته يتكرر: شركة تدفع أسعار الوكالات، وتحصل على موقع يُطلق ثم يتراجع ببطء — لأن من بنوه قد انتقلوا إلى مشاريع أخرى.",
+      "We were built to close that gap.": "وُجدنا لنسدّ هذه الفجوة.",
+      "We keep the studio deliberately small and senior. The people who scope your project are the people who design it, build it, and answer when you call a year later. No account managers, no handoffs, no black boxes.": "نُبقي الاستوديو صغيراً عن قصد ومن أصحاب الخبرة. من يحدّد نطاق مشروعك هو من يصممه ويبنيه ويجيب عندما تتصل بعد عام. لا مديري حسابات، ولا تسليم بين الفرق، ولا صناديق سوداء.",
+      "We treat every website and system the way a workshop treats a commission — considered, well-made, and cared for over time. That's the whole idea.": "نتعامل مع كل موقع ونظام كما تتعامل ورشة حِرفية مع عمل مُكلَّفة به — بتأنٍّ وإتقان ورعاية مع مرور الوقت. هذه هي الفكرة كلها.",
+      "What drives us": "ما يحرّكنا",
+      "Purpose over": "الغاية قبل",
+      "promises.": "الوعود.",
+      "Mission": "مهمتنا",
+      "Make premium digital work reachable.": "جعل العمل الرقمي المتميز في المتناول.",
+      "Give ambitious businesses the craft, reliability, and long-term care usually reserved for enterprise budgets — without the enterprise runaround.": "نمنح الأعمال الطموحة الإتقان والموثوقية والرعاية طويلة الأمد التي عادةً ما تقتصر على ميزانيات الشركات الكبرى — دون تعقيداتها.",
+      "Vision": "رؤيتنا",
+      "Be the partner people keep.": "أن نكون الشريك الذي يحتفظ به الناس.",
+      "To be the studio businesses stay with for years — because the work performs and the people behind it are still there when it matters.": "أن نكون الاستوديو الذي تبقى معه الأعمال لسنوات — لأن العمل يحقق النتائج، والفريق الذي يقف خلفه موجود دائماً حين يهم الأمر.",
+      "How we work": "كيف نعمل",
+      "The principles behind the": "المبادئ التي تقوم عليها",
+      "craft.": "حِرفتنا.",
+      "Craft over noise": "الإتقان قبل الضجيج",
+      "Fast, considered, well-built work — not templates dressed up as bespoke.": "عمل سريع ومدروس ومتقن البناء — لا قوالب جاهزة متنكرة في زيّ التصميم الخاص.",
+      "We stay": "نحن نبقى",
+      "Launch is the start of the relationship, not the end of it.": "الإطلاق بداية العلاقة، لا نهايتها.",
+      "Plain honesty": "صراحة واضحة",
+      "Clear scope, clear pricing, and a straight answer even when it's not the easy one.": "نطاق واضح، وتسعير واضح، وإجابة صريحة حتى حين لا تكون الأسهل.",
+      "Senior hands": "أيدٍ خبيرة",
+      "The people you meet are the people who do the work.": "من تقابلهم هم من ينفّذون العمل.",
+      "AI with intent": "ذكاء اصطناعي بهدف",
+      "We use AI where it earns real time back — not because it's fashionable.": "نستخدم الذكاء الاصطناعي حيث يوفّر وقتاً حقيقياً — لا لأنه موضة.",
+      "Own the outcome": "نتحمّل مسؤولية النتيجة",
+      "We measure ourselves on whether your business is better off, not on deliverables.": "نقيس أنفسنا بمدى تحسّن أعمالك، لا بعدد المُخرجات.",
+      "By the numbers": "بالأرقام",
+      "Small studio.": "استوديو صغير.",
+      "Serious track record.": "سجلّ حافل.",
+      "Projects delivered": "مشروع مُنجَز",
+      "Building & maintaining": "من البناء والصيانة",
+      "Regions · UAE & India": "منطقتان · الإمارات والهند",
+      "Typical reply time": "متوسط وقت الرد",
+      "Let's build something worth": "لنبنِ معاً شيئاً يستحق",
+      "keeping.": "أن يدوم.",
+      "Tell us what you're working on. We'll reply within one business day with a genuine, honest read.": "أخبرنا بما تعمل عليه. سنرد خلال يوم عمل واحد برأي صادق وحقيقي.",
+      "About — Igniz AI": "من نحن — Igniz AI",
+      "Igniz AI is a small, senior technology studio in the UAE and India. We design, build, and maintain digital work for ambitious businesses — and stay long after launch.": "Igniz AI استوديو تقني صغير من أصحاب الخبرة في الإمارات والهند. نصمم ونبني ونصون الأعمال الرقمية للشركات الطموحة — ونبقى معها طويلاً بعد الإطلاق.",
+      "› Services": "› الخدمات",
+      "One studio for the whole": "استوديو واحد يغطي",
+      "digital picture.": "الصورة الرقمية كاملة.",
+      "High-craft sites and web apps, designed and built from scratch.": "مواقع وتطبيقات ويب متقنة، مصممة ومبنية من الصفر.",
+      "We build fast, elegant, conversion-focused websites and web platforms — bespoke, never templated. Every page is designed around what your business actually needs to happen next.": "نبني مواقع ومنصات ويب سريعة وأنيقة تركّز على التحويل — مصممة خصيصاً، لا قوالب جاهزة. كل صفحة مصممة حول ما تحتاج أعمالك فعلاً أن يحدث بعدها.",
+      "Custom design & front-end build": "تصميم مخصص وبناء الواجهة الأمامية",
+      "Web apps & portals": "تطبيقات الويب والبوابات",
+      "Performance & Core Web Vitals": "الأداء ومؤشرات Core Web Vitals",
+      "Accessibility & SEO foundations": "أساسيات سهولة الوصول وتحسين محركات البحث",
+      "Platforms your team can run without breaking the design.": "منصات يستطيع فريقك إدارتها دون الإخلال بالتصميم.",
+      "We give you a structured, editable system so your team can update content confidently — with guardrails that keep everything on-brand and unbreakable.": "نمنحك نظاماً منظماً وقابلاً للتعديل ليتمكن فريقك من تحديث المحتوى بثقة — مع ضوابط تحافظ على هوية العلامة وتمنع الأخطاء.",
+      "Headless & traditional CMS": "أنظمة إدارة محتوى تقليدية ومستقلة (Headless)",
+      "Structured content models": "نماذج محتوى منظمة",
+      "Editor training & docs": "تدريب المحررين والتوثيق",
+      "Multi-language ready": "جاهز لتعدد اللغات",
+      "Practical AI, only where it earns its place.": "ذكاء اصطناعي عملي، فقط حيث يستحق مكانه.",
+      "We add intelligence where it saves you real hours — lead capture, customer support, and internal workflows — without the hype or the science project.": "نضيف الذكاء حيث يوفّر عليك ساعات حقيقية — استقطاب العملاء، ودعم العملاء، وسير العمل الداخلي — دون ضجيج أو تجارب معملية.",
+      "AI assistants & chat": "مساعدون أذكياء ومحادثة",
+      "Lead qualification & routing": "تأهيل العملاء المحتملين وتوجيههم",
+      "Workflow automation": "أتمتة سير العمل",
+      "Content & data pipelines": "مسارات المحتوى والبيانات",
+      "The quiet work that keeps you ahead.": "العمل الهادئ الذي يبقيك في المقدمة.",
+      "After launch, we stay. Ongoing maintenance, monitoring, performance, and SEO — so your site keeps getting sharper instead of slowly falling behind.": "بعد الإطلاق، نبقى معك. صيانة مستمرة ومراقبة وتحسين للأداء ومحركات البحث — ليزداد موقعك تميزاً بدلاً من أن يتراجع ببطء.",
+      "Maintenance & updates": "الصيانة والتحديثات",
+      "Uptime & performance monitoring": "مراقبة التوفر والأداء",
+      "SEO & content support": "دعم تحسين محركات البحث والمحتوى",
+      "Priority response": "استجابة ذات أولوية",
+      "Under the hood": "ما وراء الكواليس",
+      "Modern tools,": "أدوات حديثة،",
+      "chosen for longevity.": "مختارة لتدوم.",
+      "We pick technology for how well it will serve you in three years — not for what's trending this quarter.": "نختار التقنية بناءً على مدى خدمتها لك بعد ثلاث سنوات — لا بناءً على ما هو رائج هذا الربع.",
+      "Not sure where to": "لست متأكداً من أين",
+      "start?": "تبدأ؟",
+      "Tell us the goal, not the spec. We'll reply within one business day with an honest read on what's worth building.": "أخبرنا بالهدف، لا بالمواصفات. سنرد خلال يوم عمل واحد برأي صادق حول ما يستحق البناء.",
+      "Services — Igniz AI": "الخدمات — Igniz AI",
+      "Websites and platforms, CMS systems, AI and automation, and long-term care — one senior studio for the whole digital picture, in the UAE and India.": "مواقع ومنصات، وأنظمة إدارة محتوى، وذكاء اصطناعي وأتمتة، ورعاية طويلة الأمد — استوديو واحد من أصحاب الخبرة يغطي الصورة الرقمية كاملة، في الإمارات والهند.",
+      "› Process": "› منهجيتنا",
+      "No black boxes.": "لا صناديق سوداء.",
+      "No": "ولا",
+      "surprises.": "مفاجآت.",
+      "Discover": "الاستكشاف",
+      "Understand the business first": "نفهم الأعمال أولاً",
+      "Before a single pixel, we learn how you actually make money, who you serve, and what \"better\" looks like. Clear goals now save expensive detours later.": "قبل أي بكسل، نتعرّف على كيف تحقق أرباحك فعلاً، ومن تخدم، وكيف يبدو \"الأفضل\" بالنسبة لك. الأهداف الواضحة الآن توفّر منعطفات مكلفة لاحقاً.",
+      "Design": "التصميم",
+      "Shape it before we build it": "نشكّله قبل أن نبنيه",
+      "We design the structure and the look together, so you can see and feel the direction early — and change it while it's still cheap to change.": "نصمم الهيكل والمظهر معاً، لترى الاتجاه وتشعر به مبكراً — وتغيّره بينما لا يزال التغيير غير مكلف.",
+      "Build": "البناء",
+      "Engineer it to last": "نهندسه ليدوم",
+      "Senior hands write clean, fast, accessible code. You get regular check-ins and a working link to watch it come together — never a black box.": "أيدٍ خبيرة تكتب شيفرة نظيفة وسريعة وسهلة الوصول. تحصل على متابعات منتظمة ورابط فعلي لتشاهد العمل وهو يكتمل — دون أي صناديق سوداء.",
+      "Launch": "الإطلاق",
+      "Ship with confidence": "نُطلق بثقة",
+      "We test across devices, tune performance and SEO, and launch carefully — then make sure your team knows how to run it.": "نختبر على جميع الأجهزة، ونضبط الأداء وتحسين محركات البحث، ونُطلق بعناية — ثم نتأكد أن فريقك يعرف كيف يديره.",
+      "Care": "الرعاية",
+      "Stay, and keep it sharp": "نبقى ونحافظ على تميّزه",
+      "Launch is the beginning. We monitor, maintain, and improve — so the work keeps paying off long after it goes live.": "الإطلاق هو البداية. نراقب ونصون ونحسّن — ليستمر العمل في تحقيق العائد طويلاً بعد إطلاقه.",
+      "Ready when": "جاهزون متى",
+      "you are.": "ما كنت جاهزاً.",
+      "Tell us what you're building. We'll walk you through exactly how we'd approach it — no obligation.": "أخبرنا بما تبنيه. سنشرح لك بالضبط كيف سنتعامل معه — دون أي التزام.",
+      "Process — Igniz AI": "منهجيتنا — Igniz AI",
+      "No black boxes, no surprises. A transparent five-stage process — from first call to long-term care — that keeps you informed and in control.": "لا صناديق سوداء ولا مفاجآت. منهجية شفافة من خمس مراحل — من أول مكالمة إلى الرعاية طويلة الأمد — تبقيك على اطلاع وفي موقع السيطرة.",
+      "› Work": "› أعمالنا",
+      "Numbers we can": "أرقام يمكننا",
+      "actually stand behind.": "أن نقف خلفها فعلاً.",
+      "Fintech · Web platform": "التقنية المالية · منصة ويب",
+      "A lending platform that converts on first visit": "منصة إقراض تحقق التحويل من الزيارة الأولى",
+      "We rebuilt a slow, dated marketing site into a fast, trustworthy platform with a streamlined application flow — and kept maintaining it after launch.": "أعدنا بناء موقع تسويقي بطيء وقديم ليصبح منصة سريعة وموثوقة بمسار تقديم مبسّط — واستمررنا في صيانتها بعد الإطلاق.",
+      "Qualified leads": "عملاء محتملون مؤهلون",
+      "Load time": "زمن التحميل",
+      "Fintech": "التقنية المالية",
+      "Healthcare · CMS": "الرعاية الصحية · نظام إدارة محتوى",
+      "A clinic network their own team can run": "شبكة عيادات يديرها فريقها بنفسه",
+      "A multi-location healthcare group needed dozens of pages kept current. We built a structured CMS with guardrails so non-technical staff update content safely.": "احتاجت مجموعة رعاية صحية متعددة الفروع إلى تحديث عشرات الصفحات باستمرار. بنينا نظام إدارة محتوى منظماً بضوابط تتيح للموظفين غير التقنيين تحديث المحتوى بأمان.",
+      "Pages self-managed": "صفحات تُدار ذاتياً",
+      "Dev tickets to edit": "طلبات تطوير للتعديل",
+      "Retail · AI & automation": "التجزئة · الذكاء الاصطناعي والأتمتة",
+      "Support that answers before you open": "دعم يجيب قبل أن تفتح أبوابك",
+      "We added an AI assistant and lead-routing to a retail brand's site — capturing and qualifying enquiries around the clock and handing warm leads to the team.": "أضفنا مساعداً ذكياً وتوجيهاً للعملاء المحتملين إلى موقع علامة تجارية للتجزئة — لالتقاط الاستفسارات وتأهيلها على مدار الساعة وتسليم العملاء الجادّين إلى الفريق.",
+      "First response": "أول استجابة",
+      "Support load": "عبء الدعم",
+      "Retail": "التجزئة",
+      "Your project could be": "مشروعك قد يكون",
+      "next.": "التالي.",
+      "Tell us what you're working on. We'll reply within one business day with an honest read on what's possible.": "أخبرنا بما تعمل عليه. سنرد خلال يوم عمل واحد برأي صادق حول ما هو ممكن.",
+      "Work — Igniz AI": "أعمالنا — Igniz AI",
+      "Selected work from Igniz AI — real businesses across fintech, healthcare, SaaS, retail, and services. Real outcomes, no embellished metrics.": "أعمال مختارة من Igniz AI — أعمال حقيقية في التقنية المالية والرعاية الصحية والبرمجيات كخدمة والتجزئة والخدمات. نتائج حقيقية، دون أرقام مبالغ فيها.",
+      "› Contact": "› تواصل معنا",
+      "Tell us what you're": "أخبرنا بما",
+      "building.": "تبنيه.",
+      "Select country": "اختر الدولة",
+      "Select city": "اختر المدينة",
+      "Country Code *": "رمز الدولة *",
+      "Code": "الرمز",
+      "What do you need built?": "ما الذي تحتاج إلى بنائه؟",
+      "Loading services…": "جارٍ تحميل الخدمات…",
+      "Select services…": "اختر الخدمات…",
+      "Could not load services — please refresh": "تعذّر تحميل الخدمات — يرجى تحديث الصفحة",
+      "Tell us about the project": "أخبرنا عن المشروع",
+      "Alex": "أحمد",
+      "Johnson": "المنصوري",
+      "Acme Inc.": "شركة النخبة",
+      "Search…": "بحث…",
+      "Search services": "ابحث في الخدمات",
+      "Selected services": "الخدمات المختارة",
+      "What are you building, what's not working today, or where are you stuck? The more specific, the faster we can help.": "ما الذي تبنيه، وما الذي لا يعمل اليوم، أو أين تواجه صعوبة؟ كلما كنت أكثر تحديداً، استطعنا المساعدة بشكل أسرع.",
+      "Please fill in all required fields.": "يرجى تعبئة جميع الحقول المطلوبة.",
+      "Please enter a valid email address.": "يرجى إدخال بريد إلكتروني صحيح.",
+      "Submitting…": "جارٍ الإرسال…",
+      "Something went wrong. Please try again or email us directly.": "حدث خطأ ما. يرجى المحاولة مرة أخرى أو مراسلتنا مباشرة عبر البريد الإلكتروني.",
+      "Contact — Igniz AI": "تواصل معنا — Igniz AI",
+      "Tell us what you're building in Dubai, Ras Al Khaimah, or India. An engineer reads it and replies within one business day — with a plan, not a pitch.": "أخبرنا بما تبنيه في دبي أو رأس الخيمة أو الهند. يقرأ رسالتك مهندس ويرد خلال يوم عمل واحد — بخطة، لا بعرض ترويجي.",
+      "Australia": "أستراليا",
+      "Bangladesh": "بنغلاديش",
+      "Brazil": "البرازيل",
+      "Canada": "كندا",
+      "China": "الصين",
+      "Denmark": "الدنمارك",
+      "Egypt": "مصر",
+      "France": "فرنسا",
+      "Germany": "ألمانيا",
+      "India": "الهند",
+      "Indonesia": "إندونيسيا",
+      "Ireland": "أيرلندا",
+      "Israel": "إسرائيل",
+      "Italy": "إيطاليا",
+      "Japan": "اليابان",
+      "Kenya": "كينيا",
+      "Malaysia": "ماليزيا",
+      "Netherlands": "هولندا",
+      "New Zealand": "نيوزيلندا",
+      "Nigeria": "نيجيريا",
+      "Norway": "النرويج",
+      "Other": "أخرى",
+      "Pakistan": "باكستان",
+      "Philippines": "الفلبين",
+      "Portugal": "البرتغال",
+      "Saudi Arabia": "المملكة العربية السعودية",
+      "Singapore": "سنغافورة",
+      "South Africa": "جنوب أفريقيا",
+      "South Korea": "كوريا الجنوبية",
+      "Spain": "إسبانيا",
+      "Sri Lanka": "سريلانكا",
+      "Sweden": "السويد",
+      "Switzerland": "سويسرا",
+      "Thailand": "تايلاند",
+      "Turkey": "تركيا",
+      "United Arab Emirates": "الإمارات العربية المتحدة",
+      "United Kingdom": "المملكة المتحدة",
+      "United States": "الولايات المتحدة",
+      "Vietnam": "فيتنام",
+      "Dubai": "دبي",
+      "Abu Dhabi": "أبوظبي",
+      "Sharjah": "الشارقة",
+      "Ajman": "عجمان",
+      "Ras Al Khaimah": "رأس الخيمة",
+      "Riyadh": "الرياض",
+      "Jeddah": "جدة",
+      "Mecca": "مكة المكرمة",
+      "Medina": "المدينة المنورة",
+      "Dammam": "الدمام",
+      "Cairo": "القاهرة",
+      "Alexandria": "الإسكندرية",
+      "Giza": "الجيزة",
+      "Sharm El-Sheikh": "شرم الشيخ",
+      "Luxor": "الأقصر",
+      "Mumbai": "مومباي",
+      "Delhi": "دلهي",
+      "Bengaluru": "بنغالورو",
+      "Hyderabad": "حيدر أباد",
+      "Chennai": "تشيناي",
+      "Kolkata": "كولكاتا",
+      "Pune": "بونه",
+      "Ahmedabad": "أحمد آباد",
+      "Jaipur": "جايبور",
+      "Surat": "سورت",
+      "London": "لندن",
+      "Manchester": "مانشستر",
+      "Paris": "باريس",
+      "Berlin": "برلين",
+      "Istanbul": "إسطنبول",
+      "Tokyo": "طوكيو",
+      "New York": "نيويورك",
+      "Toronto": "تورنتو",
+      "Sydney": "سيدني",
+      "Karachi": "كراتشي",
+      "Lahore": "لاهور",
+      "Islamabad": "إسلام آباد",
+      "Dhaka": "دكا",
+      "Colombo": "كولومبو",
+      "› Journal": "› المدونة",
+      "Notes on building": "ملاحظات حول البناء",
+      "online.": "على الإنترنت.",
+      "Your website is your most valuable sales asset. Why RAK businesses need a real online presence — and what it takes to stand out.": "موقعك هو أثمن أصول المبيعات لديك. لماذا تحتاج شركات رأس الخيمة إلى حضور حقيقي على الإنترنت — وما الذي يتطلبه التميّز.",
+      "Read the article →": "اقرأ المقال ←",
+      "How a modern website can help your small business grow faster": "كيف يمكن للموقع الحديث أن يساعد شركتك الصغيرة على النمو بشكل أسرع",
+      "Your site is a salesperson that never sleeps. How a modern website actually accelerates small-business growth.": "موقعك مندوب مبيعات لا ينام. كيف يسرّع الموقع الحديث نمو الشركات الصغيرة فعلاً.",
+      "5 proven ways small businesses can generate more leads online": "5 طرق مجرَّبة يمكن للشركات الصغيرة من خلالها توليد مزيد من العملاء المحتملين عبر الإنترنت",
+      "Five practical strategies — from high-converting websites to SEO and content — that consistently attract qualified leads.": "خمس استراتيجيات عملية — من المواقع عالية التحويل إلى تحسين محركات البحث والمحتوى — تجذب عملاء محتملين مؤهلين باستمرار.",
+      "Enjoyed the read? Let's": "أعجبتك القراءة؟ لنتحدث",
+      "talk shop.": "عن العمل.",
+      "Have a project in mind — or just a question? We reply within one business day.": "لديك مشروع في ذهنك — أو مجرد سؤال؟ نرد خلال يوم عمل واحد.",
+      "Journal — Igniz AI": "المدونة — Igniz AI",
+      "Notes on building online — digital growth, websites, and practical AI for businesses in the UAE and India, from the Igniz AI studio.": "ملاحظات حول البناء على الإنترنت — النمو الرقمي والمواقع والذكاء الاصطناعي العملي للأعمال في الإمارات والهند، من استوديو Igniz AI.",
+      "· 6 min read": "· قراءة في 6 دقائق",
+      "· 7 min read": "· قراءة في 7 دقائق",
+      "· 5 min read": "· قراءة في 5 دقائق",
+      "← Back to Blog": "→ العودة إلى المدونة",
+      "← Back to the Journal": "→ العودة إلى المدونة",
+      "Final Thoughts": "أفكار ختامية",
+      "Key insight:": "فكرة أساسية:",
+      "Did you know?": "هل تعلم؟",
+      "First impressions matter:": "الانطباع الأول مهم:",
+      "› Lead Generation": "› توليد العملاء المحتملين",
+      "5 Proven Ways Small Businesses Can Generate More Leads Online": "5 طرق مجرَّبة يمكن للشركات الصغيرة من خلالها توليد مزيد من العملاء المحتملين عبر الإنترنت",
+      "Growing a business today requires more than excellent products or services. Customers need to discover your business before they can choose it.": "تنمية الأعمال اليوم تتطلب أكثر من منتجات أو خدمات ممتازة. يحتاج العملاء إلى اكتشاف نشاطك التجاري قبل أن يتمكنوا من اختياره.",
+      "Digital lead generation isn't reserved for large corporations with big marketing budgets anymore. Small businesses that apply these five strategies consistently attract more customers online.": "لم يعد توليد العملاء المحتملين رقمياً حكراً على الشركات الكبرى ذات الميزانيات التسويقية الضخمة. الشركات الصغيرة التي تطبّق هذه الاستراتيجيات الخمس تجذب باستمرار مزيداً من العملاء عبر الإنترنت.",
+      "1. Build a High-Converting Website": "1. ابنِ موقعاً عالي التحويل",
+      "Your website is your most valuable lead generation asset. A high-converting site isn't built to look good — it's built to turn visitors into enquiries.": "موقعك هو أثمن أصولك في توليد العملاء المحتملين. الموقع عالي التحويل لا يُبنى ليبدو جميلاً فحسب — بل ليحوّل الزوار إلى استفسارات.",
+      "Key elements of a high-converting website:": "العناصر الأساسية للموقع عالي التحويل:",
+      "Clear calls-to-action on every page": "دعوات واضحة لاتخاذ إجراء في كل صفحة",
+      "Fast loading speed on mobile and desktop": "سرعة تحميل عالية على الجوال والحاسوب",
+      "Trust signals such as testimonials and case studies": "مؤشرات ثقة مثل آراء العملاء ودراسات الحالة",
+      "Simple, easy-to-complete contact forms": "نماذج تواصل بسيطة وسهلة التعبئة",
+      "WhatsApp click-to-chat integration": "تكامل المحادثة الفورية عبر واتساب",
+      "Professional design that reflects your brand": "تصميم احترافي يعكس علامتك التجارية",
+      "Without a strong website foundation, every other marketing effort delivers weaker results.": "من دون أساس قوي لموقعك، يحقق كل جهد تسويقي آخر نتائج أضعف.",
+      "Businesses with professional, mobile-optimised websites convert visitors into leads at significantly higher rates than those with outdated or poorly designed sites.": "الشركات التي تمتلك مواقع احترافية ومهيأة للجوال تحوّل الزوار إلى عملاء محتملين بمعدلات أعلى بكثير من تلك التي تمتلك مواقع قديمة أو سيئة التصميم.",
+      "2. Make Your Business Easy to Find (SEO)": "2. اجعل الوصول إلى نشاطك سهلاً (تحسين محركات البحث)",
+      "Search Engine Optimisation (SEO) gets your website in front of customers at the exact moment they're searching for your services.": "يضع تحسين محركات البحث (SEO) موقعك أمام العملاء في اللحظة ذاتها التي يبحثون فيها عن خدماتك.",
+      "Effective local SEO strategies include:": "من استراتيجيات تحسين محركات البحث المحلية الفعّالة:",
+      "Optimising your Google Business Profile": "تحسين ملفك التجاري على Google",
+      "Using location-specific keywords on your website": "استخدام كلمات مفتاحية مرتبطة بالموقع الجغرافي في موقعك",
+      "Creating service pages targeting your city and region": "إنشاء صفحات خدمات تستهدف مدينتك ومنطقتك",
+      "Building local citations and directory listings": "بناء إشارات محلية وإدراجات في الأدلة",
+      "Collecting and responding to customer reviews": "جمع تقييمات العملاء والرد عليها",
+      "For businesses in the UAE, ranking in local search results for services in Dubai, Abu Dhabi, Ras Al Khaimah, and other emirates can significantly increase enquiries.": "بالنسبة للشركات في الإمارات، فإن الظهور في نتائج البحث المحلية للخدمات في دبي وأبوظبي ورأس الخيمة وغيرها من الإمارات يمكن أن يزيد الاستفسارات بشكل كبير.",
+      "3. Build Trust Through Valuable Content": "3. ابنِ الثقة من خلال محتوى قيّم",
+      "Content marketing attracts potential customers by giving them the useful information they're already searching for.": "يجذب التسويق بالمحتوى العملاء المحتملين من خلال تزويدهم بالمعلومات المفيدة التي يبحثون عنها أصلاً.",
+      "Effective content formats for small businesses include:": "من صيغ المحتوى الفعّالة للشركات الصغيرة:",
+      "Blog articles answering common customer questions": "مقالات مدونة تجيب عن أسئلة العملاء الشائعة",
+      "Case studies showing your work and results": "دراسات حالة تعرض أعمالك ونتائجك",
+      "Service guides explaining your process": "أدلة خدمات تشرح طريقة عملك",
+      "Before and after project showcases": "عروض مشاريع قبل وبعد",
+      "Video testimonials from satisfied customers": "شهادات فيديو من عملاء راضين",
+      "When customers find your content genuinely useful, they trust your business — and trust turns into contact.": "عندما يجد العملاء محتواك مفيداً حقاً، فإنهم يثقون بنشاطك — والثقة تتحول إلى تواصل.",
+      "Want to attract more customers with a website designed to generate leads?": "هل تريد جذب مزيد من العملاء بموقع مصمم لتوليد العملاء المحتملين؟",
+      "Book Your Free Consultation →": "احجز استشارتك المجانية ←",
+      "4. Simplify Customer Contact": "4. سهّل تواصل العملاء معك",
+      "Many businesses lose leads simply because it's too hard or too slow to get in touch. Make reaching you effortless.": "تخسر شركات كثيرة عملاء محتملين لمجرد أن التواصل معها صعب أو بطيء. اجعل الوصول إليك سهلاً.",
+      "Simple ways to reduce friction and increase contacts:": "طرق بسيطة لتقليل العوائق وزيادة التواصل:",
+      "Add a WhatsApp chat button on every page": "أضف زر محادثة واتساب في كل صفحة",
+      "Keep contact forms short — name, email, and message is enough": "اجعل نماذج التواصل قصيرة — الاسم والبريد الإلكتروني والرسالة تكفي",
+      "Display your phone number prominently in the header": "اعرض رقم هاتفك بشكل بارز في أعلى الصفحة",
+      "Offer multiple contact options (email, phone, WhatsApp, form)": "وفّر خيارات تواصل متعددة (البريد الإلكتروني، الهاتف، واتساب، النموذج)",
+      "Respond to enquiries within a few hours": "رُدّ على الاستفسارات خلال ساعات قليلة",
+      "5. Keep Your Website Updated": "5. حافظ على تحديث موقعك",
+      "An outdated website actively works against your lead generation. Search engines favour fresh, well-maintained sites, and customers notice when a website looks neglected.": "الموقع القديم يعمل فعلياً ضد توليد العملاء المحتملين. تفضّل محركات البحث المواقع المحدّثة والمُعتنى بها، ويلاحظ العملاء عندما يبدو الموقع مهملاً.",
+      "Regular website maintenance includes:": "تشمل الصيانة الدورية للموقع:",
+      "Updating service descriptions and pricing": "تحديث أوصاف الخدمات والأسعار",
+      "Publishing fresh blog content": "نشر محتوى جديد في المدونة",
+      "Adding recent project case studies": "إضافة دراسات حالة لمشاريع حديثة",
+      "Fixing broken links and technical errors": "إصلاح الروابط المعطلة والأخطاء التقنية",
+      "Improving page speed and performance": "تحسين سرعة الصفحات وأدائها",
+      "An Annual Maintenance Contract (AMC) keeps your website in peak condition without demanding your constant attention.": "يحافظ عقد الصيانة السنوي (AMC) على موقعك في أفضل حالاته دون أن يتطلب اهتمامك المستمر.",
+      "Lead generation online is a long-term investment. The businesses that commit to a strong digital presence — starting with a professional website and consistent content — are the ones that win more customers over time.": "توليد العملاء المحتملين عبر الإنترنت استثمار طويل الأمد. الشركات التي تلتزم بحضور رقمي قوي — بدءاً بموقع احترافي ومحتوى منتظم — هي التي تكسب مزيداً من العملاء مع مرور الوقت.",
+      "Ready to start generating more leads? Our team can help you build the digital foundation you need.": "هل أنت مستعد لبدء توليد مزيد من العملاء المحتملين؟ يمكن لفريقنا مساعدتك في بناء الأساس الرقمي الذي تحتاجه.",
+      "Ready to start generating more leads for your business?": "هل أنت مستعد لبدء توليد مزيد من العملاء المحتملين لأعمالك؟",
+      "Get Your Free Proposal →": "احصل على عرضك المجاني ←",
+      "5 Proven Ways Small Businesses Can Generate More Leads Online — Igniz AI": "5 طرق مجرَّبة لتوليد مزيد من العملاء المحتملين للشركات الصغيرة عبر الإنترنت — Igniz AI",
+      "Five practical digital strategies — from high-converting websites to SEO and content — that consistently attract qualified leads for small businesses.": "خمس استراتيجيات رقمية عملية — من المواقع عالية التحويل إلى تحسين محركات البحث والمحتوى — تجذب باستمرار عملاء محتملين مؤهلين للشركات الصغيرة.",
+      "› Digital Growth": "› النمو الرقمي",
+      "Why Every Ras Al Khaimah Business Needs a Professional Website in 2026": "لماذا تحتاج كل شركة في رأس الخيمة إلى موقع إلكتروني احترافي في 2026",
+      "In today's digital-first economy, your website is more than an online brochure — it's your business's most valuable sales and marketing asset.": "في اقتصاد اليوم الرقمي أولاً، موقعك أكثر من مجرد كُتيّب على الإنترنت — إنه أثمن أصول المبيعات والتسويق لدى نشاطك.",
+      "Whether you run a retail store, restaurant, travel agency, construction company, medical clinic, consultancy, or service business in Ras Al Khaimah, your customers are searching online before they ever pick up the phone.": "سواء كنت تدير متجر تجزئة أو مطعماً أو وكالة سفر أو شركة مقاولات أو عيادة طبية أو شركة استشارات أو نشاطاً خدمياً في رأس الخيمة، فإن عملاءك يبحثون على الإنترنت قبل أن يرفعوا سماعة الهاتف.",
+      "If they can't find your business — or find an outdated website — they'll choose a competitor instead.": "إذا لم يجدوا نشاطك — أو وجدوا موقعاً قديماً — فسيختارون منافساً بدلاً منك.",
+      "Your Customers Are Already Searching Online": "عملاؤك يبحثون على الإنترنت بالفعل",
+      "Customers now expect every business to have a professional online presence. Before calling or visiting your office, they typically want to:": "يتوقع العملاء اليوم أن يكون لكل نشاط تجاري حضور احترافي على الإنترنت. قبل الاتصال أو زيارة مكتبك، يرغبون عادةً في:",
+      "Learn about your services": "التعرّف على خدماتك",
+      "View your products": "الاطلاع على منتجاتك",
+      "Compare prices": "مقارنة الأسعار",
+      "Check business credibility": "التحقق من مصداقية النشاط",
+      "Read customer reviews": "قراءة تقييمات العملاء",
+      "Find your location": "معرفة موقعك",
+      "Contact you easily": "التواصل معك بسهولة",
+      "A professional website keeps your business open": "الموقع الاحترافي يُبقي نشاطك مفتوحاً",
+      "24 hours a day, 7 days a week": "24 ساعة يومياً، 7 أيام في الأسبوع",
+      "— even when your office is closed.": "— حتى عندما يكون مكتبك مغلقاً.",
+      "Build Trust from the First Impression": "ابنِ الثقة من الانطباع الأول",
+      "Your website is often the first interaction a customer has with your business. A clean, modern, responsive design signals professionalism and reliability; an outdated one raises doubts before you've said a word.": "غالباً ما يكون موقعك أول تفاعل للعميل مع نشاطك. التصميم النظيف والحديث والمتجاوب يعكس الاحترافية والموثوقية؛ أما التصميم القديم فيثير الشكوك قبل أن تنطق بكلمة.",
+      "A professionally designed website should:": "يجب أن يكون الموقع المصمم باحترافية:",
+      "Load quickly": "سريع التحميل",
+      "Work perfectly on mobile devices": "يعمل بشكل مثالي على الأجهزة المحمولة",
+      "Be easy to navigate": "سهل التصفح",
+      "Clearly explain your services": "يشرح خدماتك بوضوح",
+      "Make contacting your business effortless": "يجعل التواصل مع نشاطك سهلاً",
+      "Over 60% of all web traffic now comes from mobile devices. A website that doesn't work well on smartphones is losing you customers every single day.": "أكثر من 60% من إجمالي حركة الإنترنت تأتي اليوم من الأجهزة المحمولة. الموقع الذي لا يعمل جيداً على الهواتف الذكية يُفقدك عملاء كل يوم.",
+      "Get Found on Search Engines": "اجعل محركات البحث تجدك",
+      "People search for services with phrases like:": "يبحث الناس عن الخدمات بعبارات مثل:",
+      "Website development in Ras Al Khaimah": "تطوير مواقع إلكترونية في رأس الخيمة",
+      "Best travel agency in Ras Al Khaimah": "أفضل وكالة سفر في رأس الخيمة",
+      "Restaurant near me": "مطعم بالقرب مني",
+      "Property consultant Ras Al Khaimah": "مستشار عقاري رأس الخيمة",
+      "Construction company UAE": "شركة مقاولات الإمارات",
+      "A search engine optimized (SEO) website puts you in front of these searches — right when customers are actively looking for what you offer.": "الموقع المهيأ لمحركات البحث (SEO) يضعك أمام عمليات البحث هذه — في اللحظة التي يبحث فيها العملاء فعلياً عمّا تقدّمه.",
+      "Turn Visitors into Leads": "حوّل الزوار إلى عملاء محتملين",
+      "A website shouldn't just display information — it should generate enquiries. Features such as:": "لا ينبغي للموقع أن يعرض المعلومات فحسب — بل يجب أن يولّد استفسارات. من خلال ميزات مثل:",
+      "Contact forms": "نماذج التواصل",
+      "WhatsApp integration": "التكامل مع واتساب",
+      "Call-to-action buttons": "أزرار الدعوة لاتخاذ إجراء",
+      "Online quotation requests": "طلبات عروض الأسعار عبر الإنترنت",
+      "Appointment booking": "حجز المواعيد",
+      "Live chat": "المحادثة المباشرة",
+      "…turn visitors into paying customers.": "…تحوّل الزوار إلى عملاء يدفعون.",
+      "Ready to build a website that generates real leads for your business?": "هل أنت مستعد لبناء موقع يولّد عملاء محتملين حقيقيين لأعمالك؟",
+      "Start Generating Leads →": "ابدأ توليد العملاء ←",
+      "Stay Competitive in a Growing Market": "حافظ على تنافسيتك في سوق متنامية",
+      "Businesses across the UAE keep investing in their digital presence because customers expect convenient online experiences as standard. The companies investing in that presence today are the ones best positioned to win tomorrow.": "تواصل الشركات في أنحاء الإمارات الاستثمار في حضورها الرقمي لأن العملاء يتوقعون تجارب إلكترونية مريحة كأمر بديهي. الشركات التي تستثمر في هذا الحضور اليوم هي الأقدر على الفوز غداً.",
+      "Your Website Is Never Finished": "موقعك لا يكتمل أبداً",
+      "Technology evolves, customer expectations shift, and search engines continuously update their algorithms. Regular maintenance keeps your website secure, fast, and effective.": "تتطور التقنية، وتتغير توقعات العملاء، وتحدّث محركات البحث خوارزمياتها باستمرار. الصيانة الدورية تحافظ على موقعك آمناً وسريعاً وفعّالاً.",
+      "An Annual Maintenance Contract (AMC) keeps your website updated with:": "يحافظ عقد الصيانة السنوي (AMC) على تحديث موقعك من خلال:",
+      "Security patches": "تحديثات الأمان",
+      "Performance improvements": "تحسينات الأداء",
+      "Content updates": "تحديثات المحتوى",
+      "Bug fixes": "إصلاح الأخطاء",
+      "Regular backups": "نسخ احتياطية منتظمة",
+      "Technical support": "الدعم التقني",
+      "A professional website is no longer optional — it's an essential business investment. It builds credibility, attracts customers, generates leads, and supports long-term growth.": "لم يعد الموقع الاحترافي خياراً — بل استثماراً أساسياً للأعمال. فهو يبني المصداقية، ويجذب العملاء، ويولّد العملاء المحتملين، ويدعم النمو طويل الأمد.",
+      "If your business is ready to establish or improve its digital presence, a professionally developed website is one of the smartest decisions you can make for the future.": "إذا كان نشاطك مستعداً لتأسيس حضوره الرقمي أو تحسينه، فإن الموقع المطوَّر باحترافية من أذكى القرارات التي يمكنك اتخاذها للمستقبل.",
+      "Let's build a digital presence that attracts customers and builds trust.": "لنبنِ معاً حضوراً رقمياً يجذب العملاء ويبني الثقة.",
+      "Why Every Ras Al Khaimah Business Needs a Professional Website in 2026 — Igniz AI": "لماذا تحتاج كل شركة في رأس الخيمة إلى موقع إلكتروني احترافي في 2026 — Igniz AI",
+      "In today's digital-first economy, your website is more than an online brochure. Learn why every RAK business needs a professional website in 2026.": "في اقتصاد اليوم الرقمي أولاً، موقعك أكثر من مجرد كُتيّب على الإنترنت. تعرّف لماذا تحتاج كل شركة في رأس الخيمة إلى موقع احترافي في 2026.",
+      "› Business Growth": "› نمو الأعمال",
+      "How a Modern Website Can Help Your Small Business Grow Faster": "كيف يمكن للموقع الحديث أن يساعد شركتك الصغيرة على النمو بشكل أسرع",
+      "A modern website works as your salesperson, customer service representative, and marketing platform — all at the same time.": "يعمل الموقع الحديث كمندوب مبيعات وممثل خدمة عملاء ومنصة تسويق — كل ذلك في آن واحد.",
+      "For small business owners, time and resources are always limited. A well-built website does more with less — serving customers, answering questions, and generating enquiries while you sleep.": "بالنسبة لأصحاب الشركات الصغيرة، الوقت والموارد محدودة دائماً. الموقع المتقن البناء يحقق أكثر بموارد أقل — يخدم العملاء، ويجيب عن الأسئلة، ويولّد الاستفسارات بينما أنت نائم.",
+      "Here is how a modern website directly drives your business growth.": "إليك كيف يدفع الموقع الحديث نمو أعمالك بشكل مباشر.",
+      "Your Business, Open 24/7": "نشاطك مفتوح على مدار الساعة",
+      "Unlike a physical store or office, your website never closes. Potential customers can learn about your services, browse your portfolio, or contact you at any hour of the day or night.": "على عكس المتجر أو المكتب الفعلي، لا يُغلق موقعك أبداً. يمكن للعملاء المحتملين التعرّف على خدماتك، وتصفح أعمالك، أو التواصل معك في أي ساعة من الليل أو النهار.",
+      "That constant availability means you never miss an opportunity, even outside business hours.": "هذا التوافر الدائم يعني أنك لن تفوّت أي فرصة، حتى خارج ساعات العمل.",
+      "Make a Strong First Impression": "اترك انطباعاً أولاً قوياً",
+      "Before a customer calls, visits, or buys, they check your website. A clean, fast, professional site builds trust and credibility instantly.": "قبل أن يتصل العميل أو يزورك أو يشتري، يتفقد موقعك. الموقع النظيف والسريع والاحترافي يبني الثقة والمصداقية فوراً.",
+      "Key elements of a great first impression:": "العناصر الأساسية لانطباع أول رائع:",
+      "Fast loading speed (under 3 seconds)": "سرعة تحميل عالية (أقل من 3 ثوانٍ)",
+      "Mobile-friendly responsive design": "تصميم متجاوب ومناسب للجوال",
+      "Clear, compelling messaging about your services": "رسائل واضحة ومقنعة عن خدماتك",
+      "Professional photography and branding": "تصوير احترافي وهوية بصرية متقنة",
+      "Easy-to-find contact information": "معلومات تواصل سهلة الإيجاد",
+      "Studies show that users form an opinion about a website within 0.05 seconds of landing on it. A professional design signals a trustworthy business.": "تُظهر الدراسات أن المستخدمين يكوّنون رأيهم عن الموقع خلال 0.05 ثانية من دخوله. التصميم الاحترافي يدل على نشاط جدير بالثقة.",
+      "Power Every Marketing Channel": "عزّز كل قناة تسويقية",
+      "Your website is the hub of all your digital marketing activity. Social posts, email campaigns, and ads all drive traffic back to it.": "موقعك هو محور نشاطك التسويقي الرقمي بالكامل. منشورات التواصل الاجتماعي وحملات البريد الإلكتروني والإعلانات كلها تعيد الزوار إليه.",
+      "A well-built website amplifies the results of:": "الموقع المتقن البناء يضاعف نتائج:",
+      "Search Engine Optimisation (SEO)": "تحسين محركات البحث (SEO)",
+      "Google Ads and paid advertising": "إعلانات Google والإعلانات المدفوعة",
+      "Social media marketing": "التسويق عبر وسائل التواصل الاجتماعي",
+      "Email marketing campaigns": "حملات التسويق عبر البريد الإلكتروني",
+      "WhatsApp and referral marketing": "التسويق عبر واتساب والإحالات",
+      "Give Customers a Better Experience": "امنح عملاءك تجربة أفضل",
+      "A good website makes it easy for customers to find what they need, fast. Features that improve the customer experience include:": "الموقع الجيد يسهّل على العملاء إيجاد ما يحتاجونه بسرعة. من الميزات التي تحسّن تجربة العملاء:",
+      "Clear navigation menus": "قوائم تنقّل واضحة",
+      "Service pages with detailed information": "صفحات خدمات بمعلومات مفصّلة",
+      "FAQ sections that answer common questions": "أقسام أسئلة شائعة تجيب عن الاستفسارات المتكررة",
+      "Easy online contact forms": "نماذج تواصل سهلة عبر الإنترنت",
+      "Live chat or WhatsApp integration": "محادثة مباشرة أو تكامل مع واتساب",
+      "When customers can find information quickly and reach you easily, they are far more likely to choose your business.": "عندما يجد العملاء المعلومات بسرعة ويصلون إليك بسهولة، تزداد كثيراً احتمالية اختيارهم لنشاطك.",
+      "Want a website that makes it easy for customers to find and contact you?": "هل تريد موقعاً يسهّل على العملاء إيجادك والتواصل معك؟",
+      "A Website That Scales With You": "موقع ينمو معك",
+      "A professionally developed website grows alongside your business. As you add services, expand to new markets, or launch new products, your website can grow with you.": "الموقع المطوَّر باحترافية ينمو جنباً إلى جنب مع أعمالك. كلما أضفت خدمات، أو توسعت إلى أسواق جديدة، أو أطلقت منتجات جديدة، يمكن لموقعك أن ينمو معك.",
+      "Modern websites built on flexible content management systems (CMS) let you:": "المواقع الحديثة المبنية على أنظمة إدارة محتوى مرنة (CMS) تتيح لك:",
+      "Add new service pages easily": "إضافة صفحات خدمات جديدة بسهولة",
+      "Publish blog content and updates": "نشر محتوى المدونة والتحديثات",
+      "Integrate with booking or e-commerce systems": "التكامل مع أنظمة الحجز أو التجارة الإلكترونية",
+      "Track performance with analytics tools": "تتبّع الأداء بأدوات التحليلات",
+      "Protect Your Investment": "احمِ استثمارك",
+      "A website is a long-term business asset. Regular maintenance keeps it secure, fast, and effective over time.": "الموقع أصل تجاري طويل الأمد. الصيانة الدورية تحافظ عليه آمناً وسريعاً وفعّالاً مع مرور الوقت.",
+      "Annual Maintenance Contracts (AMC) provide:": "توفّر عقود الصيانة السنوية (AMC):",
+      "Regular security updates": "تحديثات أمان منتظمة",
+      "Performance monitoring and optimisation": "مراقبة الأداء وتحسينه",
+      "Content updates and refreshes": "تحديث المحتوى وتجديده",
+      "Technical support when you need it": "دعم تقني عندما تحتاجه",
+      "A modern website is not just a digital brochure — it is a business tool that works for you around the clock. Investing in a professionally designed website is one of the highest-return decisions a small business can make.": "الموقع الحديث ليس مجرد كُتيّب رقمي — بل أداة عمل تعمل لصالحك على مدار الساعة. الاستثمار في موقع مصمم باحترافية من أعلى القرارات عائداً التي يمكن للشركة الصغيرة اتخاذها.",
+      "Ready to take your business online or upgrade your current website? Our team is here to help.": "هل أنت مستعد لنقل أعمالك إلى الإنترنت أو تطوير موقعك الحالي؟ فريقنا هنا للمساعدة.",
+      "Ready to grow your business with a professional website?": "هل أنت مستعد لتنمية أعمالك بموقع احترافي؟",
+      "How a Modern Website Can Help Your Small Business Grow Faster — Igniz AI": "كيف يمكن للموقع الحديث أن يساعد شركتك الصغيرة على النمو بشكل أسرع — Igniz AI",
+      "A modern website works as your salesperson, customer service rep, and marketing platform all at once. Discover how it accelerates small business growth.": "يعمل الموقع الحديث كمندوب مبيعات وممثل خدمة عملاء ومنصة تسويق في آن واحد. اكتشف كيف يسرّع نمو الشركات الصغيرة."
+  };
+  var AR_PATTERNS = [
+    [/^Contact number must be (\d+) digits for (\+\d+)\.$/, 'يجب أن يتكون رقم الهاتف من $1 أرقام لرمز الدولة $2.'],
+    [/^Remove (.+)$/, 'إزالة $1']
+  ];
+  var SKIP_SEL = 'script,style,noscript,svg,[data-i18n],[data-i18n-html],[data-no-translate]';
+  var ATTRS = ['placeholder', 'aria-label', 'alt', 'title'];
+  var ATTR_SEL = '[placeholder],[aria-label],img[alt],[title]';
 
-  function applyLang(l) {
-    lang = l;
-    if (typeof localStorage !== 'undefined') localStorage.setItem('IgnizAI-lang', l);
-    document.documentElement.lang = l;
-    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  var lang = 'en';
+  try { lang = localStorage.getItem('IgnizAI-lang') || 'en'; } catch (e) {}
+  if (lang !== 'ar') lang = 'en';
 
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var k = el.getAttribute('data-i18n');
-      if (T[l] && T[l][k] !== undefined) el.textContent = T[l][k];
+  var origText = new Map();      // text node -> original English
+  var docOrig = null;            // { title, desc }
+  var observer = null;
+
+  function norm(s) { return s.replace(/\s+/g, ' ').trim(); }
+  function toAr(s) {
+    var k = norm(s);
+    if (!k || !/[A-Za-z]/.test(k)) return null;
+    if (Object.prototype.hasOwnProperty.call(AR, k)) return AR[k];
+    for (var i = 0; i < AR_PATTERNS.length; i++) {
+      if (AR_PATTERNS[i][0].test(k)) return k.replace(AR_PATTERNS[i][0], AR_PATTERNS[i][1]);
+    }
+    return null;
+  }
+
+  function translateTextNode(n) {
+    if (origText.has(n)) return;
+    var p = n.parentElement;
+    if (!p || p.closest(SKIP_SEL)) return;
+    var ar = toAr(n.nodeValue);
+    if (ar === null) return;
+    var lead = n.nodeValue.match(/^\s*/)[0], trail = n.nodeValue.match(/\s*$/)[0];
+    origText.set(n, n.nodeValue);
+    n.nodeValue = lead + ar + trail;
+  }
+  function translateAttrs(el) {
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a) || el.hasAttribute('data-i18n-orig-' + a)) continue;
+      var ar = toAr(el.getAttribute(a));
+      if (ar === null) continue;
+      el.setAttribute('data-i18n-orig-' + a, el.getAttribute(a));
+      el.setAttribute(a, ar);
+    }
+  }
+  function translateTree(root) {
+    if (root.nodeType === 3) { translateTextNode(root); return; }
+    if (root.nodeType !== 1) return;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n;
+    var nodes = [];
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(translateTextNode);
+    if (root.matches && root.matches(ATTR_SEL)) translateAttrs(root);
+    root.querySelectorAll(ATTR_SEL).forEach(translateAttrs);
+  }
+  function restoreAll() {
+    origText.forEach(function (v, n) { n.nodeValue = v; });
+    origText.clear();
+    ATTRS.forEach(function (a) {
+      document.querySelectorAll('[data-i18n-orig-' + a + ']').forEach(function (el) {
+        el.setAttribute(a, el.getAttribute('data-i18n-orig-' + a));
+        el.removeAttribute('data-i18n-orig-' + a);
+      });
     });
-    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      var k = el.getAttribute('data-i18n-html');
-      if (T[l] && T[l][k] !== undefined) el.innerHTML = T[l][k];
+  }
+  function setDocMeta(l) {
+    var md = document.querySelector('meta[name="description"]');
+    if (!docOrig) docOrig = { title: document.title, desc: md ? md.getAttribute('content') : null };
+    if (l === 'ar') {
+      var t = toAr(docOrig.title); if (t) document.title = t;
+      if (md && docOrig.desc) { var d = toAr(docOrig.desc); if (d) md.setAttribute('content', d); }
+    } else {
+      document.title = docOrig.title;
+      if (md && docOrig.desc !== null) md.setAttribute('content', docOrig.desc);
+    }
+  }
+
+  function startObserver() {
+    if (observer || typeof MutationObserver === 'undefined') return;
+    observer = new MutationObserver(function (muts) {
+      if (lang !== 'ar') return;
+      muts.forEach(function (m) {
+        if (m.type === 'childList') {
+          m.addedNodes.forEach(translateTree);
+        } else if (m.type === 'characterData') {
+          var n = m.target;
+          if (origText.has(n)) {
+            // our own write leaves Arabic in place; a script write puts English back
+            if (toAr(n.nodeValue) === null) return;
+            origText.delete(n);
+          }
+          translateTextNode(n);
+        } else if (m.type === 'attributes') {
+          var el = m.target, a = m.attributeName;
+          var cur = el.getAttribute(a);
+          if (cur === null || toAr(cur) === null) return;   // Arabic (ours) or untranslatable
+          el.removeAttribute('data-i18n-orig-' + a);
+          translateAttrs(el);
+        }
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true,
+      attributes: true, attributeFilter: ATTRS });
+  }
+
+  /* Arabic web fonts: loaded only the first time Arabic is used */
+  function ensureArabicFonts() {
+    if (document.getElementById('ignizArFonts')) return;
+    var l = document.createElement('link');
+    l.id = 'ignizArFonts'; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap';
+    document.head.appendChild(l);
+  }
+
+  function updateLangButtons(l) {
+    var label = l === 'en' ? 'عربي' : 'English';
+    ['langBtnLabel', 'langBtnLabelMobile'].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.textContent = label;
+    });
+    document.querySelectorAll('#langToggleBtn, #langToggleBtnMobile').forEach(function (b) {
+      b.setAttribute('lang', l === 'en' ? 'ar' : 'en');
     });
     document.querySelectorAll('.lang-toggle__btn').forEach(function (btn) {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === l);
     });
+  }
+
+  function applyLang(l) {
+    lang = l === 'ar' ? 'ar' : 'en';
+    try { localStorage.setItem('IgnizAI-lang', lang); } catch (e) {}
+    var root = document.documentElement;
+    root.lang = lang;
+    root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    if (lang === 'ar') ensureArabicFonts();
+
+    // 1. keyed elements
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      if (el.__i18nOrig === undefined) el.__i18nOrig = el.textContent;
+      var k = el.getAttribute('data-i18n');
+      el.textContent = (lang === 'ar' && T.ar[k] !== undefined) ? T.ar[k] : el.__i18nOrig;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      if (el.__i18nOrig === undefined) el.__i18nOrig = el.innerHTML;
+      var k = el.getAttribute('data-i18n-html');
+      el.innerHTML = (lang === 'ar' && T.ar[k] !== undefined) ? T.ar[k] : el.__i18nOrig;
+    });
+
+    // 2. everything else
+    if (lang === 'ar') translateTree(document.body); else restoreAll();
+    setDocMeta(lang);
+    updateLangButtons(lang);
+
+    // 3. let page effects (typewriter etc.) re-arm for the new text
+    try { document.dispatchEvent(new CustomEvent('ignizlangchange', { detail: { lang: lang } })); } catch (e) {}
   }
 
   window.IgnizAII18n = {
@@ -800,27 +1476,19 @@
   };
 
   document.addEventListener('click', function (e) {
-    // Named lang-toggle buttons (data-lang attribute)
     var btn = e.target.closest('.lang-toggle__btn');
     if (btn) {
       var l = btn.getAttribute('data-lang');
       if (l && l !== lang) applyLang(l);
       return;
     }
-    // Toggle button (#langToggleBtn / #langToggleBtnMobile) — switches en ↔ ar
     if (e.target.closest('#langToggleBtn') || e.target.closest('#langToggleBtnMobile')) {
-      var newLang = lang === 'en' ? 'ar' : 'en';
-      applyLang(newLang);
-      var lbl  = document.getElementById('langBtnLabel');
-      var lblM = document.getElementById('langBtnLabelMobile');
-      if (lbl)  lbl.textContent  = newLang === 'en' ? 'عربي' : 'English';
-      if (lblM) lblM.textContent = newLang === 'en' ? 'عربي' : 'English';
+      applyLang(lang === 'en' ? 'ar' : 'en');
     }
   });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { applyLang(lang); });
-  } else {
-    applyLang(lang);
-  }
+  // This script sits at the end of <body>, so the page is already parsed:
+  // apply right away (before the deferred effects script runs).
+  function init() { applyLang(lang); startObserver(); }
+  if (document.body) init(); else document.addEventListener('DOMContentLoaded', init);
 })();

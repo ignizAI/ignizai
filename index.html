@@ -114,6 +114,24 @@
       color:var(--ink); transition:background .4s var(--ease), color .4s, border-color .4s, transform .4s var(--ease); }
     .svc-row:hover .svc-row__arrow { background:var(--espresso); color:var(--gold); border-color:var(--espresso); transform:rotate(-45deg); }
     @media (max-width:760px){ .svc-row{ grid-template-columns:56px 1fr; } .svc-row__arrow{ display:none; } }
+    /* "What we do" fits in one screen: the section is exactly one viewport tall
+       (below the fixed nav) and its spacing scales with the screen height */
+    #services { min-height:100vh; min-height:100svh; box-sizing:border-box; display:flex; align-items:center;
+      padding:calc(var(--nav-h) + clamp(14px,4vh,56px)) 0 clamp(14px,4vh,56px); }
+    #services > .container { width:100%; }
+    #services .sec-head { margin-bottom:clamp(18px,4vh,48px); max-width:none; }
+    #services .sec-head h2 { margin-top:clamp(10px,1.8vh,22px); font-size:min(var(--fs-h2), 6.2vh); }
+    #services .svc-row { padding:clamp(10px,2.3vh,28px) 8px; }
+    #services .svc-row__title { font-size:clamp(1.15rem, min(2.3vw, 3.6vh), 2rem); }
+    #services .svc-row__desc { max-width:none; margin-top:4px; font-size:clamp(.86rem, 2vh, 1rem); line-height:1.5; }
+    #services .svc-row__arrow { width:40px; height:40px; }
+    @media (max-width:760px){
+      #services .svc-row { grid-template-columns:30px 1fr; gap:12px; align-items:start; padding:clamp(8px,1.6vh,16px) 4px; }
+      #services .svc-row__num { font-size:.9rem; padding-top:.2em; }
+      #services .svc-row__title { font-size:clamp(1.05rem, 2.8vh, 1.35rem); }
+      #services .svc-row__desc { font-size:clamp(.8rem, 1.9vh, .92rem); line-height:1.4; }
+      #services .sec-head h2 { font-size:min(var(--fs-h2), 4.6vh); }
+    }
 
     /* Pinned statement */
     .statement { min-height:82vh; display:flex; align-items:center; }
@@ -295,6 +313,10 @@
   <a href="about.html"><span class="num">04</span>About</a>
   <a href="blog.html"><span class="num">05</span>Journal</a>
   <a href="contact.html"><span class="num">06</span>Contact</a>
+  <button class="lang-btn mobile-menu__lang" id="langToggleBtnMobile" aria-label="Switch language">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+    <span id="langBtnLabelMobile">عربي</span>
+  </button>
 </div>
 
 <!-- ===== Hero ===== -->
@@ -425,23 +447,6 @@
   </div>
 </section>
 
-<!-- ===== Manifesto / Why ===== -->
-<section class="section" id="why">
-  <div class="container">
-    <div class="manifesto">
-      <div class="manifesto__aside reveal">
-        <span class="num" data-i18n="home-mani-num">( 01 — Why Igniz )</span>
-        <p class="manifesto__big" style="margin-top:22px" data-i18n-html="home-mani-big">Most agencies disappear after launch. We were built to <span class="ital">stay.</span></p>
-      </div>
-      <div class="manifesto__body reveal reveal-d1" data-i18n-html="home-mani-body">
-        <p>Too many businesses in the UAE and India pay agency prices for freelancer follow-through — a site that ships, then slowly falls behind. <strong>We close that gap.</strong></p>
-        <p>Igniz AI is a small, senior studio. The people who scope your project are the people who build it, and the people who answer when you call a year later. No account managers, no handoffs, no black boxes.</p>
-        <p>We treat your website and systems the way a workshop treats a commission: designed with intent, engineered to last, and looked after long after the invoice is paid.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== Services ===== -->
 <section class="section section--alt" id="services">
   <div class="container">
@@ -478,33 +483,6 @@
 <section class="section section--dark statement">
   <div class="container">
     <p class="statement__text reveal" data-i18n-html="home-statement">We build the <span class="ital">few things</span> that matter <span class="dim">— exceptionally well — instead of everything, adequately.</span></p>
-  </div>
-</section>
-
-<!-- ===== Stats ===== -->
-<section class="section" id="proof">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="proof-eyebrow">By the numbers</span>
-      <h2 data-i18n-html="home-proof-h">Real businesses. <span class="ital gold-text">Real outcomes.</span></h2>
-    </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="stat__num"><span class="gold-text" data-count="120" data-suffix="+">0</span></div><div class="stat__label" data-i18n="stat-projects">Projects delivered</div></div>
-      <div class="stat reveal reveal-d1"><div class="stat__num"><span class="gold-text" data-count="9" data-suffix=" yrs">0</span></div><div class="stat__label" data-i18n="stat-building">Building &amp; maintaining</div></div>
-      <div class="stat reveal reveal-d2"><div class="stat__num"><span class="gold-text" data-count="2" data-suffix="">0</span></div><div class="stat__label" data-i18n="stat-regions">Regions · UAE &amp; India</div></div>
-      <div class="stat reveal reveal-d3"><div class="stat__num"><span class="gold-text" data-count="24" data-suffix="h">0</span></div><div class="stat__label" data-i18n="stat-reply">Typical reply time</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Pull quote ===== -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="quote reveal">
-      <div class="quote__mark">&ldquo;</div>
-      <p class="quote__text" data-i18n-html="home-quote">They didn't just build our site — they <span class="ital">understood the business</span> and still pick up the phone two years later.</p>
-      <p class="quote__by" data-i18n="home-quote-by">— A long-standing client · Dubai</p>
-    </div>
   </div>
 </section>
 
@@ -555,7 +533,7 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <span class="brand__name">Igniz <span class="ital">AI</span></span>
-        <p>A boutique technology studio designing, building, and maintaining digital work for ambitious businesses in the UAE and India.</p>
+        <p>Build. Launch. Grow. With Ignizai.</p>
       </div>
       <div>
         <h4>Studio</h4>
@@ -575,7 +553,7 @@
         <h4>Contact</h4>
         <a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a>
         <a href="tel:+919619884321">🇮🇳 +91 96198 84321</a>
-        <a href="tel:+971522770849">🇦🇪 +971 52 277 0849</a>
+        <a href="tel:+971507894113">🇦🇪 +971 50 789 4113</a>
         <a href="contact.html" class="link-gold" style="color:var(--gold)">Start a project →</a>
       </div>
     </div>

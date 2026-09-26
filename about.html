@@ -19,6 +19,24 @@
     .manifesto__body p:last-child { margin-bottom:0; }
     .manifesto__body strong { color:var(--ink); font-weight:600; }
     @media (max-width:900px){ .manifesto{ grid-template-columns:1fr; gap:36px; } .manifesto__aside{ position:static; } }
+    /* Founder & CEO */
+    .founder { background:#17362A; color:#E9E1D2; }
+    .founder__grid { display:grid; grid-template-columns:5fr 7fr; gap:70px; align-items:start; }
+    .founder__aside { position:sticky; top:120px; }
+    .founder__title { font-family:var(--font-display); font-size:clamp(1.9rem,3vw,2.8rem); line-height:1.15; color:#F7F3EC; font-weight:400; margin:22px 0 0; }
+    .founder__title .ital { color:var(--gold-2); }
+    .founder__profile { margin-top:34px; padding-top:30px; border-top:1px solid rgba(201,154,58,0.35); display:flex; align-items:center; gap:26px; }
+    .founder__photo { width:132px; height:132px; flex-shrink:0; border-radius:50%; object-fit:cover; object-position:50% 30%;
+      border:2px solid var(--gold-2); padding:5px; background:#17362A; box-shadow:0 18px 40px rgba(0,0,0,0.28); }
+    .founder__name { margin:0; }
+    @media (max-width:480px){ .founder__profile{ flex-direction:column; align-items:flex-start; gap:18px; } .founder__photo{ width:120px; height:120px; } }
+    .founder__name strong { display:block; font-family:var(--font-display); font-size:1.5rem; font-weight:500; color:#F7F3EC; }
+    .founder__name span { display:block; margin-top:6px; font-size:.95rem; color:var(--gold-2); font-weight:500; }
+    .founder__body p { margin:0 0 1.5em; color:#D9D0BE; font-size:1.08rem; line-height:1.75; }
+    .founder__body p:last-child { margin-bottom:0; }
+    .founder__vision { padding:26px 30px; border-left:2px solid var(--gold-2); background:rgba(247,243,236,0.04); color:#F7F3EC !important; }
+    html[dir="rtl"] .founder__vision { border-left:none; border-right:2px solid var(--gold-2); }
+    @media (max-width:900px){ .founder__grid{ grid-template-columns:1fr; gap:36px; } .founder__aside{ position:static; } }
 
     .values { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); }
     .value { padding:44px 34px 44px 0; border-bottom:1px solid var(--line); }
@@ -83,6 +101,10 @@
   <a href="about.html"><span class="num">04</span>About</a>
   <a href="blog.html"><span class="num">05</span>Journal</a>
   <a href="contact.html"><span class="num">06</span>Contact</a>
+  <button class="lang-btn mobile-menu__lang" id="langToggleBtnMobile" aria-label="Switch language">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+    <span id="langBtnLabelMobile">عربي</span>
+  </button>
 </div>
 
 <header class="page-hero" id="hero">
@@ -104,12 +126,34 @@
     <div class="manifesto">
       <div class="manifesto__aside reveal">
         <span class="num">( 01 — Our story )</span>
-        <p class="manifesto__big">We started Igniz AI because good businesses kept getting <span class="ital">let down</span> after launch.</p>
+        <p class="manifesto__big">We turn your story into visibility.<br>We turn visibility into <span class="ital">trust.</span></p>
       </div>
       <div class="manifesto__body reveal reveal-d1">
-        <p>Across the UAE and India, we watched the same pattern repeat: a company pays agency prices, gets a site that ships, and then slowly falls behind — because the people who built it have already moved on. <strong>We were built to close that gap.</strong></p>
-        <p>We keep the studio deliberately small and senior. The people who scope your project are the people who design it, build it, and answer when you call a year later. No account managers, no handoffs, no black boxes.</p>
-        <p>We treat every website and system the way a workshop treats a commission — considered, well-made, and cared for over time. That's the whole idea.</p>
+        <p><strong>Good businesses deserve to be seen, understood, and trusted.</strong></p>
+        <p>At IgnizAI, we help genuine businesses build a strong digital presence that reflects who they truly are. Every business has a story, and we turn that story into a beautiful digital experience that people can discover, understand, and trust.</p>
+        <p>We believe visibility is more than simply being online. It’s about presenting your business with clarity, showing what makes you different, and creating an experience that gives customers confidence to take the next step.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Founder & CEO ===== -->
+<section class="section founder" id="founder">
+  <div class="container">
+    <div class="founder__grid">
+      <div class="founder__aside reveal">
+        <span class="eyebrow">Leadership</span>
+        <h2 class="founder__title">Meet Our <span class="ital">Founder &amp; CEO</span></h2>
+        <div class="founder__profile">
+          <img class="founder__photo" src="assets/arun-mandook.jpg" alt="Arun Mandook, Founder &amp; CEO of IgnizAI" width="600" height="600" loading="lazy" decoding="async">
+          <p class="founder__name"><strong>Arun Mandook</strong><span>PMP | Salesforce 3x Certified</span></p>
+        </div>
+      </div>
+      <div class="founder__body reveal reveal-d1">
+        <p>Arun Mandook is the Founder and CEO of IgnizAI, bringing a strong blend of technology, product, consulting, and business experience to the company.</p>
+        <p>Before founding IgnizAI, Arun served as Associate Vice President – Technology &amp; Product at The House of Abhinandan Lodha, a pan-India real estate brand. In this role, he worked at the intersection of technology, product strategy, and business, gaining valuable experience in building and scaling digital solutions within a highly competitive industry.</p>
+        <p>With extensive experience across technology, consulting, and real estate, Arun brings a practical understanding of how businesses can use technology not just to operate better, but to build stronger brands, improve customer experiences, and create meaningful digital presence.</p>
+        <p class="founder__vision">At IgnizAI, his vision is simple: help genuine businesses become more visible, credible, and trusted through the right combination of technology, design, and storytelling.</p>
       </div>
     </div>
   </div>
@@ -145,22 +189,7 @@
   </div>
 </section>
 
-<section class="section section--dark">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">By the numbers</span>
-      <h2>Small studio. <span class="ital gold-text">Serious track record.</span></h2>
-    </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="stat__num"><span class="gold-text" data-count="120" data-suffix="+">0</span></div><div class="stat__label">Projects delivered</div></div>
-      <div class="stat reveal reveal-d1"><div class="stat__num"><span class="gold-text" data-count="9" data-suffix=" yrs">0</span></div><div class="stat__label">Building &amp; maintaining</div></div>
-      <div class="stat reveal reveal-d2"><div class="stat__num"><span class="gold-text" data-count="2" data-suffix="">0</span></div><div class="stat__label">Regions · UAE &amp; India</div></div>
-      <div class="stat reveal reveal-d3"><div class="stat__num"><span class="gold-text" data-count="24" data-suffix="h">0</span></div><div class="stat__label">Typical reply time</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--dark cta-band" style="padding-top:0">
+<section class="section section--dark cta-band">
   <div class="container">
     <span class="eyebrow eyebrow--center" style="justify-content:center">Let's begin</span>
     <h2 style="margin-left:auto;margin-right:auto">Let's build something worth <span class="ital">keeping.</span></h2>
@@ -175,11 +204,11 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <span class="brand__name">Igniz <span class="ital">AI</span></span>
-        <p>A boutique technology studio designing, building, and maintaining digital work for ambitious businesses in the UAE and India.</p>
+        <p>Build. Launch. Grow. With Ignizai.</p>
       </div>
       <div><h4>Studio</h4><a href="about.html">About</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
       <div><h4>Services</h4><a href="services.html">Websites</a><a href="services.html">CMS Systems</a><a href="services.html">AI &amp; Automation</a><a href="services.html">Care &amp; Growth</a></div>
-      <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971522770849">🇦🇪 +971 52 277 0849</a><a href="contact.html" class="link-gold" style="color:var(--gold)">Start a project →</a></div>
+      <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971507894113">🇦🇪 +971 50 789 4113</a><a href="contact.html" class="link-gold" style="color:var(--gold)">Start a project →</a></div>
     </div>
     <div class="footer__bottom"><span>© 2026 Igniz AI. All rights reserved.</span><span>Dubai · Ras Al Khaimah · India</span></div>
   </div>

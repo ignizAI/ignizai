@@ -108,14 +108,26 @@
     });
   }
 
-  /* Types in, holds, erases, and repeats forever. */
+  /* Types in, holds, erases, and repeats forever. Timers are kept on the
+     element so the loop can be stopped when the language changes. */
+  function stopTypewriter(el) {
+    (el.__twTimers || []).forEach(clearTimeout);
+    el.__twTimers = [];
+    el.classList.remove('tw-armed', 'tw-go');
+    delete el.dataset.twReady;
+  }
+  function later(el, fn, ms) {
+    el.__twTimers = el.__twTimers || [];
+    el.__twTimers.push(setTimeout(fn, ms));
+  }
   function loopTypewriter(el) {
+    if (!el.classList.contains('tw-armed')) return;
     setDelays(el, TW_TOTAL, false);
     el.classList.add('tw-go');
-    setTimeout(function () {
+    later(el, function () {
       setDelays(el, TW_ERASE, true);
       el.classList.remove('tw-go');
-      setTimeout(function () { loopTypewriter(el); }, TW_ERASE + TW_GAP);
+      later(el, function () { loopTypewriter(el); }, TW_ERASE + TW_GAP);
     }, TW_TOTAL + TW_HOLD);
   }
 
@@ -124,12 +136,28 @@
       if (!e.isIntersecting) return;
       twIO.unobserve(e.target);
       var el = e.target;
+      el.__twSeen = true;
       requestAnimationFrame(function () { loopTypewriter(el); });
     });
   }, { threshold: 0.6 });
 
-  document.querySelectorAll('[data-typewriter]').forEach(function (el) {
-    if (armTypewriter(el)) twIO.observe(el);
+  function setupTypewriters() {
+    document.querySelectorAll('[data-typewriter]').forEach(function (el) {
+      if (!armTypewriter(el)) return;
+      if (el.__twSeen) requestAnimationFrame(function () { loopTypewriter(el); });
+      else twIO.observe(el);
+    });
+  }
+  setupTypewriters();
+
+  /* Language switch (i18n.js swaps the heading text): stop the old loop
+     and re-arm on the new text. Arabic is left static (see armTypewriter). */
+  document.addEventListener('ignizlangchange', function () {
+    document.querySelectorAll('[data-typewriter]').forEach(function (el) {
+      stopTypewriter(el);
+      el.querySelectorAll('.tw-cursor').forEach(function (c) { c.remove(); });
+    });
+    setupTypewriters();
   });
 
   /* ---- Work-card key features on touch screens ----

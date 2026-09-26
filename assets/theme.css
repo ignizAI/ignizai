@@ -304,8 +304,9 @@ h1,h2,h3,h4 { font-family:var(--font-display); color:var(--ink); font-weight:500
    RTL / ARABIC
 ============================================================ */
 html[dir="rtl"] {
-  --font-display: 'Fraunces','Segoe UI','Tahoma','Geeza Pro',sans-serif;
-  --font-body: 'Segoe UI','Tahoma','Geeza Pro',sans-serif;
+  /* Latin (brand, numbers) keeps Fraunces/Inter; Arabic falls through to the Arabic faces */
+  --font-display: 'Fraunces','Noto Naskh Arabic','Geeza Pro','Tahoma',serif;
+  --font-body: 'Inter','IBM Plex Sans Arabic','Segoe UI','Tahoma','Geeza Pro',sans-serif;
 }
 html[dir="rtl"] body { direction:rtl; }
 html[dir="rtl"] .eyebrow::before,
@@ -317,12 +318,9 @@ html[dir="rtl"] .is-lit .page-hero__rule,
 html[dir="rtl"] .reveal.is-in .gold-rule { transform-origin:right; }
 html[dir="rtl"] .btn--gold svg,
 html[dir="rtl"] .hero__title .ital ~ svg { transform:scaleX(-1); }
-html[dir="rtl"] .hero__actions,
-html[dir="rtl"] .nav__links,
-html[dir="rtl"] .nav__right { flex-direction:row-reverse; }
+/* (flex rows already mirror in RTL — no row-reverse needed) */
 html[dir="rtl"] .manifesto__aside,
 html[dir="rtl"] .prose { text-align:right; }
-html[dir="rtl"] .svc-row { grid-template-columns:auto 1fr 90px; }
 html[dir="rtl"] .prose ul, html[dir="rtl"] .prose ol { padding-left:0; padding-right:1.3em; }
 html[dir="rtl"] .prose blockquote { border-left:none; border-right:2px solid var(--gold); padding:6px 26px 6px 0; }
 
@@ -335,3 +333,26 @@ html[dir="rtl"] .prose blockquote { border-left:none; border-right:2px solid var
   margin-left:3px; vertical-align:-0.05em; opacity:0; }
 .tw-armed .tw-cursor { opacity:1; animation:tw-blink .9s steps(1) infinite; }
 @keyframes tw-blink { 50% { opacity:0; } }
+
+/* Nav over a dark hero (blog articles): light text until the nav turns solid on scroll
+   or the mobile menu opens */
+.nav--on-dark:not(.is-solid):not(:has(.hamburger.open)) .brand__name { color:#F7F3EC; }
+.nav--on-dark:not(.is-solid):not(:has(.hamburger.open)) .brand__name .ital { color:var(--gold-2); }
+.nav--on-dark:not(.is-solid) .nav__links a { color:rgba(247,243,236,0.72); }
+.nav--on-dark:not(.is-solid) .nav__links a:hover,
+.nav--on-dark:not(.is-solid) .nav__links a.active { color:#F7F3EC; }
+.nav--on-dark:not(.is-solid) .lang-btn { color:rgba(247,243,236,0.85); }
+.nav--on-dark:not(.is-solid) .nav__cta { background:var(--grad-gold); color:var(--forest-2); border-color:transparent; }
+.nav--on-dark:not(.is-solid) .hamburger:not(.open) span { background:#F7F3EC; }
+
+/* ---------- Language switch in the mobile menu ---------- */
+.mobile-menu__lang { margin-top:14px; padding:10px 22px; border:1px solid var(--line); border-radius:100px;
+  font-size:.95rem; color:var(--ink); background:transparent; cursor:pointer; }
+
+/* ---------- Arabic typography ---------- */
+html[lang="ar"] body * { letter-spacing:0 !important; }
+html[lang="ar"] .ital, html[lang="ar"] em, html[lang="ar"] i { font-style:normal; }
+html[lang="ar"] body { line-height:1.85; }
+html[lang="ar"] :is(h1,h2,h3,h4,.hero__title,.page-hero__title,.article-hero__title,.svc-row__title,
+  .work-card__name,.statement__text,.manifesto__big,.quote__text,.cta-band h2) { line-height:1.45; }
+html[lang="ar"] .eyebrow, html[lang="ar"] .eyebrow-sm { text-transform:none; }
