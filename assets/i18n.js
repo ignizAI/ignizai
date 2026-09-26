@@ -786,6 +786,13 @@
         (contact form messages, dropdowns, etc.) while Arabic is on.
   ================================================================ */
   var AR = {
+    "Website Design & Development": "تصميم وتطوير المواقع الإلكترونية",
+    "Mobile App": "تطبيق جوال",
+    "Digital Presence": "الحضور الرقمي",
+    "CRM/Business Automation": "إدارة علاقات العملاء (CRM) / أتمتة الأعمال",
+    "Content Management System": "نظام إدارة المحتوى",
+    "AI & Automations": "الذكاء الاصطناعي والأتمتة",
+    "Not sure lets discuss": "لست متأكداً، لنتناقش",
     "Arun Mandook, Founder & CEO of IgnizAI": "أرون ماندوك، المؤسس والرئيس التنفيذي لـ IgnizAI",
     "Leadership": "القيادة",
     "Meet Our": "تعرّف على",
@@ -1313,7 +1320,8 @@
   };
   var AR_PATTERNS = [
     [/^Contact number must be (\d+) digits for (\+\d+)\.$/, 'يجب أن يتكون رقم الهاتف من $1 أرقام لرمز الدولة $2.'],
-    [/^Remove (.+)$/, 'إزالة $1']
+    [/^Remove (.+)$/, 'إزالة $1'],
+    [/^(\d+) services selected$/, 'تم اختيار $1 خدمات']
   ];
   var SKIP_SEL = 'script,style,noscript,svg,[data-i18n],[data-i18n-html],[data-no-translate]';
   var ATTRS = ['placeholder', 'aria-label', 'alt', 'title'];
