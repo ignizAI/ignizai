@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process — Igniz AI</title>
+  <meta name="description" content="No black boxes, no surprises. A transparent five-stage process — from first call to long-term care — that keeps you informed and in control." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23211C15'/><text x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' text-anchor='middle' fill='%23C99A3A'>I</text></svg>">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style id="page-styles">
+    .step { display:grid; grid-template-columns:130px 1fr; gap:40px; padding:56px 0; border-top:1px solid var(--line); align-items:start; }
+    .step:last-child { border-bottom:1px solid var(--line); }
+    .step__num { font-family:var(--font-display); font-size:clamp(2.6rem,4vw,3.6rem); color:var(--gold); line-height:.9; font-weight:400; }
+    .step__k { font-size:.76rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+    .step__title { font-family:var(--font-display); font-size:clamp(1.6rem,2.6vw,2.2rem); color:var(--ink); font-weight:400; margin-bottom:14px; }
+    .step__desc { color:var(--ink-2); font-size:1.05rem; line-height:1.75; max-width:60ch; }
+    @media (max-width:700px){ .step{ grid-template-columns:1fr; gap:12px; } }
+
+    .cta-band { text-align:center; }
+    .cta-band h2 { font-size:clamp(2.2rem,4vw,3.4rem); color:#F7F3EC; max-width:20ch; margin:22px auto 0; font-weight:400; }
+    .cta-band h2 .ital { color:var(--gold); }
+    .cta-band .lead { color:#c9bfa8; margin:24px auto 40px; max-width:52ch; }
+  </style>
+</head>
+<body>
+<div id="page-root">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="container nav__inner">
+    <a href="index.html" class="brand" aria-label="Igniz AI home">
+      <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
+      <span class="brand__name">Igniz <span class="ital">AI</span></span>
+    </a>
+    <div class="nav__links">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" class="active" data-i18n="nav-process">Process</a>
+      <a href="about.html" data-i18n="nav-about">About</a>
+      <a href="blog.html" data-i18n="nav-blog">Journal</a>
+    </div>
+    <div class="nav__right">
+      <button class="lang-btn" id="langToggleBtn" aria-label="Switch language">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <span id="langBtnLabel">عربي</span>
+      </button>
+      <a href="contact.html" class="btn btn--gold nav__cta"><span data-i18n="nav-cta">Start a Project</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><span class="num">01</span>Home</a>
+  <a href="services.html"><span class="num">02</span>Services</a>
+  <a href="process.html"><span class="num">03</span>Process</a>
+  <a href="about.html"><span class="num">04</span>About</a>
+  <a href="blog.html"><span class="num">05</span>Journal</a>
+  <a href="contact.html"><span class="num">06</span>Contact</a>
+</div>
+
+<header class="page-hero" id="hero">
+  <canvas class="aura" aria-hidden="true"></canvas>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;›&nbsp; Process</div>
+      <span class="eyebrow" data-i18n="proc-eyebrow">How we work</span>
+      <h1 class="page-hero__title" style="margin-top:18px">No black boxes.<br>No <span class="ital gold-text">surprises.</span></h1>
+      <div class="page-hero__rule"></div>
+      <p class="page-hero__lead" data-i18n="proc-lead">From the first call to long-term care, every stage is designed to keep you informed, in control, and confident about what happens next.</p>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="step reveal">
+      <div class="step__num">01</div>
+      <div><div class="step__k">Discover</div><h2 class="step__title">Understand the business first</h2><p class="step__desc">Before a single pixel, we learn how you actually make money, who you serve, and what "better" looks like. Clear goals now save expensive detours later.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step__num">02</div>
+      <div><div class="step__k">Design</div><h2 class="step__title">Shape it before we build it</h2><p class="step__desc">We design the structure and the look together, so you can see and feel the direction early — and change it while it's still cheap to change.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step__num">03</div>
+      <div><div class="step__k">Build</div><h2 class="step__title">Engineer it to last</h2><p class="step__desc">Senior hands write clean, fast, accessible code. You get regular check-ins and a working link to watch it come together — never a black box.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step__num">04</div>
+      <div><div class="step__k">Launch</div><h2 class="step__title">Ship with confidence</h2><p class="step__desc">We test across devices, tune performance and SEO, and launch carefully — then make sure your team knows how to run it.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step__num">05</div>
+      <div><div class="step__k">Care</div><h2 class="step__title">Stay, and keep it sharp</h2><p class="step__desc">Launch is the beginning. We monitor, maintain, and improve — so the work keeps paying off long after it goes live.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark cta-band">
+  <div class="container">
+    <span class="eyebrow eyebrow--center" style="justify-content:center">Let's begin</span>
+    <h2 style="margin-left:auto;margin-right:auto">Ready when <span class="ital">you are.</span></h2>
+    <p class="lead">Tell us what you're building. We'll walk you through exactly how we'd approach it — no obligation.</p>
+    <a href="contact.html" class="btn btn--gold"><span>Start a Project</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="brand__name">Igniz <span class="ital">AI</span></span>
+        <p>A boutique technology studio designing, building, and maintaining digital work for ambitious businesses in the UAE and India.</p>
+      </div>
+      <div><h4>Studio</h4><a href="about.html">About</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
+      <div><h4>Services</h4><a href="services.html">Websites</a><a href="services.html">CMS Systems</a><a href="services.html">AI &amp; Automation</a><a href="services.html">Care &amp; Growth</a></div>
+      <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971522770849">🇦🇪 +971 52 277 0849</a><a href="contact.html" class="link-gold" style="color:var(--gold)">Start a project →</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Igniz AI. All rights reserved.</span><span>Dubai · Ras Al Khaimah · India</span></div>
+  </div>
+</footer>
+
+</div>
+<script src="assets/i18n.js"></script>
+<script src="assets/editorial.js" defer></script>
+</body>
+</html>

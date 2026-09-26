@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal — Igniz AI</title>
+  <meta name="description" content="Notes on building online — digital growth, websites, and practical AI for businesses in the UAE and India, from the Igniz AI studio." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23211C15'/><text x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' text-anchor='middle' fill='%23C99A3A'>I</text></svg>">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style id="page-styles">
+    .journal { display:grid; grid-template-columns:repeat(3,1fr); gap:34px; }
+    .jcard { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden; display:flex; flex-direction:column; transition:transform .5s var(--ease), box-shadow .5s var(--ease); }
+    .jcard:hover { transform:translateY(-6px); box-shadow:0 26px 50px rgba(23,54,42,0.12); }
+    .jcard__top { padding:30px 30px 0; display:flex; align-items:center; justify-content:space-between; }
+    .jcard__tag { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+    .jcard__date { font-size:.78rem; color:var(--ink-3); }
+    .jcard__title { font-family:var(--font-display); font-size:1.4rem; line-height:1.22; color:var(--ink); margin:16px 30px 12px; font-weight:400; }
+    .jcard__ex { color:var(--ink-2); font-size:.96rem; padding:0 30px; flex:1; line-height:1.6; }
+    .jcard__foot { padding:22px 30px 28px; }
+    @media (max-width:900px){ .journal{ grid-template-columns:1fr; max-width:540px; } }
+  </style>
+</head>
+<body>
+<div id="page-root">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="container nav__inner">
+    <a href="index.html" class="brand" aria-label="Igniz AI home">
+      <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
+      <span class="brand__name">Igniz <span class="ital">AI</span></span>
+    </a>
+    <div class="nav__links">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="about.html" data-i18n="nav-about">About</a>
+      <a href="blog.html" class="active" data-i18n="nav-blog">Journal</a>
+    </div>
+    <div class="nav__right">
+      <button class="lang-btn" id="langToggleBtn" aria-label="Switch language">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <span id="langBtnLabel">عربي</span>
+      </button>
+      <a href="contact.html" class="btn btn--gold nav__cta"><span data-i18n="nav-cta">Start a Project</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><span class="num">01</span>Home</a>
+  <a href="services.html"><span class="num">02</span>Services</a>
+  <a href="process.html"><span class="num">03</span>Process</a>
+  <a href="about.html"><span class="num">04</span>About</a>
+  <a href="blog.html"><span class="num">05</span>Journal</a>
+  <a href="contact.html"><span class="num">06</span>Contact</a>
+</div>
+
+<header class="page-hero" id="hero">
+  <canvas class="aura" aria-hidden="true"></canvas>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;›&nbsp; Journal</div>
+      <span class="eyebrow" data-i18n="journal-eyebrow">Insights &amp; guides</span>
+      <h1 class="page-hero__title" style="margin-top:18px">Notes on building <span class="ital gold-text">online.</span></h1>
+      <div class="page-hero__rule"></div>
+      <p class="page-hero__lead" data-i18n="journal-lead">Straight talk on websites, digital growth, and what it actually takes to win customers online across the UAE and India.</p>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="journal">
+      <a class="jcard reveal" href="blog-rak-website-2026.html">
+        <div class="jcard__top"><span class="jcard__tag">Digital Growth</span><span class="jcard__date">July 2026</span></div>
+        <h3 class="jcard__title">Why every Ras Al Khaimah business needs a professional website in 2026</h3>
+        <p class="jcard__ex">Your website is your most valuable sales asset. Why RAK businesses need a real online presence — and what it takes to stand out.</p>
+        <div class="jcard__foot"><span class="link-gold" style="color:var(--gold)">Read the article →</span></div>
+      </a>
+      <a class="jcard reveal reveal-d1" href="blog-website-growth.html">
+        <div class="jcard__top"><span class="jcard__tag">Business Growth</span><span class="jcard__date">July 2026</span></div>
+        <h3 class="jcard__title">How a modern website can help your small business grow faster</h3>
+        <p class="jcard__ex">Your site is a salesperson that never sleeps. How a modern website actually accelerates small-business growth.</p>
+        <div class="jcard__foot"><span class="link-gold" style="color:var(--gold)">Read the article →</span></div>
+      </a>
+      <a class="jcard reveal reveal-d2" href="blog-lead-generation.html">
+        <div class="jcard__top"><span class="jcard__tag">Lead Generation</span><span class="jcard__date">July 2026</span></div>
+        <h3 class="jcard__title">5 proven ways small businesses can generate more leads online</h3>
+        <p class="jcard__ex">Five practical strategies — from high-converting websites to SEO and content — that consistently attract qualified leads.</p>
+        <div class="jcard__foot"><span class="link-gold" style="color:var(--gold)">Read the article →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark" style="text-align:center">
+  <div class="container">
+    <span class="eyebrow eyebrow--center" style="justify-content:center">Let's begin</span>
+    <h2 style="font-size:clamp(2rem,3.6vw,3rem);color:#F7F3EC;max-width:20ch;margin:22px auto 0;font-weight:400">Enjoyed the read? Let's <span class="ital" style="color:var(--gold)">talk shop.</span></h2>
+    <p style="color:#c9bfa8;margin:24px auto 40px;max-width:50ch">Have a project in mind — or just a question? We reply within one business day.</p>
+    <a href="contact.html" class="btn btn--gold"><span>Start a Project</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="brand__name">Igniz <span class="ital">AI</span></span>
+        <p>A boutique technology studio designing, building, and maintaining digital work for ambitious businesses in the UAE and India.</p>
+      </div>
+      <div><h4>Studio</h4><a href="about.html">About</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
+      <div><h4>Services</h4><a href="services.html">Websites</a><a href="services.html">CMS Systems</a><a href="services.html">AI &amp; Automation</a><a href="services.html">Care &amp; Growth</a></div>
+      <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971522770849">🇦🇪 +971 52 277 0849</a><a href="contact.html" class="link-gold" style="color:var(--gold)">Start a project →</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Igniz AI. All rights reserved.</span><span>Dubai · Ras Al Khaimah · India</span></div>
+  </div>
+</footer>
+
+</div>
+<script src="assets/i18n.js"></script>
+<script src="assets/editorial.js" defer></script>
+</body>
+</html>

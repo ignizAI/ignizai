@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Igniz AI</title>
+  <meta name="description" content="Tell us what you're building in Dubai, Ras Al Khaimah, or India. An engineer reads it and replies within one business day — with a plan, not a pitch." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23211C15'/><text x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' text-anchor='middle' fill='%23C99A3A'>I</text></svg>">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style id="page-styles">
+    .contact-layout { display:grid; grid-template-columns:5fr 7fr; gap:64px; align-items:start; }
+    @media (max-width:900px){ .contact-layout{ grid-template-columns:1fr; gap:40px; } }
+    .contact-sidebar__heading { font-family:var(--font-display); font-size:clamp(1.8rem,2.6vw,2.4rem); color:var(--ink); font-weight:400; }
+    .contact-sidebar__heading .ital { color:var(--gold); }
+    .contact-sidebar__sub { color:var(--ink-2); font-size:1.02rem; line-height:1.7; margin:18px 0 34px; max-width:44ch; }
+    .contact-info { display:flex; flex-direction:column; gap:22px; }
+    .contact-info-item { display:flex; gap:16px; align-items:flex-start; }
+    .contact-info-icon { width:44px; height:44px; border-radius:12px; background:var(--surface); border:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .contact-info-text strong { display:block; font-family:var(--font-body); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px; font-weight:600; }
+    .contact-info-text a, .contact-info-text span { display:block; color:var(--ink); font-size:1rem; }
+    .contact-info-text a:hover { color:var(--gold); }
+
+    .contact-form-wrap { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:44px; }
+    @media (max-width:600px){ .contact-form-wrap{ padding:26px; } }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .form-row--3 { grid-template-columns:150px 1fr; }
+    @media (max-width:520px){ .form-row,.form-row--3{ grid-template-columns:1fr; } }
+    .form-group { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+    .form-group--full { grid-column:1 / -1; }
+    .form-label { font-size:.8rem; font-weight:600; letter-spacing:.04em; color:var(--ink-2); }
+    .form-input, .form-select, .form-textarea { width:100%; background:var(--bg); border:1px solid var(--line);
+      border-radius:var(--radius-sm); padding:13px 16px; font-family:var(--font-body); font-size:.98rem; color:var(--ink);
+      transition:border-color .3s, box-shadow .3s; outline:none; -webkit-appearance:none; }
+    .form-select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A8172' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:40px; cursor:pointer; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--ink-3); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
+    .form-textarea { min-height:120px; resize:vertical; }
+    .form-input.invalid, .form-select.invalid { border-color:var(--err); }
+    .form-submit { width:100%; margin-top:8px; padding:16px; border-radius:100px; background:var(--forest); color:#F7F3EC;
+      font-family:var(--font-body); font-size:1rem; font-weight:600; letter-spacing:.01em; cursor:pointer; position:relative; overflow:hidden;
+      transition:transform .3s var(--ease), box-shadow .3s; }
+    .form-submit:hover { transform:translateY(-2px); box-shadow:0 16px 34px rgba(23,54,42,0.24); }
+    .form-submit:disabled { opacity:.6; cursor:default; transform:none; }
+    .form-note { text-align:center; font-size:.82rem; color:var(--ink-3); margin-top:14px; }
+    .form-success { text-align:center; padding:30px 10px; }
+    .form-success__icon { font-size:44px; }
+    .form-success__title { font-family:var(--font-display); font-size:1.6rem; color:var(--ink); font-weight:400; margin:14px 0 10px; }
+    .form-success__sub { color:var(--ink-2); line-height:1.6; }
+
+    /* Custom multi-select (services) */
+    .svc-select { position:relative; }
+    .svc-select__trigger { width:100%; display:flex; align-items:center; gap:10px; background:var(--bg); border:1px solid var(--line);
+      border-radius:var(--radius-sm); padding:13px 16px; font-size:.98rem; color:var(--ink-3); cursor:pointer; text-align:left; transition:border-color .3s, box-shadow .3s; }
+    .svc-select__trigger:focus, .svc-select.open .svc-select__trigger { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); outline:none; }
+    .svc-select__trigger-icon { color:var(--gold); flex-shrink:0; }
+    .svc-select__placeholder { flex:1; }
+    .svc-select__chevron { color:var(--ink-3); transition:transform .3s; }
+    .svc-select.open .svc-select__chevron { transform:rotate(180deg); }
+    .svc-select__dropdown { position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:30; background:var(--surface);
+      border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:0 24px 50px rgba(23,54,42,0.16); padding:10px;
+      display:none; max-height:280px; overflow:auto; }
+    .svc-select.open .svc-select__dropdown { display:block; }
+    .svc-select__search-wrap { display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); border-radius:var(--radius-sm); margin-bottom:8px; color:var(--ink-3); }
+    .svc-select__search { border:none; outline:none; background:none; font-family:var(--font-body); font-size:.94rem; width:100%; color:var(--ink); }
+    .svc-select__list { display:flex; flex-direction:column; }
+    .svc-select__list li { padding:10px 12px; border-radius:var(--radius-sm); cursor:pointer; font-size:.95rem; color:var(--ink-2); transition:background .2s; }
+    .svc-select__list li:hover { background:var(--gold-soft); color:var(--ink); }
+    .svc-select__list li[aria-selected="true"] { color:var(--gold); font-weight:600; }
+    .svc-select__loading { color:var(--ink-3); padding:10px 12px; }
+    .svc-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .svc-tag { display:inline-flex; align-items:center; gap:7px; background:var(--gold-soft); color:var(--ink); border:1px solid rgba(176,133,40,0.3);
+      border-radius:100px; padding:5px 12px; font-size:.85rem; }
+    .svc-tag button { color:var(--gold); font-weight:700; line-height:1; }
+  </style>
+</head>
+<body>
+<div id="page-root">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="container nav__inner">
+    <a href="index.html" class="brand" aria-label="Igniz AI home">
+      <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
+      <span class="brand__name">Igniz <span class="ital">AI</span></span>
+    </a>
+    <div class="nav__links">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="about.html" data-i18n="nav-about">About</a>
+      <a href="blog.html" data-i18n="nav-blog">Journal</a>
+    </div>
+    <div class="nav__right">
+      <button class="lang-btn" id="langToggleBtn" aria-label="Switch language">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <span id="langBtnLabel">عربي</span>
+      </button>
+      <a href="contact.html" class="btn btn--gold nav__cta"><span data-i18n="nav-cta">Start a Project</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><span class="num">01</span>Home</a>
+  <a href="services.html"><span class="num">02</span>Services</a>
+  <a href="process.html"><span class="num">03</span>Process</a>
+  <a href="about.html"><span class="num">04</span>About</a>
+  <a href="blog.html"><span class="num">05</span>Journal</a>
+  <a href="contact.html"><span class="num">06</span>Contact</a>
+</div>
+
+<header class="page-hero" id="hero">
+  <canvas class="aura" aria-hidden="true"></canvas>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;&#8250;&nbsp; Contact</div>
+      <span class="eyebrow" data-i18n="contact-eyebrow">Let's talk</span>
+      <h1 class="page-hero__title" style="margin-top:18px">Tell us what you're<br><span class="ital gold-text">building.</span></h1>
+      <div class="page-hero__rule"></div>
+      <p class="page-hero__lead" data-i18n="contact-hero-sub">A few details now save weeks later. Send them over, and an engineer — not a salesperson — will reply within one business day with a real plan.</p>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="reveal">
+        <h2 class="contact-sidebar__heading" data-i18n="sidebar-heading">Direct line. <span class="ital">Real people.</span></h2>
+        <p class="contact-sidebar__sub" data-i18n="sidebar-sub">No account managers, no call queues. An engineer reads your message and replies — whether you're carrying a full spec or just a rough idea we can help shape.</p>
+        <div class="contact-info">
+          <div class="contact-info-item"><div class="contact-info-icon">&#9993;</div><div class="contact-info-text"><strong data-i18n="info-email-label">Email us</strong><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">&#128222;</div><div class="contact-info-text"><strong data-i18n="info-phone-label">Call us</strong><a href="tel:+919619884321" dir="ltr">&#127470;&#127475; +91 9619884321</a><a href="tel:+971522770849" dir="ltr">&#127462;&#127466; +971 52 277 0849</a></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">&#128336;</div><div class="contact-info-text"><strong data-i18n="info-response-label">Response time</strong><span data-i18n="info-response-val">Within 1 business day</span></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">&#127757;</div><div class="contact-info-text"><strong data-i18n="info-tz-label">Coverage</strong><span data-i18n="info-tz-val">UAE &middot; India &middot; Remote</span></div></div>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="contact-form-wrap">
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label" for="fname" data-i18n="form-fname">First Name *</label><input class="form-input" id="fname" type="text" placeholder="Alex" autocomplete="given-name" required/></div>
+          <div class="form-group"><label class="form-label" for="lname" data-i18n="form-lname">Last Name *</label><input class="form-input" id="lname" type="text" placeholder="Johnson" autocomplete="family-name" required/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label" for="country" data-i18n="form-country">Country *</label><select class="form-select" id="country" required><option value="" disabled selected>Select country</option></select></div>
+          <div class="form-group"><label class="form-label" for="city" data-i18n="form-city">City *</label><select class="form-select" id="city" required disabled><option value="" disabled selected>Select city</option></select></div>
+        </div>
+        <div class="form-row form-row--3">
+          <div class="form-group"><label class="form-label" for="country_code">Country Code *</label><select class="form-select" id="country_code" required><option value="" disabled selected>Code</option><option value="+971">🇦🇪 +971</option><option value="+91">🇮🇳 +91</option><option value="+966">🇸🇦 +966</option><option value="+974">🇶🇦 +974</option><option value="+973">🇧🇭 +973</option><option value="+968">🇴🇲 +968</option><option value="+965">🇰🇼 +965</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+49">🇩🇪 +49</option><option value="+33">🇫🇷 +33</option><option value="+86">🇨🇳 +86</option><option value="+81">🇯🇵 +81</option><option value="+61">🇦🇺 +61</option><option value="+7">🇷🇺 +7</option><option value="+55">🇧🇷 +55</option><option value="+27">🇿🇦 +27</option><option value="+234">🇳🇬 +234</option><option value="+254">🇰🇪 +254</option><option value="+20">🇪🇬 +20</option></select></div>
+          <div class="form-group"><label class="form-label" for="phone" data-i18n="form-phone">Contact Number *</label><input class="form-input" id="phone" type="tel" placeholder="555 000 0000" autocomplete="tel" required/></div>
+        </div>
+        <div class="form-group form-group--full"><label class="form-label" for="email" data-i18n="form-email">Email ID *</label><input class="form-input" id="email" type="email" placeholder="alex@company.com" autocomplete="email" required/></div>
+        <div class="form-group form-group--full"><label class="form-label" for="org" data-i18n="form-org">Organization Name *</label><input class="form-input" id="org" type="text" placeholder="Acme Inc." autocomplete="organization" required/></div>
+        <div class="form-group form-group--full">
+          <label class="form-label" data-i18n="form-service">What are you looking for? *</label>
+          <div class="svc-select" id="svcSelect">
+            <button type="button" class="svc-select__trigger" id="svcTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <svg class="svc-select__trigger-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span class="svc-select__placeholder" id="svcPlaceholder">What do you need built?</span>
+              <svg class="svc-select__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="svc-select__dropdown" id="svcDropdown" role="listbox" aria-multiselectable="true" aria-label="Services">
+              <div class="svc-select__search-wrap">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input class="svc-select__search" id="svcSearch" type="text" placeholder="Search…" autocomplete="off" aria-label="Search services"/>
+              </div>
+              <ul class="svc-select__list" id="svcList" role="group">
+                <li class="svc-select__loading">Loading services…</li>
+              </ul>
+            </div>
+          </div>
+          <div class="svc-tags" id="svcTags" aria-label="Selected services"></div>
+          <input type="hidden" id="services"/>
+        </div>
+        <div class="form-group form-group--full"><label class="form-label" for="remark">Tell us about the project</label><textarea class="form-input form-textarea" id="remark" placeholder="What are you building, what's not working today, or where are you stuck? The more specific, the faster we can help." rows="4"></textarea></div>
+        <div id="formError" style="display:none;color:rgba(255,100,100,0.9);font-size:13px;margin-bottom:12px;padding:10px 14px;background:rgba(255,100,100,0.07);border:1px solid rgba(255,100,100,0.2);border-radius:8px;"></div>
+        <button type="button" class="form-submit" id="submitBtn" data-i18n="form-submit">Send it over →</button>
+        <p class="form-note" data-i18n="form-note">No bots, no templated replies — a real engineer reads every message.</p>
+      </div>
+      <div class="form-success" id="formSuccess" style="display:none;"><div class="form-success__icon">✅</div><h3 class="form-success__title" data-i18n="success-title">Got it — thank you.</h3><p class="form-success__sub" data-i18n="success-sub">We're already reading it. Expect a reply from a real engineer within one business day.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="brand__name">Igniz <span class="ital">AI</span></span>
+        <p>A boutique technology studio designing, building, and maintaining digital work for ambitious businesses in the UAE and India.</p>
+      </div>
+      <div><h4>Studio</h4><a href="about.html">About</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
+      <div><h4>Services</h4><a href="services.html">Websites</a><a href="services.html">CMS Systems</a><a href="services.html">AI &amp; Automation</a><a href="services.html">Care &amp; Growth</a></div>
+      <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971522770849">🇦🇪 +971 52 277 0849</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Igniz AI. All rights reserved.</span><span>Dubai · Ras Al Khaimah · India</span></div>
+  </div>
+</footer>
+
+</div>
+
+<script src="assets/i18n.js"></script>
+<script>
+(function(){
+  'use strict';
+  window.scrollTo(0,0);
+  const prm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function(){const nav=document.getElementById('mainNav');if(!nav)return;const fn=()=>nav.classList.toggle('scrolled',scrollY>40);window.addEventListener('scroll',fn,{passive:true});fn();})();
+  (function(){const btn=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');if(!btn||!menu)return;let open=false;const toggle=()=>{open=!open;btn.classList.toggle('open',open);menu.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':'';};btn.addEventListener('click',toggle);menu.querySelectorAll('.nav__mobile-link').forEach(l=>l.addEventListener('click',()=>{if(open)toggle();}));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)toggle();});})();
+  (function(){const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');if(!els.length)return;if(prm){els.forEach(el=>el.classList.add('visible'));return;}const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px 60px 0px'});els.forEach(el=>io.observe(el));setTimeout(function(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('visible');});},2000);})();
+  (function(){if(prm)return;document.querySelectorAll('.magnetic-wrap').forEach(wrap=>{const btn=wrap.querySelector('a,button');if(!btn)return;wrap.addEventListener('mousemove',e=>{const r=wrap.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.35}px,${(e.clientY-r.top-r.height/2)*0.35}px)`;});wrap.addEventListener('mouseleave',()=>{btn.style.transform='';});});})();
+  // Country / City data + Supabase enquiry form
+  (function(){
+    const SUPABASE_URL = 'https://qhhitgfophncvmmehyaf.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoaGl0Z2ZvcGhuY3ZtbWVoeWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzUzNDEsImV4cCI6MjA5NzExMTM0MX0.mhDfcF5dM_4LejguHT4wE4zNUSULL3rW_rwhyWtGqT0';
+    // ── Google Sheets (optional mirror) — paste Apps Script URL when ready
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyI9AQXJ80LC5FngwXU6uWLH15Easz7tp5oggcKnI4-hNgoI_k3uH58FKKb1q_Eetc/exec';
+
+    const cityMap = {
+      'India':['Mumbai','Delhi','Bengaluru','Hyderabad','Chennai','Kolkata','Pune','Ahmedabad','Jaipur','Surat'],
+      'United States':['New York','Los Angeles','Chicago','Houston','Phoenix','Philadelphia','San Antonio','San Diego','Dallas','San Francisco','Seattle','Boston'],
+      'United Kingdom':['London','Manchester','Birmingham','Leeds','Glasgow','Liverpool','Bristol','Edinburgh','Sheffield','Nottingham'],
+      'United Arab Emirates':['Dubai','Abu Dhabi','Sharjah','Ajman','Ras Al Khaimah'],
+      'Singapore':['Singapore'],
+      'Australia':['Sydney','Melbourne','Brisbane','Perth','Adelaide','Canberra','Gold Coast','Newcastle'],
+      'Canada':['Toronto','Vancouver','Montreal','Calgary','Ottawa','Edmonton','Winnipeg','Quebec City'],
+      'Germany':['Berlin','Hamburg','Munich','Cologne','Frankfurt','Stuttgart','Düsseldorf','Leipzig'],
+      'France':['Paris','Lyon','Marseille','Toulouse','Nice','Bordeaux','Nantes','Strasbourg'],
+      'Netherlands':['Amsterdam','Rotterdam','The Hague','Utrecht','Eindhoven'],
+      'Japan':['Tokyo','Osaka','Kyoto','Yokohama','Nagoya','Sapporo','Fukuoka'],
+      'China':['Beijing','Shanghai','Guangzhou','Shenzhen','Chengdu','Hangzhou','Wuhan','Xi\'an'],
+      'Brazil':['São Paulo','Rio de Janeiro','Brasília','Salvador','Fortaleza','Curitiba','Manaus'],
+      'South Africa':['Johannesburg','Cape Town','Durban','Pretoria','Port Elizabeth'],
+      'Switzerland':['Zürich','Geneva','Basel','Bern','Lausanne'],
+      'New Zealand':['Auckland','Wellington','Christchurch','Hamilton','Tauranga'],
+      'Saudi Arabia':['Riyadh','Jeddah','Mecca','Medina','Dammam'],
+      'Malaysia':['Kuala Lumpur','George Town','Johor Bahru','Ipoh','Shah Alam'],
+      'Indonesia':['Jakarta','Surabaya','Bandung','Medan','Semarang'],
+      'Philippines':['Manila','Cebu City','Davao','Quezon City','Makati'],
+      'Pakistan':['Karachi','Lahore','Islamabad','Rawalpindi','Faisalabad'],
+      'Bangladesh':['Dhaka','Chittagong','Sylhet','Rajshahi','Khulna'],
+      'Sri Lanka':['Colombo','Kandy','Galle','Jaffna','Negombo'],
+      'Kenya':['Nairobi','Mombasa','Kisumu','Nakuru'],
+      'Nigeria':['Lagos','Abuja','Kano','Ibadan','Port Harcourt'],
+      'Egypt':['Cairo','Alexandria','Giza','Sharm El-Sheikh','Luxor'],
+      'Turkey':['Istanbul','Ankara','Izmir','Bursa','Antalya'],
+      'Italy':['Rome','Milan','Naples','Turin','Florence','Bologna'],
+      'Spain':['Madrid','Barcelona','Valencia','Seville','Bilbao'],
+      'Portugal':['Lisbon','Porto','Faro','Braga'],
+      'Sweden':['Stockholm','Gothenburg','Malmö','Uppsala'],
+      'Norway':['Oslo','Bergen','Trondheim','Stavanger'],
+      'Denmark':['Copenhagen','Aarhus','Odense','Aalborg'],
+      'Ireland':['Dublin','Cork','Limerick','Galway'],
+      'Israel':['Tel Aviv','Jerusalem','Haifa','Beersheba'],
+      'South Korea':['Seoul','Busan','Incheon','Daegu','Daejeon'],
+      'Thailand':['Bangkok','Chiang Mai','Phuket','Pattaya'],
+      'Vietnam':['Ho Chi Minh City','Hanoi','Da Nang','Hue'],
+      'Other':['Other'],
+    };
+
+    // ── Custom multi-select state ──
+    const selectedIds   = [];   // array of numeric service IDs
+    const selectedNames = [];   // parallel array of service names
+    const trigger   = document.getElementById('svcTrigger');
+    const dropdown  = document.getElementById('svcDropdown');
+    const list      = document.getElementById('svcList');
+    const search    = document.getElementById('svcSearch');
+    const placeholder = document.getElementById('svcPlaceholder');
+    const tagsWrap  = document.getElementById('svcTags');
+    const hiddenSvc = document.getElementById('services');
+
+    function syncHidden() {
+      hiddenSvc.value = selectedIds.join(',');
+    }
+
+    function renderTags() {
+      tagsWrap.innerHTML = '';
+      selectedNames.forEach((name, i) => {
+        const tag = document.createElement('span');
+        tag.className = 'svc-tag';
+        tag.innerHTML = `${name}<button type="button" class="svc-tag__remove" aria-label="Remove ${name}" data-idx="${i}">✕</button>`;
+        tagsWrap.appendChild(tag);
+      });
+      tagsWrap.querySelectorAll('.svc-tag__remove').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const idx = parseInt(btn.dataset.idx);
+          const id  = selectedIds[idx];
+          selectedIds.splice(idx, 1);
+          selectedNames.splice(idx, 1);
+          const li = list.querySelector(`[data-id="${id}"]`);
+          if (li) li.classList.remove('checked');
+          renderTags();
+          updatePlaceholder();
+          syncHidden();
+        });
+      });
+    }
+
+    function updatePlaceholder() {
+      if (selectedIds.length === 0) {
+        placeholder.textContent = 'Select services…';
+        trigger.classList.remove('has-value');
+      } else {
+        placeholder.textContent = selectedIds.length === 1
+          ? selectedNames[0]
+          : `${selectedIds.length} services selected`;
+        trigger.classList.add('has-value');
+      }
+    }
+
+    function openDropdown() {
+      dropdown.classList.add('open');
+      trigger.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+      search.value = '';
+      filterList('');
+      // flip upward if not enough space below
+      var rect = trigger.getBoundingClientRect();
+      var spaceBelow = window.innerHeight - rect.bottom;
+      var dropH = Math.min(320, dropdown.scrollHeight);
+      if (spaceBelow < dropH + 16) {
+        dropdown.classList.add('drop-up');
+      } else {
+        dropdown.classList.remove('drop-up');
+      }
+      search.focus();
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('open');
+      trigger.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', () => {
+      dropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+    });
+
+    document.addEventListener('click', e => {
+      if (!document.getElementById('svcSelect').contains(e.target)) closeDropdown();
+    });
+
+    trigger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDropdown(); }
+      if (e.key === 'Escape') closeDropdown();
+    });
+
+    search.addEventListener('input', () => filterList(search.value));
+
+    function filterList(q) {
+      const term = q.toLowerCase().trim();
+      list.querySelectorAll('.svc-select__item').forEach(li => {
+        const name = li.querySelector('.svc-select__item-name').textContent.toLowerCase();
+        li.classList.toggle('hidden', term && !name.includes(term));
+      });
+    }
+
+    // Load services from Supabase into custom list
+    function buildServiceItem(s) {
+      const li = document.createElement('li');
+      li.className = 'svc-select__item';
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', 'false');
+      li.setAttribute('data-id', s.id);
+      li.setAttribute('data-name', s.name);
+      li.innerHTML =
+        '<span class="svc-select__check">' +
+          '<svg class="svc-select__check-svg" width="10" height="10" viewBox="0 0 10 10" fill="none">' +
+            '<polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+        '</span>' +
+        '<span class="svc-select__item-name">' + s.name + '</span>';
+      li.addEventListener('click', function() {
+        var id  = s.id;
+        var idx = selectedIds.indexOf(id);
+        if (idx === -1) {
+          selectedIds.push(id);
+          selectedNames.push(s.name);
+          li.classList.add('checked');
+          li.setAttribute('aria-selected', 'true');
+        } else {
+          selectedIds.splice(idx, 1);
+          selectedNames.splice(idx, 1);
+          li.classList.remove('checked');
+          li.setAttribute('aria-selected', 'false');
+        }
+        renderTags();
+        updatePlaceholder();
+        syncHidden();
+      });
+      return li;
+    }
+
+    function loadServices(attempt) {
+      var svcList = document.getElementById('svcList');
+      if (!svcList) return;
+      fetch(SUPABASE_URL + '/rest/v1/services?select=id,name&order=id', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(services) {
+        var svcList = document.getElementById('svcList');
+        if (!svcList) return;
+        if (!Array.isArray(services) || !services.length) throw new Error('empty');
+        svcList.innerHTML = '';
+        services.forEach(function(s) { svcList.appendChild(buildServiceItem(s)); });
+      })
+      .catch(function(err) {
+        console.warn('Services load attempt', attempt, err);
+        var svcList = document.getElementById('svcList');
+        if (attempt < 3) {
+          setTimeout(function() { loadServices(attempt + 1); }, 1500);
+        } else if (svcList) {
+          svcList.innerHTML = '<li class="svc-select__loading">Could not load services — please refresh</li>';
+        }
+      });
+    }
+
+    loadServices(1);
+
+    const countryEl = document.getElementById('country');
+    const cityEl    = document.getElementById('city');
+
+    Object.keys(cityMap).sort().forEach(c => {
+      const o = document.createElement('option');
+      o.value = o.textContent = c;
+      countryEl.appendChild(o);
+    });
+
+    countryEl.addEventListener('change', () => {
+      const cities = cityMap[countryEl.value] || [];
+      cityEl.innerHTML = '<option value="" disabled selected>Select city</option>';
+      cities.forEach(c => {
+        const o = document.createElement('option');
+        o.value = o.textContent = c;
+        cityEl.appendChild(o);
+      });
+      cityEl.disabled = false;
+      cityEl.style.borderColor = '';
+    });
+
+    const btn     = document.getElementById('submitBtn');
+    const errBox  = document.getElementById('formError');
+    const phoneEl = document.getElementById('phone');
+    const ccEl    = document.getElementById('country_code');
+
+    // Phone digit rules per country code: [min, max]
+    const PHONE_RULES = {
+      '+971': [9,  9,  '50 123 4567'],
+      '+91':  [10, 10, '98765 43210'],
+      '+966': [9,  9,  '50 123 4567'],
+      '+974': [8,  8,  '3312 3456'],
+      '+973': [8,  8,  '3600 1234'],
+      '+968': [8,  8,  '9212 3456'],
+      '+965': [8,  8,  '5012 3456'],
+      '+1':   [10, 10, '555 000 0000'],
+      '+44':  [10, 11, '7700 900000'],
+      '+49':  [10, 11, '151 12345678'],
+      '+33':  [9,  9,  '6 12 34 56 78'],
+      '+86':  [11, 11, '131 2345 6789'],
+      '+81':  [10, 11, '90 1234 5678'],
+      '+61':  [9,  9,  '412 345 678'],
+      '+7':   [10, 10, '912 345 6789'],
+      '+55':  [10, 11, '11 91234 5678'],
+      '+27':  [9,  9,  '71 234 5678'],
+      '+234': [10, 10, '802 345 6789'],
+      '+254': [9,  9,  '712 345 678'],
+      '+20':  [10, 10, '101 234 5678'],
+    };
+
+    // Update placeholder and maxlength when country code changes
+    ccEl.addEventListener('change', () => {
+      const rule = PHONE_RULES[ccEl.value];
+      if (rule) {
+        phoneEl.placeholder = rule[2];
+        phoneEl.maxLength   = rule[1] + 4; // allow spaces/dashes
+      } else {
+        phoneEl.placeholder = '555 000 0000';
+        phoneEl.removeAttribute('maxlength');
+      }
+      phoneEl.value = '';
+      phoneEl.style.borderColor = '';
+    });
+
+    function showErr(msg) {
+      errBox.textContent = msg;
+      errBox.style.display = 'block';
+    }
+
+    btn.addEventListener('click', async () => {
+      errBox.style.display = 'none';
+      const fields = {
+        first_name:        document.getElementById('fname'),
+        last_name:         document.getElementById('lname'),
+        country:           countryEl,
+        city:              cityEl,
+        country_code:      ccEl,
+        contact_number:    phoneEl,
+        email:             document.getElementById('email'),
+        organization_name: document.getElementById('org'),
+      };
+
+      let valid = true;
+      Object.values(fields).forEach(el => {
+        if (!el.value.trim()) { el.style.borderColor = 'rgba(255,100,100,0.6)'; valid = false; }
+        else el.style.borderColor = '';
+      });
+
+      // Validate multi-select
+      if (selectedIds.length === 0) {
+        trigger.classList.add('error');
+        valid = false;
+      } else {
+        trigger.classList.remove('error');
+      }
+
+      if (!valid) { showErr('Please fill in all required fields.'); return; }
+
+      // Validate phone digit count against selected country code
+      const digits = fields.contact_number.value.replace(/\D/g, '');
+      const rule   = PHONE_RULES[fields.country_code.value];
+      if (rule && (digits.length < rule[0] || digits.length > rule[1])) {
+        fields.contact_number.style.borderColor = 'rgba(255,100,100,0.6)';
+        const expected = rule[0] === rule[1] ? rule[0] : `${rule[0]}–${rule[1]}`;
+        showErr(`Contact number must be ${expected} digits for ${fields.country_code.value}.`);
+        return;
+      }
+
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(fields.email.value.trim())) {
+        fields.email.style.borderColor = 'rgba(255,100,100,0.6)';
+        showErr('Please enter a valid email address.');
+        return;
+      }
+
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
+
+      try {
+        const payload = {
+          first_name:        fields.first_name.value.trim(),
+          last_name:         fields.last_name.value.trim(),
+          contact:           fields.contact_number.value.trim(),
+          email_id:          fields.email.value.trim(),
+          country:           fields.country.value,
+          city:              fields.city.value,
+          country_code:      fields.country_code.value,
+          organization_name: fields.organization_name.value.trim(),
+          service_ids:       selectedIds.map(Number),
+          service_names:     selectedNames.join(', '),
+          remark:            document.getElementById('remark').value.trim(),
+        };
+
+        // Primary: Supabase
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/customers`, {
+          method: 'POST',
+          headers: {
+            'Content-Type':  'application/json',
+            'apikey':        SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Prefer':        'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.message || `Error ${res.status}`);
+        }
+
+        // Mirror: Google Sheets (fires silently when SHEET_URL is set)
+        if (SHEET_URL) {
+          var sheetsPayload = Object.assign({}, payload, {
+            service_ids:  Array.isArray(payload.service_ids) ? payload.service_ids.join(',') : (payload.service_ids || ''),
+            submitted_at: new Date().toISOString(),
+          });
+          fetch(SHEET_URL, {
+            method: 'POST',
+            mode:   'no-cors',
+            body:   new URLSearchParams(sheetsPayload),
+          }).catch(() => {});
+        }
+
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } catch (e) {
+        if (window.IgnizAII18n) { window.IgnizAII18n.reapply(); } else { btn.textContent = 'Send it over →'; }
+        btn.disabled = false;
+        showErr('Something went wrong. Please try again or email us directly.');
+        console.error(e);
+      }
+    });
+  })();
+})();
+</script>
+<script src="assets/editorial.js" defer></script>
+</body>
+</html>
