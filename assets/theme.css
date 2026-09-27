@@ -356,3 +356,31 @@ html[lang="ar"] body { line-height:1.85; }
 html[lang="ar"] :is(h1,h2,h3,h4,.hero__title,.page-hero__title,.article-hero__title,.svc-row__title,
   .work-card__name,.statement__text,.manifesto__big,.quote__text,.cta-band h2) { line-height:1.45; }
 html[lang="ar"] .eyebrow, html[lang="ar"] .eyebrow-sm { text-transform:none; }
+
+/* ---------- WhatsApp floating button (all pages) ---------- */
+.wa-float { position:fixed; right:22px; bottom:22px; z-index:950; display:inline-flex; align-items:center; gap:10px;
+  height:58px; padding:0 15px; border-radius:100px; background:#25D366; color:#fff;
+  box-shadow:0 14px 34px rgba(18,140,74,0.35), 0 2px 6px rgba(0,0,0,0.12);
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease); }
+.wa-float:hover, .wa-float:focus-visible { transform:translateY(-3px); box-shadow:0 18px 40px rgba(18,140,74,0.45), 0 2px 6px rgba(0,0,0,0.12); }
+.wa-float:focus-visible { outline:3px solid var(--gold-2); outline-offset:3px; }
+.wa-float svg { flex-shrink:0; }
+.wa-float__label { max-width:0; overflow:hidden; white-space:nowrap; font-family:var(--font-body); font-size:.92rem; font-weight:600;
+  transition:max-width .45s var(--ease), margin .45s var(--ease); margin-right:-10px; }
+.wa-float:hover .wa-float__label, .wa-float:focus-visible .wa-float__label { max-width:180px; margin-right:4px; }
+html[dir="rtl"] .wa-float__label { margin-right:0; margin-left:-10px; }
+html[dir="rtl"] .wa-float:hover .wa-float__label { margin-left:4px; }
+.mobile-menu.open ~ .wa-float, body:has(.mobile-menu.open) .wa-float { opacity:0; pointer-events:none; }
+/* Phones & tablets: compact round button, clear of the iPhone home bar and notch,
+   no hover label (a tap would leave it stuck open), footer gets room so the
+   button never covers its last line */
+@media (hover:none), (max-width:600px){
+  .wa-float { right:calc(14px + env(safe-area-inset-right)); bottom:calc(14px + env(safe-area-inset-bottom));
+    width:52px; height:52px; padding:0; justify-content:center; }
+  .wa-float svg { width:26px; height:26px; }
+  .wa-float__label { display:none; }
+  .wa-float:hover { transform:none; }
+  .wa-float:active { transform:scale(.94); }
+  body .footer { padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
+}
+@media print { .wa-float { display:none; } }
