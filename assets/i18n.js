@@ -786,6 +786,14 @@
         (contact form messages, dropdowns, etc.) while Arabic is on.
   ================================================================ */
   var AR = {
+    "Real projects,": "مشاريع حقيقية،",
+    "built to work.": "مبنية لتعمل.",
+    "Websites and digital products designed and built by IgnizAI — for travel, healthcare, real estate, and AI-powered brand experiences. Each one is live; open it and try it for yourself.": "مواقع ومنتجات رقمية صممتها وبنتها IgnizAI — للسفر والرعاية الصحية والعقارات وتجارب العلامات المدعومة بالذكاء الاصطناعي. جميعها تعمل الآن؛ افتحها وجرّبها بنفسك.",
+    "Real projects by IgnizAI: websites and digital products for travel, healthcare, real estate and AI-powered brands. See each live site and its key features.": "مشاريع حقيقية من IgnizAI: مواقع ومنتجات رقمية للسفر والرعاية الصحية والعقارات والعلامات المدعومة بالذكاء الاصطناعي. شاهد كل موقع مباشرةً وأبرز ميزاته.",
+    "Open Connect The World in a new tab": "فتح Connect The World في نافذة جديدة",
+    "Open Meridian Dental in a new tab": "فتح Meridian Dental في نافذة جديدة",
+    "Open Aurelia Estates in a new tab": "فتح Aurelia Estates في نافذة جديدة",
+    "Open Roasté in a new tab": "فتح Roasté في نافذة جديدة",
     "IgnizAI (Igniz AI) is a web design, development and AI studio in Ras Al Khaimah, UAE, building websites, platforms and AI systems that grow your business.": "IgnizAI (Igniz AI) استوديو لتصميم وتطوير المواقع والذكاء الاصطناعي في رأس الخيمة، الإمارات، يبني المواقع والمنصات وأنظمة الذكاء الاصطناعي التي تنمّي أعمالك.",
     "Web Design, Development & AI Services in the UAE — IgnizAI": "خدمات تصميم وتطوير المواقع والذكاء الاصطناعي في الإمارات — IgnizAI",
     "About IgnizAI — Web & AI Studio in Ras Al Khaimah, UAE": "من نحن — IgnizAI، استوديو المواقع والذكاء الاصطناعي في رأس الخيمة",

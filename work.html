@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Our Work — Website &amp; App Projects by IgnizAI</title>
-  <meta name="description" content="Selected work from Igniz AI — real businesses across fintech, healthcare, SaaS, retail, and services. Real outcomes, no embellished metrics." />
+  <meta name="description" content="Real projects by IgnizAI: websites and digital products for travel, healthcare, real estate and AI-powered brands. See each live site and its key features." />
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/seo/favicon-48.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/seo/favicon-96.png">
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IgnizAI">
   <meta property="og:title" content="Our Work — Website &amp; App Projects by IgnizAI">
-  <meta property="og:description" content="Selected work from Igniz AI — real businesses across fintech, healthcare, SaaS, retail, and services. Real outcomes, no embellished metrics.">
+  <meta property="og:description" content="Real projects by IgnizAI: websites and digital products for travel, healthcare, real estate and AI-powered brands. See each live site and its key features.">
   <meta property="og:url" content="https://ignizai.com/work.html">
   <meta property="og:image" content="https://ignizai.com/assets/seo/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -25,26 +25,37 @@
   <meta property="og:locale:alternate" content="ar_AE">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Our Work — Website &amp; App Projects by IgnizAI">
-  <meta name="twitter:description" content="Selected work from Igniz AI — real businesses across fintech, healthcare, SaaS, retail, and services. Real outcomes, no embellished metrics.">
+  <meta name="twitter:description" content="Real projects by IgnizAI: websites and digital products for travel, healthcare, real estate and AI-powered brands. See each live site and its key features.">
   <meta name="twitter:image" content="https://ignizai.com/assets/seo/og-image.jpg">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/theme.css">
   <style id="page-styles">
-    .case { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:64px 0; border-top:1px solid var(--line); }
+    .case { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:60px; align-items:center; padding:72px 0; border-top:1px solid var(--line); }
     .case:last-of-type { border-bottom:1px solid var(--line); }
     .case__k { font-size:.76rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; }
-    .case__title { font-family:var(--font-display); font-size:clamp(1.7rem,2.8vw,2.4rem); color:var(--ink); font-weight:400; margin:14px 0 16px; line-height:1.12; }
+    .case__title { font-family:var(--font-display); font-size:clamp(1.8rem,3vw,2.6rem); color:var(--ink); font-weight:400; margin:14px 0 16px; line-height:1.1; }
     .case__desc { color:var(--ink-2); font-size:1.05rem; line-height:1.7; }
-    .case__result { display:flex; gap:44px; margin-top:30px; }
-    .case__result .n { font-family:var(--font-display); font-size:2.2rem; color:var(--ink); font-weight:400; line-height:1; }
-    .case__result .l { font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:8px; }
-    .case__visual { aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; position:relative;
-      background:linear-gradient(135deg,#EFE8DC,#F7F3EC); border:1px solid var(--line); }
-    .case__visual span { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      font-family:var(--font-display); font-style:italic; font-size:2.4rem; color:var(--gold); opacity:.5; }
+    .case__feats { margin-top:26px; }
+    .case__label { font-size:.74rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); font-weight:600; }
+    .case__feats ul { list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; }
+    .case__feats li { position:relative; padding-left:22px; color:var(--ink-2); font-size:.96rem; line-height:1.55; }
+    .case__feats li::before { content:''; position:absolute; left:0; top:.72em; width:12px; height:1px; background:var(--gold); }
+    .case__feats li strong { color:var(--ink); font-weight:600; }
+    html[dir="rtl"] .case__feats li { padding-left:0; padding-right:22px; }
+    html[dir="rtl"] .case__feats li::before { left:auto; right:0; }
+    .case__meta { margin:22px 0 0; padding-top:18px; border-top:1px solid var(--line); display:grid; grid-template-columns:auto 1fr; column-gap:16px; row-gap:6px; font-size:.95rem; }
+    .case__meta div { display:contents; }
+    .case__meta dt { color:var(--gold); font-weight:600; }
+    .case__meta dd { margin:0; color:var(--ink-2); line-height:1.55; }
+    .case__link { display:inline-flex; align-items:center; gap:8px; margin-top:26px; min-height:44px; font-weight:600; color:var(--ink); border-bottom:1px solid var(--gold); }
+    .case__link:hover { color:var(--gold); }
+    .case__visual { display:block; aspect-ratio:1200/850; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--line);
+      box-shadow:0 30px 60px rgba(23,54,42,0.12); background:var(--bg-alt); }
+    .case__visual img { width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform 1s var(--ease); }
+    .case__visual:hover img { transform:scale(1.04); }
     .case:nth-child(even) .case__visual { order:-1; }
-    @media (max-width:820px){ .case{ grid-template-columns:1fr; gap:26px; } .case:nth-child(even) .case__visual{ order:0; } }
+    @media (max-width:900px){ .case{ grid-template-columns:1fr; gap:28px; padding:52px 0; } .case .case__visual{ order:-1; } }
 
     .cta-band { text-align:center; }
     .cta-band h2 { font-size:clamp(2.2rem,4vw,3.4rem); color:#F7F3EC; max-width:20ch; margin:22px auto 0; font-weight:400; }
@@ -98,9 +109,9 @@
     <div class="page-hero__inner">
       <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;›&nbsp; Work</div>
       <span class="eyebrow" data-i18n="work-eyebrow">Selected work</span>
-      <h1 class="page-hero__title" style="margin-top:18px">Numbers we can<br><span class="ital gold-text">actually stand behind.</span></h1>
+      <h1 class="page-hero__title" style="margin-top:18px">Real projects,<br><span class="ital gold-text">built to work.</span></h1>
       <div class="page-hero__rule"></div>
-      <p class="page-hero__lead" data-i18n="work-lead">More than 120 engagements across fintech, healthcare, SaaS, retail, and professional services. Real businesses, real outcomes, no rounding up.</p>
+      <p class="page-hero__lead">Websites and digital products designed and built by IgnizAI — for travel, healthcare, real estate, and AI-powered brand experiences. Each one is live; open it and try it for yourself.</p>
     </div>
   </div>
 </header>
@@ -108,35 +119,108 @@
 <section class="section">
   <div class="container">
 
-    <div class="case reveal">
-      <div>
-        <div class="case__k">Fintech · Web platform</div>
-        <h2 class="case__title">A lending platform that converts on first visit</h2>
-        <p class="case__desc">We rebuilt a slow, dated marketing site into a fast, trustworthy platform with a streamlined application flow — and kept maintaining it after launch.</p>
-        <div class="case__result"><div><div class="n"><span class="gold-text">2.4×</span></div><div class="l">Qualified leads</div></div><div><div class="n"><span class="gold-text">−48%</span></div><div class="l">Load time</div></div></div>
+    <article class="case reveal" id="connecttheworld">
+      <div class="case__text">
+        <div class="case__k">Travel &amp; Tourism</div>
+        <h2 class="case__title">Connect The World</h2>
+        <p class="case__desc">A responsive travel agency website that makes it easy for customers to explore destinations, discover travel packages, and get in touch with the agency.</p>
+        <div class="case__feats">
+          <span class="case__label">Key features</span>
+          <ul>
+            <li>Destination and package showcase</li>
+            <li>Tour package details</li>
+            <li>Inquiry and booking-focused CTAs</li>
+            <li>Responsive design across devices</li>
+            <li>Clean, conversion-focused user experience</li>
+          </ul>
+        </div>
+        <dl class="case__meta">
+          <div><dt>Goal</dt><dd>Generate inquiries and showcase travel experiences</dd></div>
+        </dl>
+        <a class="case__link" href="https://connecttheworld.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-      <div class="case__visual"><span>Fintech</span></div>
-    </div>
+      <a class="case__visual" href="https://connecttheworld.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Connect The World in a new tab">
+        <img src="assets/showcase/connecttheworld.jpg" alt="Connect The World — travel agency website" width="1200" height="850" loading="eager" decoding="async">
+      </a>
+    </article>
 
-    <div class="case reveal">
-      <div>
-        <div class="case__k">Healthcare · CMS</div>
-        <h2 class="case__title">A clinic network their own team can run</h2>
-        <p class="case__desc">A multi-location healthcare group needed dozens of pages kept current. We built a structured CMS with guardrails so non-technical staff update content safely.</p>
-        <div class="case__result"><div><div class="n"><span class="gold-text">40+</span></div><div class="l">Pages self-managed</div></div><div><div class="n"><span class="gold-text">0</span></div><div class="l">Dev tickets to edit</div></div></div>
+    <article class="case reveal" id="meridiandental">
+      <div class="case__text">
+        <div class="case__k">Healthcare</div>
+        <h2 class="case__title">Meridian Dental</h2>
+        <p class="case__desc">Designed for a dental clinic to build trust online, clearly present its services, and make it easy for patients to request an appointment.</p>
+        <div class="case__feats">
+          <span class="case__label">Key features</span>
+          <ul>
+            <li>Dental services showcase</li>
+            <li>Doctor/clinic information</li>
+            <li>Appointment-focused interface</li>
+            <li>Patient-friendly navigation</li>
+            <li>Mobile-responsive design</li>
+            <li>Clear contact and call-to-action sections</li>
+          </ul>
+        </div>
+        <dl class="case__meta">
+          <div><dt>Goal</dt><dd>Build trust and increase appointment inquiries</dd></div>
+        </dl>
+        <a class="case__link" href="https://meridian-taupe-seven.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-      <div class="case__visual"><span>Healthcare</span></div>
-    </div>
+      <a class="case__visual" href="https://meridian-taupe-seven.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Meridian Dental in a new tab">
+        <img src="assets/showcase/meridian.jpg" alt="Meridian — dental practice website" width="1200" height="850" loading="lazy" decoding="async">
+      </a>
+    </article>
 
-    <div class="case reveal">
-      <div>
-        <div class="case__k">Retail · AI &amp; automation</div>
-        <h2 class="case__title">Support that answers before you open</h2>
-        <p class="case__desc">We added an AI assistant and lead-routing to a retail brand's site — capturing and qualifying enquiries around the clock and handing warm leads to the team.</p>
-        <div class="case__result"><div><div class="n"><span class="gold-text">24/7</span></div><div class="l">First response</div></div><div><div class="n"><span class="gold-text">−31%</span></div><div class="l">Support load</div></div></div>
+    <article class="case reveal" id="aureliaestates">
+      <div class="case__text">
+        <div class="case__k">Real Estate</div>
+        <h2 class="case__title">Aurelia Estates</h2>
+        <p class="case__desc">A real estate MVP that gives users a simple way to explore properties, view important details, and connect with the business for further inquiries.</p>
+        <div class="case__feats">
+          <span class="case__label">Key features</span>
+          <ul>
+            <li>Property listings</li>
+            <li>Property detail pages</li>
+            <li>Search and filtering experience</li>
+            <li>Property images and information</li>
+            <li>Inquiry/contact functionality</li>
+            <li>Responsive design</li>
+          </ul>
+        </div>
+        <dl class="case__meta">
+          <div><dt>Goal</dt><dd>Showcase properties and generate qualified leads</dd></div>
+        </dl>
+        <a class="case__link" href="https://aurelia-estate-ten.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-      <div class="case__visual"><span>Retail</span></div>
-    </div>
+      <a class="case__visual" href="https://aurelia-estate-ten.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Aurelia Estates in a new tab">
+        <img src="assets/showcase/aurelia.jpg" alt="Aurelia — luxury real estate website" width="1200" height="850" loading="lazy" decoding="async">
+      </a>
+    </article>
+
+    <article class="case reveal" id="roast">
+      <div class="case__text">
+        <div class="case__k">AI-Powered Brand Experience / Coffee &amp; Beverage MVP</div>
+        <h2 class="case__title">Roasté</h2>
+        <p class="case__desc">An immersive coffee experience that takes visitors on a journey from bean to cup. The prototype combines storytelling, rich visuals, and AI-powered interactions to help coffee lovers discover where their coffee comes from, how it is made, and what type of coffee suits their taste.</p>
+        <div class="case__feats">
+          <span class="case__label">Key features</span>
+          <ul>
+            <li><strong>From Farm to Cup</strong> — Explore the journey of coffee, from growing and harvesting to roasting and brewing.</li>
+            <li><strong>Brewing Experience</strong> — Discover different brewing methods and how they influence the final cup.</li>
+            <li><strong>AI-Powered Coffee Discovery</strong> — An interactive experience that uses AI to help visitors explore coffee based on their preferences.</li>
+            <li><strong>Find Your Coffee Quiz</strong> — A fun quiz that learns about your taste preferences and suggests the type of coffee that may suit you.</li>
+            <li><strong>Interactive Storytelling</strong> — Educational and engaging content that brings the coffee-making journey to life.</li>
+            <li><strong>Responsive Experience</strong> — Designed to provide a seamless experience across desktop, tablet, and mobile.</li>
+          </ul>
+        </div>
+        <dl class="case__meta">
+          <div><dt>Goal</dt><dd>To create an engaging digital experience that educates, entertains, and helps customers discover coffee—while demonstrating how AI and interactive storytelling can turn a traditional product into a memorable digital brand experience.</dd></div>
+        </dl>
+        <a class="case__link" href="https://roaste.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <a class="case__visual" href="https://roaste.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Roasté in a new tab">
+        <img src="assets/showcase/roaste.jpg" alt="Roasté — immersive coffee brand experience" width="1200" height="850" loading="lazy" decoding="async">
+      </a>
+    </article>
 
   </div>
 </section>
