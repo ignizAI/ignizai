@@ -786,6 +786,19 @@
         (contact form messages, dropdowns, etc.) while Arabic is on.
   ================================================================ */
   var AR = {
+    "IgnizAI (Igniz AI) is a web design, development and AI studio in Ras Al Khaimah, UAE, building websites, platforms and AI systems that grow your business.": "IgnizAI (Igniz AI) استوديو لتصميم وتطوير المواقع والذكاء الاصطناعي في رأس الخيمة، الإمارات، يبني المواقع والمنصات وأنظمة الذكاء الاصطناعي التي تنمّي أعمالك.",
+    "Web Design, Development & AI Services in the UAE — IgnizAI": "خدمات تصميم وتطوير المواقع والذكاء الاصطناعي في الإمارات — IgnizAI",
+    "About IgnizAI — Web & AI Studio in Ras Al Khaimah, UAE": "من نحن — IgnizAI، استوديو المواقع والذكاء الاصطناعي في رأس الخيمة",
+    "Our Process — How IgnizAI Designs & Builds Websites": "منهجيتنا — كيف تصمم IgnizAI المواقع وتبنيها",
+    "Our Work — Website & App Projects by IgnizAI": "أعمالنا — مشاريع المواقع والتطبيقات من IgnizAI",
+    "Contact IgnizAI — Web Design Studio in Ras Al Khaimah, UAE": "تواصل مع IgnizAI — استوديو تصميم المواقع في رأس الخيمة",
+    "Journal: Web, SEO & AI Insights for UAE Businesses — IgnizAI": "المدونة: رؤى حول المواقع وتحسين محركات البحث والذكاء الاصطناعي للأعمال في الإمارات — IgnizAI",
+    "IgnizAI is a small, senior web and AI studio in Ras Al Khaimah, UAE. We design, build and maintain digital work for ambitious businesses, and stay after launch.": "IgnizAI استوديو صغير من أصحاب الخبرة للمواقع والذكاء الاصطناعي في رأس الخيمة، الإمارات. نصمم ونبني ونصون الأعمال الرقمية للشركات الطموحة، ونبقى معها بعد الإطلاق.",
+    "Page not found — IgnizAI": "الصفحة غير موجودة — IgnizAI",
+    "Page not found": "الصفحة غير موجودة",
+    "This page doesn't exist or has moved. Here are some good places to go instead.": "هذه الصفحة غير موجودة أو تم نقلها. إليك بعض الصفحات المفيدة بدلاً منها.",
+    "Back to home": "العودة إلى الرئيسية",
+    "Error 404": "خطأ 404",
     "IgnizAI — Web Design, Development & AI Studio in the UAE": "IgnizAI — استوديو تصميم وتطوير المواقع والذكاء الاصطناعي في الإمارات",
     "IgnizAI (Igniz AI) is a web design, development and AI studio in Ras Al Khaimah, UAE. We design, build and maintain websites, platforms and AI systems that grow your business.": "IgnizAI (Igniz AI) استوديو لتصميم وتطوير المواقع والذكاء الاصطناعي في رأس الخيمة، الإمارات. نصمم ونبني ونصون المواقع والمنصات وأنظمة الذكاء الاصطناعي التي تنمّي أعمالك.",
     "Close key features": "إغلاق أبرز الميزات",
