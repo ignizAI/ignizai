@@ -251,6 +251,7 @@
     function next() {
       if (busy) return;
       busy = true;
+      closeFeatures();
       var d = step();
       track.children[1].classList.remove('is-active');
       track.children[2].classList.add('is-active');
@@ -263,6 +264,7 @@
     function prev() {
       if (busy) return;
       busy = true;
+      closeFeatures();
       var d = step();
       track.insertBefore(track.lastElementChild, track.firstElementChild);
       place(base() - d, false);          // same picture as before the DOM move
@@ -286,15 +288,51 @@
     root.querySelector('[data-dir="next"]').addEventListener('click', function () { hold(5000); next(); });
     root.querySelector('[data-dir="prev"]').addEventListener('click', function () { hold(5000); prev(); });
 
-    // clicking a faded side project brings it to the centre instead of opening it
+    function closeFeatures() {
+      track.querySelectorAll('.work-card.show-features').forEach(function (c) {
+        c.classList.remove('show-features');
+        var b = c.querySelector('.work-card__more'); if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      root.classList.remove('features-open');
+    }
+    function featuresOpen() { return !!track.querySelector('.work-card.show-features'); }
+
     track.addEventListener('click', function (e) {
       var card = e.target.closest('.work-card');
-      if (!card || card.classList.contains('is-active')) return;
-      e.preventDefault();
-      hold(5000);
-      var pos = Array.prototype.indexOf.call(track.children, card);
-      if (pos === 0) prev(); else goTo(+card.dataset.idx);
+      if (!card) return;
+      // a faded side project: bring it to the centre instead of opening it
+      if (!card.classList.contains('is-active')) {
+        e.preventDefault();
+        hold(5000);
+        var pos = Array.prototype.indexOf.call(track.children, card);
+        if (pos === 0) prev(); else goTo(+card.dataset.idx);
+        return;
+      }
+      // touch: "Key features" opens the panel over the card, × closes it
+      if (e.target.closest('.work-card__more')) {
+        e.preventDefault();
+        var open = !card.classList.contains('show-features');
+        closeFeatures();
+        if (open) {
+          card.classList.add('show-features');
+          root.classList.add('features-open');
+          e.target.closest('.work-card__more').setAttribute('aria-expanded', 'true');
+          var close = card.querySelector('.work-card__close'); if (close) close.focus({ preventScroll: true });
+        }
+        return;
+      }
+      if (e.target.closest('.work-card__close')) {
+        e.preventDefault();
+        closeFeatures();
+        var more = card.querySelector('.work-card__more'); if (more) more.focus({ preventScroll: true });
+        return;
+      }
+      if (e.target.closest('a, button')) return;          // real links / buttons do their own thing
+      if (card.classList.contains('show-features')) return; // tapping inside the open panel
+      var href = card.getAttribute('data-href');
+      if (href && matchMedia('(hover: hover)').matches) window.open(href, '_blank', 'noopener');
     });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && featuresOpen()) closeFeatures(); });
 
     // the viewport only moves via transform; undo any browser-driven scroll (e.g. focus)
     viewport.addEventListener('scroll', function () { if (viewport.scrollLeft) viewport.scrollLeft = 0; });
@@ -316,6 +354,7 @@
       if (sx === null) return;
       var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
       sx = null;
+      if (featuresOpen()) return;
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? next : prev)();
     }, { passive: true });
 
@@ -342,7 +381,7 @@
     new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
 
     setInterval(function () {
-      if (reduce || hovering || focused || !visible || document.hidden || Date.now() < holdUntil) return;
+      if (reduce || hovering || focused || !visible || document.hidden || Date.now() < holdUntil || featuresOpen()) return;
       next();
     }, INTERVAL);
 

@@ -786,6 +786,7 @@
         (contact form messages, dropdowns, etc.) while Arabic is on.
   ================================================================ */
   var AR = {
+    "Close key features": "إغلاق أبرز الميزات",
     "Chat on WhatsApp": "تحدث معنا عبر واتساب",
     "Chat with us on WhatsApp": "تحدث معنا عبر واتساب",
     "Selected work": "أعمال مختارة",
