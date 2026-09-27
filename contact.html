@@ -568,14 +568,16 @@
 
         if (!SHEET_URL) throw new Error('Google Sheet URL is not set');
 
-        // Google Apps Script web apps don't allow reading the reply from another
-        // site, so the request is sent "no-cors": it reaches the sheet, and only a
-        // network failure (offline, blocked) is reported back as an error.
-        await fetch(SHEET_URL, {
+        // Send to the Google Apps Script web app and check its reply,
+        // so a problem on the sheet side shows an error instead of "thank you".
+        const res = await fetch(SHEET_URL, {
           method: 'POST',
-          mode:   'no-cors',
           body:   new URLSearchParams(payload),
         });
+        const reply = await res.json().catch(() => ({}));
+        if (!res.ok || reply.result !== 'success') {
+          throw new Error(reply.error || `Sheet error ${res.status}`);
+        }
 
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
