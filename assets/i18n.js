@@ -786,6 +786,26 @@
         (contact form messages, dropdowns, etc.) while Arabic is on.
   ================================================================ */
   var AR = {
+    "Selected work": "أعمال مختارة",
+    "Previous project": "المشروع السابق",
+    "Next project": "المشروع التالي",
+    "Choose project": "اختر المشروع",
+    "Roasté — immersive coffee brand experience": "Roasté — تجربة علامة قهوة غامرة",
+    "An immersive coffee experience that takes visitors on a journey from bean to cup. The prototype combines storytelling, rich visuals, and AI-powered interactions to help coffee lovers discover where their coffee comes from, how it is made, and what type of coffee suits their taste.": "تجربة قهوة غامرة تأخذ الزوار في رحلة من الحبّة إلى الفنجان. يجمع هذا النموذج الأولي بين سرد القصص والمرئيات الغنية والتفاعلات المدعومة بالذكاء الاصطناعي، لمساعدة محبي القهوة على اكتشاف مصدر قهوتهم، وكيف تُصنع، ونوع القهوة الذي يناسب ذوقهم.",
+    "From Farm to Cup": "من المزرعة إلى الفنجان",
+    "— Explore the journey of coffee, from growing and harvesting to roasting and brewing.": "— استكشف رحلة القهوة، من الزراعة والحصاد إلى التحميص والتحضير.",
+    "Brewing Experience": "تجربة التحضير",
+    "— Discover different brewing methods and how they influence the final cup.": "— اكتشف طرق التحضير المختلفة وتأثيرها على الفنجان النهائي.",
+    "AI-Powered Coffee Discovery": "اكتشاف القهوة بالذكاء الاصطناعي",
+    "— An interactive experience that uses AI to help visitors explore coffee based on their preferences.": "— تجربة تفاعلية تستخدم الذكاء الاصطناعي لمساعدة الزوار على استكشاف القهوة وفق تفضيلاتهم.",
+    "Find Your Coffee Quiz": "اختبار اكتشف قهوتك",
+    "— A fun quiz that learns about your taste preferences and suggests the type of coffee that may suit you.": "— اختبار ممتع يتعرّف على ذوقك ويقترح نوع القهوة الذي قد يناسبك.",
+    "Interactive Storytelling": "سرد قصصي تفاعلي",
+    "— Educational and engaging content that brings the coffee-making journey to life.": "— محتوى تعليمي وجذاب يُحيي رحلة صناعة القهوة.",
+    "Responsive Experience": "تجربة متجاوبة",
+    "— Designed to provide a seamless experience across desktop, tablet, and mobile.": "— مصممة لتوفير تجربة سلسة على الحاسوب والجهاز اللوحي والجوال.",
+    "AI-Powered Brand Experience / Coffee & Beverage MVP": "تجربة علامة تجارية مدعومة بالذكاء الاصطناعي / نسخة أولية (MVP) للقهوة والمشروبات",
+    "To create an engaging digital experience that educates, entertains, and helps customers discover coffee—while demonstrating how AI and interactive storytelling can turn a traditional product into a memorable digital brand experience.": "إنشاء تجربة رقمية جذابة تُثقّف وتُمتع وتساعد العملاء على اكتشاف القهوة — مع إظهار كيف يمكن للذكاء الاصطناعي والسرد التفاعلي أن يحوّلا منتجاً تقليدياً إلى تجربة علامة تجارية رقمية لا تُنسى.",
     "Website Design & Development": "تصميم وتطوير المواقع الإلكترونية",
     "Mobile App": "تطبيق جوال",
     "Digital Presence": "الحضور الرقمي",
@@ -1321,7 +1341,8 @@
   var AR_PATTERNS = [
     [/^Contact number must be (\d+) digits for (\+\d+)\.$/, 'يجب أن يتكون رقم الهاتف من $1 أرقام لرمز الدولة $2.'],
     [/^Remove (.+)$/, 'إزالة $1'],
-    [/^(\d+) services selected$/, 'تم اختيار $1 خدمات']
+    [/^(\d+) services selected$/, 'تم اختيار $1 خدمات'],
+    [/^Project (\d+) of (\d+)$/, 'المشروع $1 من $2']
   ];
   var SKIP_SEL = 'script,style,noscript,svg,[data-i18n],[data-i18n-html],[data-no-translate]';
   var ATTRS = ['placeholder', 'aria-label', 'alt', 'title'];

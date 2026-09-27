@@ -202,7 +202,7 @@
     @media (max-width:900px){ .nav__links,.nav__right .lang-btn,.nav__cta{ display:none; } .hamburger{ display:flex; } }
 
     /* ===================== WORK SHOWCASE ===================== */
-    .work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+    .work-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px; }
     .work-card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line);
       border-radius:var(--radius-md); overflow:hidden; transition:transform .55s var(--ease), box-shadow .55s var(--ease), border-color .4s; }
     .work-card:hover { transform:translateY(-8px); box-shadow:0 30px 60px rgba(33,28,21,0.16); border-color:var(--gold); }
@@ -225,6 +225,70 @@
     .work-card__desc { color:var(--ink-2); font-size:.96rem; line-height:1.6; }
     .work-card__cta { margin-top:6px; font-size:.9rem; font-weight:600; color:var(--ink); display:inline-flex; align-items:center; gap:8px; }
     .work-card:hover .work-card__cta { color:var(--gold); }
+    /* ---- Selected work carousel (driven by editorial.js) ----
+       One project centred and in focus; neighbours peek in faded on each side. */
+    .work-carousel { --slide-w:min(760px, 62vw); --gap:34px; position:relative; }
+    #work-showcase { overflow-x:clip; }
+    /* The whole Selected work section is one screen tall: heading + carousel + dots.
+       editorial.js sets --card-h to whatever height is left for the cards. */
+    #work-showcase { min-height:100vh; min-height:100svh; box-sizing:border-box; display:flex; align-items:center;
+      padding:calc(72px + clamp(12px, 2.4vh, 28px)) 0 clamp(14px, 3vh, 32px); }
+    #work-showcase > .container { width:100%; }
+    #work-showcase .sec-head { margin-bottom:clamp(12px, 2.6vh, 34px) !important; }
+    #work-showcase .sec-head h2 { margin-top:clamp(8px, 1.4vh, 20px) !important; font-size:min(var(--fs-h2), 5.6vh); }
+    #work-showcase .work-carousel__viewport { padding:12px 0 22px; }
+    @media (max-width:600px){ #work-showcase .sec-head { gap:8px !important; } #work-showcase .sec-head .link-gold { font-size:.9rem; } }
+    .work-carousel__stage { position:relative; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
+    .work-carousel__viewport { overflow:hidden; padding:16px 0 40px; direction:ltr; }
+    .work-carousel__track { display:flex; gap:var(--gap); align-items:stretch; will-change:transform; }
+    .work-carousel__track > .work-card { flex:0 0 var(--slide-w); min-width:0;
+      opacity:.32; transform:scale(.9); filter:saturate(.6);
+      transition:opacity .6s var(--ease), transform .6s var(--ease), filter .6s var(--ease), box-shadow .55s var(--ease), border-color .4s; }
+    html[dir="rtl"] .work-carousel__track > .work-card { direction:rtl; }
+    .work-carousel__track > .work-card.is-active { opacity:1; transform:none; filter:none; }
+    .work-carousel__track > .work-card:not(.is-active) { cursor:pointer; }
+    .work-carousel__track > .work-card:not(.is-active):hover { transform:scale(.9); box-shadow:none; border-color:var(--line); }
+    .work-carousel__track > .work-card.is-active:hover { transform:translateY(-6px); }
+    .work-carousel__track > .work-card:not(.is-active) .work-card__features,
+    .work-carousel__track > .work-card:not(.is-active) .work-card__visit { visibility:hidden; }
+    .work-carousel__btn { position:absolute; top:calc(50% - 12px); transform:translateY(-50%); z-index:5;
+      width:54px; height:54px; border-radius:50%; border:1px solid var(--line); background:rgba(247,243,236,0.92);
+      color:var(--ink); display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:0 12px 30px rgba(23,54,42,0.14); transition:background .3s, color .3s, border-color .3s, transform .3s; }
+    .work-carousel__btn:hover, .work-carousel__btn:focus-visible { background:var(--forest); color:var(--gold-2); border-color:var(--forest); }
+    .work-carousel__btn--prev { left:calc(50% - var(--slide-w) / 2 - 27px); }
+    .work-carousel__btn--next { right:calc(50% - var(--slide-w) / 2 - 27px); }
+    .work-carousel__dots { display:flex; justify-content:center; gap:10px; margin-top:6px; }
+    .work-carousel__dot { width:28px; height:4px; border-radius:4px; background:var(--line); border:0; padding:0; cursor:pointer;
+      transition:background .3s, width .3s var(--ease); }
+    .work-carousel__dot[aria-selected="true"] { background:var(--gold); width:44px; }
+    @media (max-width:1000px){ .work-carousel { --slide-w:min(600px, 78vw); --gap:18px; } }
+    @media (max-width:600px){ .work-carousel { --slide-w:84vw; --gap:12px; }
+      .work-carousel__btn { width:42px; height:42px; }
+      .work-carousel__btn--prev { left:4px; } .work-carousel__btn--next { right:4px; } }
+    @media (hover:none){ .work-carousel__track { align-items:stretch; } }
+    /* Fit the carousel to the screen: every slide is exactly one "screen" tall
+       (viewport minus the fixed nav, slide padding and the dots), and the
+       screenshot area flexes to fill whatever the text leaves. */
+    .work-carousel { --card-h:clamp(420px, calc(100svh - 190px), 860px); }
+    .work-carousel__track > .work-card { height:var(--card-h); }
+    .work-carousel .work-card__shot { aspect-ratio:auto; flex:1 1 auto; min-height:140px; }
+    .work-carousel .work-card__body { flex:0 0 auto; }
+    .work-carousel .work-card__features { overflow-y:auto; overscroll-behavior:contain; }
+    @media (max-height:800px) and (hover:hover){
+      .work-carousel .work-card__features { padding:20px 24px 18px; gap:10px; }
+      .work-carousel .work-card__features ul { gap:5px; }
+      .work-carousel .work-card__features li { font-size:.84rem; line-height:1.38; }
+      .work-carousel .work-card__meta { padding-top:10px; row-gap:4px; font-size:.8rem; }
+    }
+    /* Touch screens: no hover, so the features sit under the text and the card
+       scrolls inside itself; the screenshot keeps a fixed share of the height. */
+    @media (hover:none){
+      .work-carousel__track > .work-card { overflow-y:auto; overscroll-behavior:contain; }
+      .work-carousel .work-card__shot { flex:0 0 38%; }
+      .work-carousel .work-card__features { overflow:visible; }
+    }
+
     /* Hover panel: key features over the whole card */
     .work-card { position:relative; }
     .work-card__features { position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; gap:18px;
@@ -244,10 +308,11 @@
     .work-card__meta { margin:0; padding-top:16px; grid-template-columns:auto 1fr; column-gap:14px; border-top:1px solid rgba(201,154,58,0.35); display:grid; row-gap:8px; font-size:.88rem; line-height:1.45; }
     .work-card__meta div { display:contents; }
     .work-card__meta dt { color:var(--gold-2); font-weight:600; }
+    .work-card__features li strong { color:#F7F3EC; font-weight:600; }
     .work-card__meta dd { margin:0; color:#E4DCCB; }
     .work-card__features .work-card__cta { margin-top:auto; color:var(--gold-2); }
     /* Narrow three-column layouts: tighten the hover panel so it fits */
-    @media (max-width:1100px) and (min-width:901px){
+    @media (max-width:1240px) and (min-width:1001px){
       .work-card__features { padding:22px 22px 20px; gap:12px; }
       .work-card__features ul { gap:6px; }
       .work-card__features li { font-size:.85rem; line-height:1.4; }
@@ -266,7 +331,7 @@
       .work-card__features li:nth-child(5){ transition-delay:.55s } .work-card__features li:nth-child(6){ transition-delay:.65s }
       .work-card__features .work-card__cta { display:none; }
     }
-    @media (max-width:900px){ .work-grid{ grid-template-columns:1fr; max-width:460px; margin-inline:auto; } }
+    @media (max-width:1000px){ .work-grid{ grid-template-columns:1fr; max-width:600px; margin-inline:auto; } }
   </style>
 </head>
 <body>
@@ -334,7 +399,7 @@
     <div class="hero__actions">
       <a href="contact.html" class="btn btn--gold"><span data-i18n="hero-cta-1">Start a Project</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="work.html" class="btn btn--ghost"><span class="btn__line" data-i18n="hero-cta-2">See our work</span></a>
+      <a href="#work-showcase" class="btn btn--ghost"><span class="btn__line" data-i18n="hero-cta-2">See our work</span></a>
     </div>
   </div>
 </header>
@@ -347,11 +412,13 @@
         <span class="eyebrow" data-i18n="show-eyebrow">Selected work</span>
         <h2 style="margin-top:20px" data-i18n-html="show-h" data-typewriter aria-label="Turning Ideas Into Working Digital Products">Turning Ideas Into <span class="ital gold-text">Working Digital Products</span></h2>
       </div>
-      <a href="work.html" class="link-gold" data-i18n="show-all">See all work →</a>
     </div>
-    <div class="work-grid">
+    <div class="work-carousel reveal" id="workCarousel" role="region" aria-roledescription="carousel" aria-label="Selected work">
+      <div class="work-carousel__stage">
+      <div class="work-carousel__viewport">
+      <div class="work-carousel__track">
 
-      <a class="work-card reveal" href="https://connecttheworld.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <a class="work-card" role="group" aria-roledescription="slide" href="https://connecttheworld.vercel.app/" target="_blank" rel="noopener noreferrer">
         <div class="work-card__shot">
           <img src="assets/showcase/connecttheworld.png" alt="Connect The World — travel agency website" loading="lazy" decoding="async">
           <span class="work-card__visit" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -381,7 +448,7 @@
         </div>
       </a>
 
-      <a class="work-card reveal reveal-d1" href="https://meridian-taupe-seven.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <a class="work-card" role="group" aria-roledescription="slide" href="https://meridian-taupe-seven.vercel.app/" target="_blank" rel="noopener noreferrer">
         <div class="work-card__shot">
           <img src="assets/showcase/meridian.png" alt="Meridian — dental practice website" loading="lazy" decoding="async">
           <span class="work-card__visit" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -412,7 +479,7 @@
         </div>
       </a>
 
-      <a class="work-card reveal reveal-d2" href="https://aurelia-estate-ten.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <a class="work-card" role="group" aria-roledescription="slide" href="https://aurelia-estate-ten.vercel.app/" target="_blank" rel="noopener noreferrer">
         <div class="work-card__shot">
           <img src="assets/showcase/aurelia.png" alt="Aurelia — luxury real estate website" loading="lazy" decoding="async">
           <span class="work-card__visit" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -443,6 +510,47 @@
         </div>
       </a>
 
+      <a class="work-card" role="group" aria-roledescription="slide" href="https://roaste.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <div class="work-card__shot">
+          <img src="assets/showcase/roaste.jpg" alt="Roasté — immersive coffee brand experience" loading="lazy" decoding="async">
+          <span class="work-card__visit" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="work-card__body">
+          <span class="work-card__domain">roaste.vercel.app</span>
+          <span class="work-card__name">Roasté</span>
+          <p class="work-card__desc">An immersive coffee experience that takes visitors on a journey from bean to cup. The prototype combines storytelling, rich visuals, and AI-powered interactions to help coffee lovers discover where their coffee comes from, how it is made, and what type of coffee suits their taste.</p>
+          <span class="work-card__cta">Visit site
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="work-card__features">
+          <span class="eyebrow-sm">Key features</span>
+          <ul>
+            <li><strong>From Farm to Cup</strong> — Explore the journey of coffee, from growing and harvesting to roasting and brewing.</li>
+            <li><strong>Brewing Experience</strong> — Discover different brewing methods and how they influence the final cup.</li>
+            <li><strong>AI-Powered Coffee Discovery</strong> — An interactive experience that uses AI to help visitors explore coffee based on their preferences.</li>
+            <li><strong>Find Your Coffee Quiz</strong> — A fun quiz that learns about your taste preferences and suggests the type of coffee that may suit you.</li>
+            <li><strong>Interactive Storytelling</strong> — Educational and engaging content that brings the coffee-making journey to life.</li>
+            <li><strong>Responsive Experience</strong> — Designed to provide a seamless experience across desktop, tablet, and mobile.</li>
+          </ul>
+          <dl class="work-card__meta">
+            <div><dt>Project type</dt><dd>AI-Powered Brand Experience / Coffee &amp; Beverage MVP</dd></div>
+            <div><dt>Goal</dt><dd>To create an engaging digital experience that educates, entertains, and helps customers discover coffee—while demonstrating how AI and interactive storytelling can turn a traditional product into a memorable digital brand experience.</dd></div>
+          </dl>
+          <span class="work-card__cta">Visit site
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      </div>
+      </div>
+        <button type="button" class="work-carousel__btn work-carousel__btn--prev" data-dir="prev" aria-label="Previous project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="work-carousel__btn work-carousel__btn--next" data-dir="next" aria-label="Next project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="work-carousel__dots" role="tablist" aria-label="Choose project"></div>
     </div>
   </div>
 </section>

@@ -165,6 +165,8 @@
      reveals itself once it scrolls into view. */
   if (matchMedia('(hover: none)').matches) {
     var featPanels = document.querySelectorAll('.work-card__features');
+    // Inside the carousel the sliding itself is the reveal: show panels straight away.
+    document.querySelectorAll('#workCarousel .work-card__features').forEach(function (el) { el.classList.add('is-shown'); });
     if (reduce) {
       featPanels.forEach(function (el) { el.classList.add('is-shown'); });
     } else {
@@ -176,6 +178,179 @@
       featPanels.forEach(function (el) { featIO.observe(el); });
     }
   }
+
+  /* ---- Selected work: centred, infinite, auto-playing carousel ----
+     The slide at DOM position 1 is centred and in focus (.is-active); the
+     ones either side peek in, faded. Infinite by recycling: after moving on,
+     the slide that left is moved to the other end of the track.
+     Advances every INTERVAL ms; pauses while hovered (so the key-features
+     panel can be read), while a control has focus, after a touch/click,
+     when off-screen or the tab is hidden; no autoplay for reduced motion. */
+  (function () {
+    var root = document.getElementById('workCarousel');
+    if (!root) return;
+    var track = root.querySelector('.work-carousel__track');
+    var viewport = root.querySelector('.work-carousel__viewport');
+    var slides = Array.prototype.slice.call(track.children);
+    var n = slides.length;
+    if (n < 2) return;
+
+    var INTERVAL = 2000;   // ms between slide changes
+    var SLIDE_MS = 700;    // ms the movement takes
+    var EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+    slides.forEach(function (s, i) { s.dataset.idx = i; });
+    // start with the first project centred: put the last one on the left
+    track.insertBefore(track.lastElementChild, track.firstElementChild);
+
+    var dotsWrap = root.querySelector('.work-carousel__dots');
+    var dots = slides.map(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'work-carousel__dot';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Project ' + (i + 1) + ' of ' + n);
+      b.addEventListener('click', function () { hold(5000); goTo(i); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    var busy = false, hovering = false, focused = false, visible = false, holdUntil = 0;
+
+    function step() { return track.children[1].offsetLeft - track.children[0].offsetLeft; }
+    function base() {   // translate that centres DOM child 1
+      var w = track.children[1].offsetWidth;
+      return (viewport.clientWidth - w) / 2 - track.children[1].offsetLeft;
+    }
+    function place(x, animate) {
+      track.style.transition = animate ? 'transform ' + SLIDE_MS + 'ms ' + EASE : 'none';
+      track.style.transform = 'translateX(' + x + 'px)';
+    }
+    function markActive() {
+      Array.prototype.forEach.call(track.children, function (el, i) {
+        var on = i === 1;
+        el.classList.toggle('is-active', on);
+        el.setAttribute('aria-hidden', on ? 'false' : 'true');
+        el.tabIndex = on ? 0 : -1;
+      });
+      var c = +track.children[1].dataset.idx;
+      dots.forEach(function (d, i) { d.setAttribute('aria-selected', i === c ? 'true' : 'false'); });
+    }
+    function settle() { place(base(), false); void track.offsetWidth; }
+    function afterMove(cb) {
+      var done = false;
+      function finish(e) {
+        if (done || (e && e.target !== track)) return;
+        done = true;
+        track.removeEventListener('transitionend', finish);
+        cb();
+      }
+      track.addEventListener('transitionend', finish);
+      setTimeout(finish, SLIDE_MS + 120);
+    }
+    function next() {
+      if (busy) return;
+      busy = true;
+      var d = step();
+      track.children[1].classList.remove('is-active');
+      track.children[2].classList.add('is-active');
+      place(base() - d, true);
+      afterMove(function () {
+        track.appendChild(track.children[0]);
+        settle(); markActive(); busy = false;
+      });
+    }
+    function prev() {
+      if (busy) return;
+      busy = true;
+      var d = step();
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      place(base() - d, false);          // same picture as before the DOM move
+      void track.offsetWidth;
+      track.children[2].classList.remove('is-active');
+      track.children[1].classList.add('is-active');
+      place(base(), true);
+      afterMove(function () { settle(); markActive(); busy = false; });
+    }
+    function goTo(i) {
+      if (busy) return;
+      var k = (i - (+track.children[1].dataset.idx) + n) % n;
+      if (k === 0) return;
+      if (k === 1) return next();
+      if (k === n - 1) return prev();
+      for (var j = 0; j < k; j++) track.appendChild(track.children[0]);
+      settle(); markActive();
+    }
+    function hold(ms) { holdUntil = Date.now() + ms; }
+
+    root.querySelector('[data-dir="next"]').addEventListener('click', function () { hold(5000); next(); });
+    root.querySelector('[data-dir="prev"]').addEventListener('click', function () { hold(5000); prev(); });
+
+    // clicking a faded side project brings it to the centre instead of opening it
+    track.addEventListener('click', function (e) {
+      var card = e.target.closest('.work-card');
+      if (!card || card.classList.contains('is-active')) return;
+      e.preventDefault();
+      hold(5000);
+      var pos = Array.prototype.indexOf.call(track.children, card);
+      if (pos === 0) prev(); else goTo(+card.dataset.idx);
+    });
+
+    // the viewport only moves via transform; undo any browser-driven scroll (e.g. focus)
+    viewport.addEventListener('scroll', function () { if (viewport.scrollLeft) viewport.scrollLeft = 0; });
+    // pause only while the pointer is over the centred project (to read its features);
+    // the carousel spans the full width, so hovering the faded sides must not stop it
+    track.addEventListener('mouseover', function (e) {
+      var card = e.target.closest('.work-card');
+      hovering = !!(card && card.classList.contains('is-active'));
+    });
+    viewport.addEventListener('mouseleave', function () { hovering = false; });
+    root.addEventListener('focusin', function (e) { focused = e.target.matches(':focus-visible'); });
+    root.addEventListener('focusout', function () { focused = false; });
+
+    var sx = null, sy = null;
+    viewport.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY; hold(6000);
+    }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      sx = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? next : prev)();
+    }, { passive: true });
+
+    /* Size the cards so the whole section (heading + carousel + dots) fits the screen */
+    var section = document.getElementById('work-showcase');
+    function fitToScreen() {
+      if (!section) return;
+      var cs = getComputedStyle(section);
+      var head = section.querySelector('.sec-head');
+      var hs = head ? getComputedStyle(head) : null;
+      var vs = getComputedStyle(viewport);
+      var ds = getComputedStyle(dotsWrap);
+      var used = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) +
+        (head ? head.offsetHeight + parseFloat(hs.marginBottom) : 0) +
+        parseFloat(vs.paddingTop) + parseFloat(vs.paddingBottom) +
+        dotsWrap.offsetHeight + parseFloat(ds.marginTop) + 4;
+      var h = Math.round(Math.max(window.innerWidth < 600 ? 240 : 300, Math.min(860, window.innerHeight - used)));
+      root.style.setProperty('--card-h', h + 'px');
+    }
+    var rt;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { fitToScreen(); if (!busy) settle(); }, 80); });
+    document.addEventListener('ignizlangchange', function () { setTimeout(function () { if (!busy) settle(); }, 50); });
+
+    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
+
+    setInterval(function () {
+      if (reduce || hovering || focused || !visible || document.hidden || Date.now() < holdUntil) return;
+      next();
+    }, INTERVAL);
+
+    fitToScreen(); settle(); markActive();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fitToScreen(); if (!busy) settle(); });
+    window.addEventListener('load', function () { fitToScreen(); if (!busy) settle(); });
+    document.addEventListener('ignizlangchange', function () { setTimeout(fitToScreen, 60); });
+  })();
 
   /* ---- Light up hero(es) ---- */
   function lightHeroes() {
