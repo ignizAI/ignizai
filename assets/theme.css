@@ -384,3 +384,26 @@ html[dir="rtl"] .wa-float:hover .wa-float__label { margin-left:4px; }
   body .footer { padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
 }
 @media print { .wa-float { display:none; } }
+
+/* ---------- Nav links: forest-green glass tab on hover ---------- */
+body .nav__links { gap:6px; }
+body .nav__links a { position:relative; display:inline-flex; align-items:center; padding:9px 16px; border-radius:12px;
+  border:1px solid transparent; isolation:isolate;
+  transition:color .3s var(--ease), background-color .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease); }
+body .nav__links a:hover, body .nav__links a:focus-visible {
+  color:var(--forest);
+  background:linear-gradient(180deg, rgba(23,54,42,0.16) 0%, rgba(23,54,42,0.08) 100%);
+  border-color:rgba(23,54,42,0.22);
+  -webkit-backdrop-filter:blur(10px) saturate(160%); backdrop-filter:blur(10px) saturate(160%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(23,54,42,0.08), 0 6px 18px rgba(23,54,42,0.12);
+  transform:translateY(-1px); outline:none; }
+body .nav__links a.active { color:var(--forest); }
+/* current page: thin forest-green bar under the link */
+body .nav__links a.active::after { content:''; position:absolute; left:16px; right:16px; bottom:2px; height:2px;
+  border-radius:2px; background:var(--forest); }
+body .nav--on-dark:not(.is-solid) .nav__links a.active::after { background:var(--gold-2); }
+/* over a dark hero (blog articles) the glass turns light */
+body .nav--on-dark:not(.is-solid) .nav__links a:hover, body .nav--on-dark:not(.is-solid) .nav__links a:focus-visible {
+  color:#F7F3EC; background:linear-gradient(180deg, rgba(247,243,236,0.16), rgba(247,243,236,0.06));
+  border-color:rgba(247,243,236,0.24); box-shadow:inset 0 1px 0 rgba(255,255,255,0.25), 0 6px 18px rgba(0,0,0,0.18); }
+@media (prefers-reduced-motion: reduce){ body .nav__links a:hover { transform:none; } }
