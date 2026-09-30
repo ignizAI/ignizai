@@ -435,6 +435,8 @@
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
   }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  // custom entrance animations (e.g. About › Founder): same trigger, own CSS
+  document.querySelectorAll('[data-anim]').forEach(function (el) { io.observe(el); });
 
   /* ---- Nav solid on scroll ---- */
   var nav = document.getElementById('nav');

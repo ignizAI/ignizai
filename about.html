@@ -58,6 +58,20 @@
     .founder__vision { padding:26px 30px; border-left:2px solid var(--gold-2); background:rgba(247,243,236,0.04); color:#F7F3EC !important; }
     html[dir="rtl"] .founder__vision { border-left:none; border-right:2px solid var(--gold-2); }
     @media (max-width:900px){ .founder__grid{ grid-template-columns:1fr; gap:36px; } .founder__aside{ position:static; } }
+    /* Founder section entrance: left column fades in (1.5s); right paragraphs
+       slide in from the right one after another (1s each). editorial.js adds .is-in */
+    .founder__aside.founder-anim { opacity:0; transition:opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+    .founder__aside.founder-anim.is-in { opacity:1; }
+    .founder__body.founder-anim > p { opacity:0; transform:translateX(70px);
+      transition:opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    html[dir="rtl"] .founder__body.founder-anim > p { transform:translateX(-70px); }
+    .founder__body.founder-anim.is-in > p { opacity:1; transform:none; }
+    .founder__body.founder-anim.is-in > p:nth-child(1) { transition-delay:.15s; }
+    .founder__body.founder-anim.is-in > p:nth-child(2) { transition-delay:.45s; }
+    .founder__body.founder-anim.is-in > p:nth-child(3) { transition-delay:.75s; }
+    .founder__body.founder-anim.is-in > p:nth-child(4) { transition-delay:1.05s; }
+    #founder { overflow-x:clip; }
+    @media (prefers-reduced-motion: reduce){ .founder-anim, .founder-anim > p { opacity:1 !important; transform:none !important; } }
 
     .values { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); }
     .value { padding:44px 34px 44px 0; border-bottom:1px solid var(--line); }
@@ -162,7 +176,7 @@
 <section class="section founder" id="founder">
   <div class="container">
     <div class="founder__grid">
-      <div class="founder__aside reveal">
+      <div class="founder__aside founder-anim" data-anim>
         <span class="eyebrow">Leadership</span>
         <h2 class="founder__title">Meet Our <span class="ital">Founder &amp; CEO</span></h2>
         <div class="founder__profile">
@@ -170,7 +184,7 @@
           <p class="founder__name"><strong>Arun Mandook</strong><span>PMP | Certified Salesforce Consultant</span></p>
         </div>
       </div>
-      <div class="founder__body reveal reveal-d1">
+      <div class="founder__body founder-anim" data-anim>
         <p>Arun Mandook is the Founder and CEO of IgnizAI, bringing a strong blend of technology, product, consulting, and business experience to the company.</p>
         <p>Before founding IgnizAI, Arun served as Associate Vice President – Technology &amp; Product at The House of Abhinandan Lodha, a pan-India real estate brand. In this role, he worked at the intersection of technology, product strategy, and business, gaining valuable experience in building and scaling digital solutions within a highly competitive industry.</p>
         <p>With extensive experience across technology, consulting, and real estate, Arun brings a practical understanding of how businesses can use technology not just to operate better, but to build stronger brands, improve customer experiences, and create meaningful digital presence.</p>
