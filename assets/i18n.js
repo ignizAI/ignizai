@@ -844,7 +844,7 @@
     "Meet Our": "تعرّف على",
     "Founder & CEO": "المؤسس والرئيس التنفيذي",
     "Arun Mandook": "أرون ماندوك",
-    "PMP | Salesforce 3x Certified": "PMP | حاصل على 3 شهادات Salesforce",
+    "PMP | Certified Salesforce Consultant": "PMP | مستشار Salesforce معتمد",
     "Arun Mandook is the Founder and CEO of IgnizAI, bringing a strong blend of technology, product, consulting, and business experience to the company.": "أرون ماندوك هو المؤسس والرئيس التنفيذي لـ IgnizAI، ويجلب إلى الشركة مزيجاً قوياً من الخبرة في التقنية والمنتجات والاستشارات والأعمال.",
     "Before founding IgnizAI, Arun served as Associate Vice President – Technology & Product at The House of Abhinandan Lodha, a pan-India real estate brand. In this role, he worked at the intersection of technology, product strategy, and business, gaining valuable experience in building and scaling digital solutions within a highly competitive industry.": "قبل تأسيس IgnizAI، شغل أرون منصب نائب الرئيس المساعد للتقنية والمنتجات في The House of Abhinandan Lodha، وهي علامة عقارية منتشرة في أنحاء الهند. وفي هذا الدور، عمل عند تقاطع التقنية واستراتيجية المنتجات والأعمال، واكتسب خبرة قيّمة في بناء الحلول الرقمية وتوسيعها ضمن قطاع شديد التنافس.",
     "With extensive experience across technology, consulting, and real estate, Arun brings a practical understanding of how businesses can use technology not just to operate better, but to build stronger brands, improve customer experiences, and create meaningful digital presence.": "بفضل خبرته الواسعة في التقنية والاستشارات والعقارات، يمتلك أرون فهماً عملياً لكيفية استخدام الأعمال للتقنية، لا لتعمل بشكل أفضل فحسب، بل لبناء علامات تجارية أقوى، وتحسين تجارب العملاء، وصنع حضور رقمي ذي معنى.",
