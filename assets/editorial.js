@@ -8,6 +8,22 @@
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- Always open a page at the top ----
+     Browsers normally restore the old scroll position on reload / back.
+     Turn that off and jump to the top on every load. A link that points
+     at a section on purpose (e.g. /#work-showcase) still lands there. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function toTop() {
+    if (location.hash && document.getElementById(location.hash.slice(1))) return;
+    var html = document.documentElement, prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';           // jump, don't animate
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+  }
+  toTop();
+  window.addEventListener('load', toTop);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+
   /* ---- Split-text reveal for the homepage hero headline ----
      Words rise out of a mask one after another; the whole headline
      finishes in SPLIT_TOTAL ms. Word-level split keeps Arabic shaping intact. */
