@@ -136,6 +136,10 @@
       .pkg__cols { font-size:.68em; }
       .pkg__cta.btn { font-size:.95em; padding:1em 1em; }
     }
+    /* tablet: all four cards the same size (both rows match the tallest card) */
+    @media (min-width:641px) and (max-width:1100px){
+      .pkgs__grid { align-items:stretch; grid-auto-rows:1fr; }
+    }
     @media (max-width:640px){
       .pkgs__grid { grid-template-columns:1fr; gap:38px; }
       .pkg { padding:2em 1.3em 1.4em; border-radius:18px; }
