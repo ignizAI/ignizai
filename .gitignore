@@ -1,0 +1,9 @@
+# OS / editor noise
+.DS_Store
+# Vercel CLI link (local only)
+.vercel
+# env files
+.env*
+# large accidental files
+*.dmg
+node_modules/

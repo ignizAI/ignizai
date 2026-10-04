@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ignizai",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/ishitajadvani/Documents/GitHub/ignizai"],
+      "port": 8080
+    }
+  ]
+}

@@ -1,0 +1,714 @@
+/* ============================================================
+   IgnizAI — Premium Animation Layer  v2
+   Only adds transitions/transforms. Zero layout changes.
+   ============================================================ */
+
+/* ── Shared easing tokens ──────────────────────────────────── */
+:root {
+  --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-circ:  cubic-bezier(0.0, 0.55, 0.45, 1);
+  --dur-fast:   0.38s;
+  --dur-mid:    0.55s;
+  --dur-slow:   0.75s;
+}
+
+/* ── Reduced motion: kill everything ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1  !important;
+    transition-duration:  0.01ms !important;
+  }
+  .m-anim, .m-word, .m-reveal, .m-reveal-up,
+  .m-reveal-left, .m-reveal-right, .m-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ────────────────────────────────────────
+   SCROLL PROGRESS BAR
+──────────────────────────────────────── */
+#m-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #0072FF 0%, #1a6b5a 55%, #f0a500 100%);
+  z-index: 9999;
+  pointer-events: none;
+  will-change: width;
+  transition: width 0.06s linear;
+}
+
+/* ────────────────────────────────────────
+   PAGE TRANSITION
+──────────────────────────────────────── */
+#page-root {
+  transition: opacity 0.22s ease, transform 0.22s var(--ease-expo);
+  will-change: opacity, transform;
+}
+#page-root.m-exit  { opacity: 0; transform: translateY(10px); }
+#page-root.m-enter { opacity: 0; transform: translateY(14px); }
+#page-root.m-visible { opacity: 1; transform: translateY(0); }
+
+/* ────────────────────────────────────────
+   SCROLL REVEAL — base states
+──────────────────────────────────────── */
+.m-anim {
+  transition:
+    opacity  var(--dur-mid) var(--ease-expo),
+    transform var(--dur-mid) var(--ease-expo);
+  will-change: opacity, transform;
+}
+
+/* Fade + rise (cards, body text) */
+.m-reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.m-reveal-up.m-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gentle fade + tiny rise (labels, headings) */
+.m-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.m-reveal.m-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from left */
+.m-reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+.m-reveal-left.m-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide from right */
+.m-reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+}
+.m-reveal-right.m-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale in (stats, icons) */
+.m-reveal-scale {
+  opacity: 0;
+  transform: scale(0.88) translateY(10px);
+}
+.m-reveal-scale.m-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ────────────────────────────────────────
+   WORD-SPLIT REVEAL
+──────────────────────────────────────── */
+.m-split-active {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.m-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity  0.6s var(--ease-expo),
+    transform 0.6s var(--ease-expo);
+  will-change: opacity, transform;
+  white-space: nowrap;
+}
+.m-word.m-w-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ────────────────────────────────────────
+   NAV — load-in sequence
+──────────────────────────────────────── */
+@keyframes m-nav-in {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav {
+  animation: m-nav-in 0.55s var(--ease-expo) 0.05s both;
+}
+
+/* Logo subtle hover */
+.nav__logo-img {
+  transition: transform 0.3s var(--ease-expo), filter 0.3s ease !important;
+}
+.nav__logo:hover .nav__logo-img {
+  transform: scale(1.04) !important;
+}
+
+/* Nav link hover underline */
+.nav__link {
+  transition: color 0.2s ease !important;
+}
+.nav__link::after {
+  transition: width 0.24s var(--ease-expo) !important;
+}
+
+/* CTA button entrance nudge */
+.nav__cta {
+  animation: m-nav-in 0.55s var(--ease-expo) 0.15s both;
+}
+
+/* ────────────────────────────────────────
+   HERO — staggered entrance sequence
+──────────────────────────────────────── */
+@keyframes m-fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes m-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero element entrance is now controlled by body.hero-animated (see index.html) */
+
+/* Canvas network */
+@keyframes m-canvas-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+#network-canvas {
+  animation: m-canvas-in 1.6s ease 0.3s both;
+}
+
+/* ────────────────────────────────────────
+   HERO — gradient overlay above parallax bg
+──────────────────────────────────────── */
+/* Hero uses an in-page gradient + network canvas (no parallax div anymore) */
+.hero { background-color: #061713; }
+/* gradient glow overlay sits above the canvas (z-index: 0) */
+.hero::before { z-index: 1 !important; }
+/* content above overlay */
+.hero .container { z-index: 2 !important; }
+
+/* Hero orbs — gentle drift */
+@keyframes m-orb1 {
+  0%,100% { transform: translate(0,0); }
+  40%     { transform: translate(22px,-16px); }
+  70%     { transform: translate(-14px,10px); }
+}
+@keyframes m-orb2 {
+  0%,100% { transform: translate(0,0); }
+  35%     { transform: translate(-18px,14px); }
+  65%     { transform: translate(16px,-12px); }
+}
+.page-hero__orb--1 { animation: m-orb1 16s ease-in-out infinite; }
+.page-hero__orb--2 { animation: m-orb2 20s ease-in-out infinite; }
+
+/* Page-hero content (inner pages) */
+.page-hero__breadcrumb { animation: m-fade-up var(--dur-mid) var(--ease-expo) 0.1s both; }
+.page-hero__label      { animation: m-fade-up var(--dur-mid) var(--ease-expo) 0.2s both; }
+.page-hero__sub        { animation: m-fade-up var(--dur-mid) var(--ease-expo) 0.52s both; }
+
+/* Pulsing dot on section labels */
+@keyframes m-dot {
+  0%,100% { transform: scale(1);   opacity: 1; }
+  50%     { transform: scale(1.55); opacity: 0.5; }
+}
+.page-hero__label-dot { animation: m-dot 3s ease-in-out infinite; }
+
+/* ────────────────────────────────────────
+   SECTION HEADING — clip-path text wipe
+   Overrides the default fade-up on headings
+   with a left-to-right reveal
+──────────────────────────────────────── */
+.section__heading.m-reveal,
+.section__heading.m-reveal-up {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: inset(0 102% 0 0);
+  transition: clip-path 0.9s var(--ease-expo) 0.08s !important;
+}
+.section__heading.m-reveal.m-visible,
+.section__heading.m-reveal-up.m-visible {
+  clip-path: inset(0 0% 0 0) !important;
+}
+
+/* Section sub — gentle fade-up (unchanged) */
+
+/* ────────────────────────────────────────
+   BUTTON RIPPLE — click effect
+──────────────────────────────────────── */
+.btn { position: relative; overflow: hidden; }
+@keyframes m-ripple {
+  from { transform: scale(0);   opacity: 0.45; }
+  to   { transform: scale(3.5); opacity: 0; }
+}
+.m-ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.38);
+  width: 60px; height: 60px;
+  margin-top: -30px; margin-left: -30px;
+  pointer-events: none;
+  animation: m-ripple 0.65s var(--ease-expo) forwards;
+  will-change: transform, opacity;
+}
+
+/* ────────────────────────────────────────
+   SECTION LABEL line animation
+──────────────────────────────────────── */
+@keyframes m-line-in {
+  from { width: 0; opacity: 0; }
+  to   { width: 32px; opacity: 1; }
+}
+.section__label.m-visible::before {
+  animation: m-line-in 0.4s var(--ease-expo) 0.1s both;
+}
+
+/* ────────────────────────────────────────
+   IMAGES — fade when loaded
+──────────────────────────────────────── */
+#page-root img:not(.m-loaded) { opacity: 0; transition: opacity 0.5s ease; }
+#page-root img.m-loaded       { opacity: 1; }
+
+/* ────────────────────────────────────────
+   BUTTONS
+──────────────────────────────────────── */
+.btn {
+  transition:
+    transform 0.2s var(--ease-expo),
+    box-shadow 0.25s ease,
+    background 0.25s ease !important;
+}
+.btn:hover  { transform: translateY(-2px) !important; }
+.btn:active { transform: translateY(0) scale(0.97) !important; transition-duration: 0.08s !important; }
+
+/* Shimmer sweep on primary buttons */
+.btn--primary,
+.btn--magnetic,
+.btn--accent {
+  overflow: hidden;
+  position: relative;
+}
+.btn--primary::after,
+.btn--magnetic::after,
+.btn--accent::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(120deg,
+    transparent 0%,
+    rgba(255,255,255,0.16) 50%,
+    transparent 100%);
+  transform: skewX(-16deg);
+  pointer-events: none;
+  transition: left 0.55s ease;
+}
+.btn--primary:hover::after,
+.btn--magnetic:hover::after,
+.btn--accent:hover::after { left: 160%; }
+
+.form-submit {
+  transition: transform 0.2s var(--ease-expo), box-shadow 0.3s ease !important;
+}
+.form-submit:hover  { transform: translateY(-2px) !important; box-shadow: 0 12px 40px rgba(26,107,90,0.35) !important; }
+.form-submit:active { transform: translateY(0) scale(0.98) !important; }
+
+/* ────────────────────────────────────────
+   CARDS — hover lift
+──────────────────────────────────────── */
+.why-card,
+.expect-card,
+.problem-card,
+.process-card,
+.wc-card,
+.mv-card,
+.value-card,
+.ind-card,
+.blog-card {
+  transition:
+    transform   0.32s var(--ease-expo),
+    border-color 0.32s ease,
+    box-shadow  0.32s ease !important;
+  will-change: transform;
+}
+
+.why-card:hover,
+.expect-card:hover,
+.mv-card:hover,
+.value-card:hover,
+.ind-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(26,107,90,0.28) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22), 0 0 0 1px rgba(26,107,90,0.10) !important;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(26,107,90,0.22) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+}
+
+/* Blog card thumbnail zoom */
+.blog-card__thumb-img {
+  transition: transform 0.55s var(--ease-expo) !important;
+}
+.blog-card:hover .blog-card__thumb-img {
+  transform: scale(1.06) !important;
+}
+
+/* Service tabs */
+.svc-tab {
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s var(--ease-expo) !important;
+}
+.svc-tab:hover { transform: translateX(4px) !important; }
+
+/* Case cards */
+.case-card {
+  transition: transform 0.32s var(--ease-expo), box-shadow 0.32s ease, border-color 0.32s ease !important;
+}
+.case-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 56px rgba(0,0,0,0.28) !important;
+}
+
+/* FAQ items */
+.faq-item {
+  transition: border-color 0.22s ease, background 0.22s ease !important;
+}
+
+/* Tech tags */
+.tech-tag {
+  transition: transform 0.2s var(--ease-expo), background 0.2s ease, border-color 0.2s ease !important;
+}
+.tech-tag:hover { transform: translateY(-2px) scale(1.04) !important; }
+
+/* Stat items */
+.stat-item, .hero__stat {
+  transition: transform 0.28s var(--ease-expo) !important;
+}
+.stat-item:hover, .hero__stat:hover { transform: translateY(-3px) !important; }
+
+/* ────────────────────────────────────────
+   FOOTER LINKS
+──────────────────────────────────────── */
+.footer__col-link {
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s var(--ease-expo) !important;
+}
+.footer__col-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: rgba(26,107,90,0.7);
+  transition: width 0.24s var(--ease-expo);
+}
+.footer__col-link:hover { transform: translateX(4px) !important; }
+.footer__col-link:hover::after { width: 100%; }
+
+/* Mobile nav links */
+.nav__mobile-link {
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-expo), color 0.2s ease !important;
+}
+
+/* ────────────────────────────────────────
+   FORMS
+──────────────────────────────────────── */
+.form-input,
+.form-select,
+.form-textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--clr-blue) !important;
+  box-shadow: 0 0 0 3px rgba(26,107,90,0.12), 0 2px 8px rgba(0,114,255,0.08) !important;
+}
+
+/* ────────────────────────────────────────
+   CAROUSEL — smooth slide
+──────────────────────────────────────── */
+.testi-track {
+  transition: transform 0.55s var(--ease-expo) !important;
+}
+
+/* ────────────────────────────────────────
+   HERO VISUAL — scroll parallax (driven by JS)
+──────────────────────────────────────── */
+.hero__visual {
+  will-change: transform;
+  transition: none !important;
+}
+
+/* ────────────────────────────────────────
+   PROBLEM CARD — icon scale-in on enter
+──────────────────────────────────────── */
+.problem-card__icon-wrap svg {
+  opacity: 0;
+  transform: scale(0.55) rotate(-12deg);
+  transition: opacity 0.5s var(--ease-expo), transform 0.55s var(--ease-expo);
+}
+.problem-card.m-visible .problem-card__icon-wrap svg {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition-delay: 0.25s;
+}
+
+/* PROBLEM CARD — number flash on enter */
+@keyframes m-num-pop {
+  0%   { opacity: 0; transform: translateY(10px) scale(0.75); }
+  65%  { transform: translateY(-3px) scale(1.12); opacity: 1; }
+  100% { transform: translateY(0)   scale(1);    opacity: 1; }
+}
+.problem-card.m-visible .problem-card__num {
+  animation: m-num-pop 0.55s var(--ease-expo) 0.38s both;
+}
+
+/* ────────────────────────────────────────
+   PROCESS STEPS — connector line draws down
+──────────────────────────────────────── */
+.ps-step__line {
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform 0.75s var(--ease-expo) 0.55s;
+}
+.ps-step.m-visible .ps-step__line {
+  transform: scaleY(1);
+}
+
+/* PROCESS STEPS — node pulse ring on enter */
+@keyframes m-node-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(26,107,90,0.55); }
+  70%  { box-shadow: 0 0 0 12px rgba(26,107,90,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(26,107,90,0);   }
+}
+.ps-step.m-visible .ps-step__node {
+  animation: m-node-pulse 1s ease-out 0.45s 1 both;
+}
+
+/* PROCESS STEPS — number count-in */
+@keyframes m-step-num {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ps-step.m-visible .ps-step__num {
+  animation: m-step-num 0.45s var(--ease-expo) 0.15s both;
+}
+
+/* ────────────────────────────────────────
+   WHY CHOOSE — icon bounce-pop on enter
+──────────────────────────────────────── */
+.wc-card__check {
+  opacity: 0 !important;
+  transform: scale(0.55) rotate(-18deg) !important;
+  transition: opacity 0.55s var(--ease-expo) 0.2s,
+              transform 0.6s var(--ease-expo) 0.2s,
+              background 0.35s, border-color 0.35s, box-shadow 0.35s !important;
+}
+.wc-card.m-visible .wc-card__check {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+/* ────────────────────────────────────────
+   BLOG PREVIEW CARDS — clip-path image wipe
+──────────────────────────────────────── */
+.bp-card__thumb {
+  overflow: hidden;
+}
+.bp-card__thumb-img {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.75s var(--ease-expo) 0.1s,
+              transform  0.55s var(--ease-expo) !important;
+}
+.bp-card.m-visible .bp-card__thumb-img {
+  clip-path: inset(0 0% 0 0);
+}
+.bp-card:hover .bp-card__thumb-img {
+  transform: scale(1.06) !important;
+}
+
+/* ────────────────────────────────────────
+   GROW CTA — button pulse ring while in view
+──────────────────────────────────────── */
+@keyframes m-cta-pulse {
+  0%   { box-shadow: 0 0 0 0    rgba(240,165,0,0.5), 0 8px 32px rgba(240,165,0,0.25); }
+  70%  { box-shadow: 0 0 0 18px rgba(240,165,0,0),   0 8px 32px rgba(240,165,0,0.25); }
+  100% { box-shadow: 0 0 0 0    rgba(240,165,0,0),   0 8px 32px rgba(240,165,0,0.25); }
+}
+.grow-cta.in-view .grow-cta__btn {
+  animation: m-cta-pulse 2.4s ease-out 1s infinite;
+}
+
+/* ────────────────────────────────────────
+   SECTION HEADING — .grad shimmer
+──────────────────────────────────────── */
+@keyframes m-grad-shimmer {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+.section__heading .grad,
+.hero__headline .grad,
+.grow-cta__heading .highlight,
+.blog-preview__header .text-gradient {
+  background-size: 250% 100% !important;
+  animation: m-grad-shimmer 5s ease infinite;
+}
+
+/* ────────────────────────────────────────
+   SECTION BACKGROUNDS — subtle parallax float
+──────────────────────────────────────── */
+@keyframes m-bg-float {
+  0%,100% { background-position: 50% 50%; }
+  50%     { background-position: 50% 53%; }
+}
+
+/* ────────────────────────────────────────
+   RTL / Arabic overrides
+──────────────────────────────────────── */
+html[dir="rtl"] body,
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+html[dir="rtl"] p, html[dir="rtl"] a, html[dir="rtl"] li,
+html[dir="rtl"] span, html[dir="rtl"] div, html[dir="rtl"] button,
+html[dir="rtl"] label, html[dir="rtl"] input, html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  font-family: 'Cairo', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] .nav__inner    { flex-direction: row-reverse; }
+html[dir="rtl"] .nav__links    { flex-direction: row-reverse; }
+html[dir="rtl"] .nav__cta      { flex-direction: row-reverse; }
+html[dir="rtl"] .nav__link::after { left: auto; right: 0; }
+
+html[dir="rtl"] .section__label         { flex-direction: row-reverse; }
+html[dir="rtl"] .section__label::before { margin-right: 0; margin-left: 10px; }
+html[dir="rtl"] .page-hero__label       { flex-direction: row-reverse; }
+
+html[dir="rtl"] .hero__actions  { justify-content: center; }
+html[dir="rtl"] .hero__content  { text-align: center; }
+
+html[dir="rtl"] .problem-card            { text-align: center; }
+html[dir="rtl"] .problem-card__icon-wrap { justify-content: center; }
+html[dir="rtl"] .problem__transition     { text-align: right; }
+
+html[dir="rtl"] .svc-tab             { flex-direction: row-reverse; }
+html[dir="rtl"] .svc-tab__arrow      { transform: scaleX(-1); margin-right: auto; margin-left: 0; }
+html[dir="rtl"] .svc-tab::before     { left: auto; right: 0; border-radius: 2px 0 0 2px; }
+html[dir="rtl"] .svc-panel__header   { text-align: right; }
+html[dir="rtl"] .svc-panel__features li { flex-direction: row-reverse; }
+html[dir="rtl"] .svc-panel__cta      { flex-direction: row-reverse; }
+html[dir="rtl"] .services__layout    { direction: rtl; }
+
+html[dir="rtl"] .why-card            { text-align: right; }
+
+html[dir="rtl"] .testi-card__author  { flex-direction: row-reverse; }
+html[dir="rtl"] .testi-card__inner   { text-align: right; }
+
+html[dir="rtl"] .ps-step {
+  grid-template-columns: 1fr 32px 64px !important;
+  direction: ltr;
+}
+html[dir="rtl"] .ps-step__right     { grid-column: 1; text-align: right; }
+html[dir="rtl"] .ps-step__connector { grid-column: 2; }
+html[dir="rtl"] .ps-step__left      { grid-column: 3; text-align: center; }
+html[dir="rtl"] .ps-step__title     { text-align: right; }
+html[dir="rtl"] .ps-step__desc      { text-align: right; }
+html[dir="rtl"] .process-steps__header { text-align: right; }
+
+html[dir="rtl"] .wc-card           { flex-direction: row-reverse; }
+html[dir="rtl"] .wc-card__text     { text-align: right; }
+html[dir="rtl"] .why-choose__title { text-align: right; }
+
+html[dir="rtl"] .faq-item__q  { text-align: right !important; flex-direction: row-reverse; }
+html[dir="rtl"] .faq-item__a  { text-align: right; }
+
+html[dir="rtl"] .story-body  { text-align: right; }
+html[dir="rtl"] .mv-card     { text-align: right; }
+html[dir="rtl"] .value-card  { text-align: right; }
+
+html[dir="rtl"] .case-card__metrics { flex-direction: row-reverse; }
+html[dir="rtl"] .case-card__link    { flex-direction: row-reverse; }
+html[dir="rtl"] .case-card--featured{ direction: rtl; }
+html[dir="rtl"] .ind-card           { text-align: right; }
+
+html[dir="rtl"] .contact-layout     { direction: rtl; }
+html[dir="rtl"] .contact-info-item  { flex-direction: row-reverse; text-align: right; }
+html[dir="rtl"] .sidebar-content    { text-align: right; }
+html[dir="rtl"] .expect-card        { text-align: right; }
+html[dir="rtl"] .form-group label   { text-align: right; display: block; }
+html[dir="rtl"] .form-select {
+  background-position: left 16px center !important;
+  padding-left: 44px !important;
+  padding-right: 16px !important;
+}
+html[dir="rtl"] .trust-pills { flex-direction: row-reverse; flex-wrap: wrap; }
+
+html[dir="rtl"] .blog-card       { text-align: right; }
+html[dir="rtl"] .blog-card__link { flex-direction: row-reverse; }
+
+html[dir="rtl"] .footer__col-link:hover { transform: translateX(-4px) !important; }
+html[dir="rtl"] .footer__col-link::after { left: auto; right: 0; }
+html[dir="rtl"] .footer__bottom    { flex-direction: row-reverse; }
+html[dir="rtl"] .footer__brand p   { text-align: right; }
+html[dir="rtl"] .footer__col       { text-align: right; }
+
+html[dir="rtl"] .cta-section__heading { text-align: right; }
+html[dir="rtl"] .cta-section__sub     { text-align: right; }
+
+/* RTL: flip slide-left direction */
+html[dir="rtl"] .m-reveal-left  { transform: translateX(24px); }
+html[dir="rtl"] .m-reveal-right { transform: translateX(-24px); }
+
+/* ── Nav link slide-up text swap ───────────────────────────── */
+.nav__link { position: relative; }
+
+.link-inner {
+  display: block;
+  overflow: hidden;          /* clips at one line height */
+  height: 1.2em;
+  line-height: 1.2;
+  position: relative;
+}
+
+.link-inner > span {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Second span sits below the clip window, ready to slide in */
+.link-inner > span:nth-child(2) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: inherit;
+}
+
+/* On hover: both spans slide up together — first exits top, second enters */
+.nav__link:hover .link-inner > span,
+.nav__link:focus-visible .link-inner > span {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-inner > span { transition: none; }
+}
