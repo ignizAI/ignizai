@@ -435,8 +435,26 @@
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
   }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  // custom entrance animations (e.g. About › Founder): same trigger, own CSS
-  document.querySelectorAll('[data-anim]').forEach(function (el) { io.observe(el); });
+  /* Custom entrance animations (About › Leadership): replay every time the
+     section is scrolled into view. Plays once its top has passed 35% of the
+     window height; resets (instantly, out of sight) once it has fully left
+     the screen, so it plays again on the next visit — scrolling down or up. */
+  var animEls = document.querySelectorAll('[data-anim]');
+  if (animEls.length) {
+    var animSection = animEls[0].closest('section') || animEls[0];
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) animEls.forEach(function (el) { el.classList.add('is-in'); });
+    }, { threshold: 0, rootMargin: '0px 0px -35% 0px' }).observe(animSection);
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) return;
+      animEls.forEach(function (el) {
+        el.classList.add('anim-reset');          // snap back without animating
+        el.classList.remove('is-in');
+        void el.offsetWidth;
+        el.classList.remove('anim-reset');
+      });
+    }, { threshold: 0 }).observe(animSection);
+  }
 
   /* ---- Nav solid on scroll ---- */
   var nav = document.getElementById('nav');
@@ -469,11 +487,31 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-count]').forEach(function (el) { counted.observe(el); });
 
-  /* ---- Live gold-ribbon hero canvas (every canvas.aura) ---- */
+  /* ---- Live gold-ribbon hero canvas (every canvas.aura) ----
+     On the home page (canvas[data-logo]) the floating ribbons periodically flow together
+     and draw the Igniz flame logo in the same gold, hold it, then drift apart again. */
+  var FLAME = {"aspect":0.6728,"outer":[[-0.0542,0.4954],[-0.0666,0.4851],[-0.0809,0.4764],[-0.0942,0.4662],[-0.1068,0.4552],[-0.1183,0.4429],[-0.1291,0.4302],[-0.1387,0.4164],[-0.1471,0.4019],[-0.1542,0.3867],[-0.1592,0.3708],[-0.1635,0.3545],[-0.167,0.3382],[-0.1681,0.3215],[-0.1655,0.3049],[-0.1589,0.2898],[-0.1451,0.2939],[-0.1374,0.3089],[-0.1287,0.3231],[-0.1186,0.3365],[-0.1071,0.3487],[-0.0938,0.3589],[-0.0797,0.3679],[-0.0644,0.3748],[-0.0566,0.3656],[-0.063,0.3501],[-0.067,0.3339],[-0.0686,0.3172],[-0.0684,0.3004],[-0.0661,0.2838],[-0.0615,0.2677],[-0.0562,0.2518],[-0.0515,0.2357],[-0.0483,0.2193],[-0.048,0.2026],[-0.0513,0.1862],[-0.0575,0.1706],[-0.0648,0.1556],[-0.0732,0.141],[-0.0805,0.1259],[-0.0879,0.1109],[-0.095,0.0957],[-0.1017,0.0803],[-0.1066,0.0644],[-0.109,0.0478],[-0.1101,0.031],[-0.1105,0.0143],[-0.1069,-0.0018],[-0.0924,-0.0009],[-0.083,0.0128],[-0.0737,0.0267],[-0.0626,0.0393],[-0.0501,0.0504],[-0.0423,0.0425],[-0.0463,0.0262],[-0.0489,0.0097],[-0.051,-0.0069],[-0.0517,-0.0237],[-0.0516,-0.0405],[-0.0496,-0.0571],[-0.0454,-0.0733],[-0.0396,-0.089],[-0.0321,-0.104],[-0.0229,-0.1181],[-0.0095,-0.1273],[0.0015,-0.1162],[0.0059,-0.1001],[0.0108,-0.0841],[0.017,-0.0685],[0.0244,-0.0535],[0.0318,-0.0384],[0.0392,-0.0234],[0.0462,-0.0081],[0.0516,0.0077],[0.0562,0.0238],[0.0589,0.0403],[0.0596,0.0571],[0.0586,0.0737],[0.0721,0.0705],[0.0829,0.0576],[0.0915,0.0433],[0.1025,0.0311],[0.1131,0.0411],[0.1125,0.0578],[0.1104,0.0744],[0.1058,0.0905],[0.0993,0.106],[0.0913,0.1207],[0.0828,0.1351],[0.0737,0.1492],[0.0655,0.1638],[0.0586,0.1791],[0.0536,0.1951],[0.0512,0.2117],[0.052,0.2284],[0.0566,0.2445],[0.0622,0.2603],[0.0679,0.2761],[0.0725,0.2921],[0.0752,0.3087],[0.0753,0.3254],[0.0719,0.3418],[0.0665,0.3576],[0.0629,0.3737],[0.0782,0.3738],[0.0931,0.366],[0.1066,0.3562],[0.1184,0.3443],[0.1282,0.3307],[0.1366,0.3162],[0.1431,0.3008],[0.1495,0.2854],[0.1632,0.285],[0.1688,0.3007],[0.1716,0.3172],[0.1726,0.3339],[0.1718,0.3507],[0.1689,0.3672],[0.1632,0.3829],[0.1563,0.3982],[0.1478,0.4126],[0.1383,0.4264],[0.1275,0.4392],[0.116,0.4514],[0.1044,0.4635],[0.0921,0.4749],[0.0773,0.4827],[0.062,0.4894],[0.066,0.4998],[0.0827,0.4984],[0.0992,0.4954],[0.1154,0.491],[0.1311,0.4851],[0.1465,0.4786],[0.1616,0.4713],[0.176,0.4628],[0.1902,0.4538],[0.2039,0.4442],[0.2171,0.4339],[0.2297,0.4228],[0.2418,0.4112],[0.2538,0.3994],[0.2647,0.3868],[0.2747,0.3733],[0.2844,0.3596],[0.2935,0.3456],[0.3006,0.3304],[0.3069,0.3149],[0.3139,0.2996],[0.3197,0.2839],[0.3246,0.2679],[0.3288,0.2517],[0.3319,0.2352],[0.3343,0.2186],[0.3358,0.2019],[0.3364,0.1852],[0.3364,0.1684],[0.3364,0.1516],[0.3355,0.1349],[0.3336,0.1182],[0.3297,0.102],[0.3261,0.0856],[0.3226,0.0692],[0.3176,0.0532],[0.3116,0.0375],[0.3051,0.0221],[0.2987,0.0066],[0.2902,-0.0078],[0.281,-0.0218],[0.2716,-0.0357],[0.2586,-0.0376],[0.2607,-0.0211],[0.2625,-0.0045],[0.2625,0.0122],[0.2621,0.029],[0.2588,0.0454],[0.254,0.0615],[0.2486,0.0773],[0.2417,0.0926],[0.2327,0.1067],[0.2226,0.1201],[0.2114,0.1326],[0.199,0.1438],[0.185,0.153],[0.1694,0.1589],[0.157,0.1511],[0.1635,0.136],[0.1737,0.1227],[0.184,0.1094],[0.1932,0.0955],[0.2022,0.0813],[0.2098,0.0664],[0.2165,0.051],[0.2228,0.0354],[0.227,0.0192],[0.2301,0.0028],[0.233,-0.0137],[0.2352,-0.0303],[0.2357,-0.0471],[0.2351,-0.0638],[0.2332,-0.0805],[0.2308,-0.0971],[0.228,-0.1136],[0.2227,-0.1295],[0.2168,-0.1452],[0.2106,-0.1608],[0.2033,-0.1758],[0.1947,-0.1902],[0.1866,-0.2049],[0.1764,-0.2181],[0.1623,-0.2272],[0.1506,-0.2391],[0.145,-0.2328],[0.1494,-0.2167],[0.1519,-0.2001],[0.1524,-0.1834],[0.1514,-0.1667],[0.148,-0.1503],[0.1409,-0.1351],[0.1284,-0.1242],[0.1121,-0.1232],[0.0988,-0.133],[0.0907,-0.1476],[0.089,-0.1641],[0.0926,-0.1805],[0.0973,-0.1966],[0.1009,-0.213],[0.1047,-0.2293],[0.1075,-0.2458],[0.1088,-0.2625],[0.1095,-0.2792],[0.1086,-0.296],[0.1063,-0.3126],[0.1044,-0.3292],[0.0994,-0.3452],[0.0933,-0.3608],[0.0879,-0.3767],[0.0806,-0.3917],[0.069,-0.3982],[0.0554,-0.396],[0.048,-0.411],[0.0395,-0.4255],[0.0294,-0.4389],[0.0185,-0.4516],[0.0089,-0.4653],[0.0005,-0.4798],[-0.0081,-0.4941],[-0.016,-0.4925],[-0.0127,-0.476],[-0.0087,-0.4598],[-0.0048,-0.4435],[-0.0028,-0.4268],[-0.0031,-0.4101],[-0.0034,-0.3933],[-0.0049,-0.3767],[-0.0096,-0.3606],[-0.0149,-0.3447],[-0.0214,-0.3292],[-0.0301,-0.3149],[-0.039,-0.3007],[-0.0477,-0.2864],[-0.0578,-0.273],[-0.0679,-0.2596],[-0.0765,-0.2453],[-0.086,-0.2315],[-0.0958,-0.2179],[-0.1049,-0.2038],[-0.1138,-0.1896],[-0.1212,-0.1746],[-0.129,-0.1598],[-0.1434,-0.1594],[-0.1487,-0.1751],[-0.1504,-0.1918],[-0.1493,-0.2085],[-0.1466,-0.225],[-0.1421,-0.2411],[-0.1496,-0.2492],[-0.1633,-0.2397],[-0.1744,-0.2272],[-0.1846,-0.2139],[-0.1929,-0.1993],[-0.2014,-0.1849],[-0.2095,-0.1702],[-0.2167,-0.1551],[-0.2217,-0.1391],[-0.2265,-0.123],[-0.2311,-0.1069],[-0.2329,-0.0903],[-0.2348,-0.0736],[-0.2357,-0.0569],[-0.2354,-0.0401],[-0.2334,-0.0235],[-0.2314,-0.0068],[-0.2286,0.0097],[-0.2242,0.0259],[-0.2182,0.0415],[-0.2112,0.0567],[-0.2039,0.0718],[-0.1949,0.0859],[-0.1855,0.0998],[-0.1762,0.1138],[-0.1665,0.1275],[-0.157,0.1413],[-0.1593,0.1561],[-0.1753,0.1539],[-0.1897,0.1453],[-0.2027,0.1347],[-0.2144,0.1228],[-0.2249,0.1097],[-0.234,0.0956],[-0.242,0.0809],[-0.2487,0.0656],[-0.2547,0.0499],[-0.2588,0.0336],[-0.2619,0.0172],[-0.2637,0.0005],[-0.2624,-0.0162],[-0.2595,-0.0327],[-0.27,-0.0375],[-0.2801,-0.0241],[-0.2895,-0.0103],[-0.2977,0.0044],[-0.305,0.0194],[-0.3106,0.0352],[-0.3156,0.0512],[-0.3211,0.067],[-0.326,0.0831],[-0.329,0.0995],[-0.3319,0.1161],[-0.334,0.1327],[-0.3353,0.1494],[-0.3362,0.1661],[-0.3364,0.1829],[-0.3358,0.1997],[-0.3347,0.2164],[-0.3336,0.2331],[-0.3302,0.2495],[-0.3255,0.2656],[-0.3215,0.2818],[-0.3162,0.2977],[-0.3098,0.3132],[-0.3028,0.3284],[-0.2951,0.3433],[-0.2864,0.3576],[-0.277,0.3715],[-0.2672,0.3851],[-0.2561,0.3977],[-0.2444,0.4097],[-0.2321,0.4211],[-0.2192,0.4318],[-0.206,0.4422],[-0.1926,0.4522],[-0.1786,0.4615],[-0.164,0.4697],[-0.1489,0.477],[-0.1337,0.4841],[-0.1181,0.4902],[-0.1022,0.4953],[-0.0857,0.4983],[-0.069,0.4999]],"drop":[[-0.0706,-0.4075],[-0.0745,-0.4018],[-0.0769,-0.395],[-0.0795,-0.3883],[-0.0815,-0.3815],[-0.0835,-0.3746],[-0.0861,-0.3679],[-0.0887,-0.3613],[-0.0911,-0.3545],[-0.0932,-0.3476],[-0.0948,-0.3407],[-0.0964,-0.3337],[-0.0977,-0.3266],[-0.0984,-0.3195],[-0.0985,-0.3124],[-0.0979,-0.3052],[-0.0969,-0.2981],[-0.095,-0.2912],[-0.0916,-0.285],[-0.0856,-0.2815],[-0.0791,-0.284],[-0.074,-0.289],[-0.07,-0.2949],[-0.0665,-0.3012],[-0.0633,-0.3076],[-0.0597,-0.3138],[-0.0569,-0.3204],[-0.0545,-0.3271],[-0.0522,-0.3339],[-0.0502,-0.3408],[-0.0493,-0.3479],[-0.0484,-0.355],[-0.0477,-0.3621],[-0.0481,-0.3693],[-0.0491,-0.3764],[-0.05,-0.3835],[-0.0511,-0.3905],[-0.0537,-0.3972],[-0.058,-0.4028],[-0.0638,-0.407]]};
   function initAura(cv) {
     var ctx = cv.getContext('2d'), W, H, DPR, blobs, ribbons, raf;
+    var logoMode = cv.hasAttribute('data-logo');
+    var L = { x: 0, y: 0, s: 0, dim: 1 };          /* where the logo is drawn */
+    var t0 = null, hero = cv.closest('#hero');
     function size() { DPR = Math.min(devicePixelRatio || 1, 2); W = cv.offsetWidth; H = cv.offsetHeight;
       cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+    function layout() {
+      /* put the logo in the open space to the right of the hero card; on narrow
+         screens it sits softly behind the (transparent) card instead */
+      var card = cv.parentNode && cv.parentNode.querySelector('.hero__glass');
+      var cr = cv.getBoundingClientRect(), right = 0, top = 0, bottom = H;
+      if (card) { var r = card.getBoundingClientRect(); right = r.right - cr.left; top = r.top - cr.top; bottom = r.bottom - cr.top; }
+      var free = W - right;
+      if (free >= 300) {
+        L.s = Math.min(H * 0.66, (free - 60) / FLAME.aspect, 560);
+        L.x = right + free / 2; L.y = Math.max(top, 0) + (Math.min(bottom, H) - Math.max(top, 0)) / 2 + 10; L.dim = 1;
+      } else {
+        L.s = Math.min(H * 0.46, W * 0.9 / FLAME.aspect); L.x = W * 0.5; L.y = H * 0.52; L.dim = 0.45;
+      }
+    }
     function make() {
       size();
       blobs = [
@@ -490,20 +528,75 @@
         { y: 0.78, amp: 0.15, len: 0.72, sp: 0.00019, ph: 0.9, w: 2.4, a: 0.46 },
         { y: 0.90, amp: 0.11, len: 1.05, sp: 0.00026, ph: 5.5, w: 1.6, a: 0.36 }
       ];
+      if (logoMode) {
+        /* each of the first 6 ribbons becomes one stretch of the flame outline (they join end to end);
+           the 7th becomes the small flame droplet */
+        var n = FLAME.outer.length, seg = n / 6;
+        ribbons.forEach(function (r, k) {
+          var pts = [];
+          if (k < 6) { for (var i = Math.round(k * seg); i <= Math.round((k + 1) * seg); i++) pts.push(FLAME.outer[i % n]); }
+          else { FLAME.drop.forEach(function (p) { pts.push(p); }); pts.push(FLAME.drop[0]); }
+          r.logo = pts;
+          r.w = Math.max(r.w, 2.2);
+        });
+        layout();
+      }
+    }
+    function waveY(r, x, t) {
+      var baseY = r.y * H, amp = r.amp * H, wl = r.len * W;
+      return baseY + Math.sin(x / wl * 6.283 + t * r.sp + r.ph) * amp
+                   + Math.sin(x / wl * 12.566 + t * r.sp * 1.7 + r.ph) * amp * 0.30;
     }
     function ribbonPath(r, t) {
       ctx.beginPath();
-      var steps = 52, baseY = r.y * H, amp = r.amp * H, wl = r.len * W;
+      var steps = 52;
       for (var i = 0; i <= steps; i++) {
-        var x = (i / steps) * W;
-        var y = baseY
-          + Math.sin(x / wl * 6.283 + t * r.sp + r.ph) * amp
-          + Math.sin(x / wl * 12.566 + t * r.sp * 1.7 + r.ph) * amp * 0.30;
+        var x = (i / steps) * W, y = waveY(r, x, t);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
     }
+    var ease = function (p) { return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+    var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+    /* cycle (ms), starting as soon as the page is revealed:
+       form the flame over 3s → hold 7s → release 3s → float 3.6s → form again */
+    var P = 16600, F1 = 2490, STAG = 85, R0 = 10000, RL = 3000;
+    function formAt(tau, k) {
+      var d = k * STAG;                             /* ribbons arrive one after another; last one lands at ~3s */
+      if (tau < d) return 0;
+      if (tau < F1 + d) return (tau - d) / F1;
+      if (tau < R0 + d) return 1;
+      if (tau < R0 + d + RL) return 1 - (tau - R0 - d) / RL;
+      return 0;
+    }
+    function logoRibbon(r, k, t, f) {
+      var pts = r.logo, n = pts.length, bob = Math.sin(t * 0.0011) * 6;
+      ctx.beginPath();
+      for (var i = 0; i < n; i++) {
+        /* points further along the ribbon arrive a little later — it "pours" into shape */
+        var pf = ease(clamp((f - (i / (n - 1)) * 0.35) / 0.65));
+        var fx = (i / (n - 1)) * W, fy = waveY(r, fx, t);
+        var wob = Math.sin(t * 0.0021 + i * 0.35 + k) * 1.6;
+        var lx = L.x + pts[i][0] * L.s, ly = L.y + pts[i][1] * L.s + bob + wob;
+        var x = fx + (lx - fx) * pf, y = fy + (ly - fy) * pf;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+    }
+    function fillLogo(t, amt) {
+      var bob = Math.sin(t * 0.0011) * 6;
+      [FLAME.outer, FLAME.drop].forEach(function (pts) {
+        ctx.beginPath();
+        pts.forEach(function (p, i) { var x = L.x + p[0] * L.s, y = L.y + p[1] * L.s + bob; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+        ctx.closePath();
+        var g = ctx.createLinearGradient(L.x, L.y - L.s / 2, L.x, L.y + L.s / 2);
+        g.addColorStop(0, 'rgba(228,192,99,' + (0.16 * amt) + ')');
+        g.addColorStop(1, 'rgba(176,133,40,' + (0.10 * amt) + ')');
+        ctx.fillStyle = g; ctx.fill();
+      });
+    }
     function frame(t) {
       if (!cv.isConnected) return;
+      /* start the logo timeline once the hero is revealed (after the preloader) */
+      if (t0 === null && (!logoMode || !hero || hero.classList.contains('is-lit'))) t0 = t;
       ctx.clearRect(0, 0, W, H);
       blobs.forEach(function (b) {
         var cx = b.x + Math.sin(t * b.ax + b.px) * W * 0.08, cy = b.y + Math.cos(t * b.ay + b.py) * H * 0.08;
@@ -511,22 +604,32 @@
         g.addColorStop(0, b.hue); g.addColorStop(1, 'rgba(247,243,236,0)');
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, b.r, 0, Math.PI * 2); ctx.fill();
       });
-      ctx.lineCap = 'round';
-      ribbons.forEach(function (r) {
-        var grad = ctx.createLinearGradient(0, 0, W, 0);
-        grad.addColorStop(0, 'rgba(176,133,40,0)');
-        grad.addColorStop(0.26, 'rgba(201,154,58,' + r.a + ')');
-        grad.addColorStop(0.6, 'rgba(228,192,99,' + (r.a * 0.92) + ')');
-        grad.addColorStop(1, 'rgba(176,133,40,0)');
-        ctx.strokeStyle = grad; ctx.lineWidth = r.w;
-        ctx.shadowColor = 'rgba(201,154,58,0.40)'; ctx.shadowBlur = 14;
-        ribbonPath(r, t); ctx.stroke(); ctx.shadowBlur = 0;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      var tau = reduce ? (F1 + 1000) : (t0 === null ? 0 : (t - t0) % P), minF = 1;
+      ribbons.forEach(function (r, k) {
+        var raw = logoMode ? clamp(formAt(tau, k)) : 0, f = ease(raw);
+        minF = Math.min(minF, f);
+        /* the gold gradient narrows from the full width onto the logo as the ribbon forms */
+        var gx0 = 0 + (L.x - L.s * 0.45) * f, gx1 = W + (L.x + L.s * 0.45 - W) * f;
+        var a = r.a * (1 - f) + 0.88 * L.dim * f;
+        var edge = a * 0.8 * f;
+        var grad = ctx.createLinearGradient(gx0, 0, gx1, 0);
+        grad.addColorStop(0, 'rgba(176,133,40,' + edge + ')');
+        grad.addColorStop(0.26, 'rgba(201,154,58,' + a + ')');
+        grad.addColorStop(0.6, 'rgba(228,192,99,' + (a * 0.92) + ')');
+        grad.addColorStop(1, 'rgba(176,133,40,' + edge + ')');
+        ctx.strokeStyle = grad; ctx.lineWidth = r.w + f * 0.8;
+        ctx.shadowColor = 'rgba(201,154,58,' + (0.40 + 0.2 * f) + ')'; ctx.shadowBlur = 14;
+        if (raw > 0) logoRibbon(r, k, t, raw); else ribbonPath(r, t);
+        ctx.stroke(); ctx.shadowBlur = 0;
       });
-      raf = requestAnimationFrame(frame);
+      if (logoMode && minF > 0) fillLogo(t, minF * L.dim);
+      if (!reduce) raf = requestAnimationFrame(frame);
     }
     make();
     if (reduce) frame(0); else raf = requestAnimationFrame(frame);
-    addEventListener('resize', make, { passive: true });
+    addEventListener('resize', function () { make(); if (reduce) frame(0); }, { passive: true });
+    if (logoMode) addEventListener('load', function () { layout(); if (reduce) frame(0); });
   }
   document.querySelectorAll('canvas.aura').forEach(initAura);
 })();

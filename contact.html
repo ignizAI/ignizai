@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <script>try{if(/[?&]embed=1\b/.test(location.search))document.documentElement.classList.add('is-embed');}catch(e){}</script>
   <title>Contact IgnizAI — Web Design Studio in Ras Al Khaimah, UAE</title>
   <meta name="description" content="Tell us what you're building in Dubai, Ras Al Khaimah, or India. An engineer reads it and replies within one business day — with a plan, not a pitch." />
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -109,6 +110,18 @@
     .svc-select__item.checked .svc-select__check { background:var(--gold); border-color:var(--gold); }
     .svc-select__item.checked .svc-select__check-svg { opacity:1; }
     html[dir="rtl"] .svc-select__trigger { text-align:right; }
+
+    /* ---- Embedded mode (the form inside the Services page pop-up: contact.html?embed=1) ---- */
+    html.is-embed, html.is-embed body { background:transparent !important; }
+    html.is-embed body { overflow-x:hidden; }
+    html.is-embed .nav, html.is-embed .mobile-menu, html.is-embed .page-hero, html.is-embed .footer,
+    html.is-embed .wa-float, html.is-embed .contact-layout > div:first-child, html.is-embed #preloader,
+    html.is-embed .page-transition { display:none !important; }
+    html.is-embed .section { padding:0 !important; }
+    html.is-embed .container { max-width:none; padding:0; }
+    html.is-embed .contact-layout { display:block; }
+    html.is-embed .reveal { opacity:1 !important; transform:none !important; }
+    html.is-embed .contact-form-wrap { border:0; border-radius:0; background:transparent; padding:4px 2px 8px; box-shadow:none; }
   </style>
 </head>
 <body>
@@ -123,6 +136,7 @@
     <div class="nav__links">
       <a href="index.html" data-i18n="nav-home">Home</a>
       <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="work.html" data-i18n="nav-work">Work</a>
       <a href="process.html" data-i18n="nav-process">Process</a>
       <a href="about.html" data-i18n="nav-about">About</a>
       <a href="blog.html" data-i18n="nav-blog">Journal</a>
@@ -140,10 +154,11 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html"><span class="num">01</span>Home</a>
   <a href="services.html"><span class="num">02</span>Services</a>
-  <a href="process.html"><span class="num">03</span>Process</a>
-  <a href="about.html"><span class="num">04</span>About</a>
-  <a href="blog.html"><span class="num">05</span>Journal</a>
-  <a href="contact.html"><span class="num">06</span>Contact</a>
+  <a href="work.html"><span class="num">03</span>Work</a>
+  <a href="process.html"><span class="num">04</span>Process</a>
+  <a href="about.html"><span class="num">05</span>About</a>
+  <a href="blog.html"><span class="num">06</span>Journal</a>
+  <a href="contact.html"><span class="num">07</span>Contact</a>
   <button class="lang-btn mobile-menu__lang" id="langToggleBtnMobile" aria-label="Switch language">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
     <span id="langBtnLabelMobile">عربي</span>
@@ -233,7 +248,7 @@
         <span class="brand__name">Igniz <span class="ital">AI</span></span>
         <p>Build. Launch. Grow. With Ignizai.</p>
       </div>
-      <div><h4>Studio</h4><a href="about.html">About</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
+      <div><h4>Studio</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="process.html">Process</a><a href="work.html">Work</a><a href="blog.html">Journal</a></div>
       <div><h4>Services</h4><a href="services.html">Websites</a><a href="services.html">CMS Systems</a><a href="services.html">AI &amp; Automation</a><a href="services.html">Care &amp; Growth</a></div>
       <div><h4>Contact</h4><a href="mailto:arun.mandook@gmail.com">arun.mandook@gmail.com</a><a href="tel:+919619884321">🇮🇳 +91 96198 84321</a><a href="tel:+971507894113">🇦🇪 +971 50 789 4113</a></div>
     </div>
@@ -449,6 +464,7 @@
       { id: 4, name: 'CRM/Business Automation' },
       { id: 5, name: 'Content Management System' },
       { id: 6, name: 'AI & Automations' },
+      { id: 8, name: 'Interested in Ignite Packages' },
       { id: 7, name: 'Not sure lets discuss' },
     ];
     (function renderServices() {
@@ -456,6 +472,34 @@
       if (!svcList) return;
       svcList.innerHTML = '';
       SERVICES.forEach(function (s) { svcList.appendChild(buildServiceItem(s)); });
+    })();
+
+    // Embedded in the Services page pop-up: pre-tick "Ignite Packages", note the chosen
+    // package, and tell the parent page how tall the form is.
+    (function embedMode() {
+      if (!document.documentElement.classList.contains('is-embed')) return;
+      var params = new URLSearchParams(location.search);
+      var pkg = params.get('pkg');
+      var item = document.querySelector('#svcList .svc-select__item[data-id="8"]');
+      if (item && !item.classList.contains('checked')) item.click();
+      var remark = document.getElementById('remark');
+      if (pkg && remark && !remark.value) remark.value = 'Package: ' + pkg + '\n';
+      function post(extra) {
+        if (window.parent === window) return;
+        // measure the visible content (the form, or the thank-you note) plus an open dropdown
+        var bottom = 0;
+        ['.contact-form-wrap', '#svcDropdown'].forEach(function (sel) {
+          var el = document.querySelector(sel);
+          if (el && el.offsetParent !== null) bottom = Math.max(bottom, el.getBoundingClientRect().bottom + window.scrollY);
+        });
+        var h = Math.ceil(bottom + 8);
+        window.parent.postMessage(Object.assign({ type: 'ignizForm', height: h }, extra || {}), location.origin);
+      }
+      window.__ignizEmbedPost = post;
+      post();
+      if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { post(); }); ro.observe(document.body); var w = document.querySelector('.contact-form-wrap'); if (w) ro.observe(w); }
+      window.addEventListener('load', function () { post(); });
+      document.addEventListener('click', function () { setTimeout(post, 50); });
     })();
 
     const countryEl = document.getElementById('country');
@@ -607,6 +651,7 @@
 
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
+        if (window.__ignizEmbedPost) window.__ignizEmbedPost({ state: 'success' });
       } catch (e) {
         if (window.IgnizAII18n) { window.IgnizAII18n.reapply(); } else { btn.textContent = 'Send it over →'; }
         btn.disabled = false;
