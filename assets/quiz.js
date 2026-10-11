@@ -31,7 +31,7 @@
        page uses (rows land in the "IgnizAI_Leads" sheet). Set to '' to disable
        online submission; the form then says so instead of pretending to send. */
     LEAD_ENDPOINT: 'https://script.google.com/macros/s/AKfycbwnTk1MsfW72vzh2r_q3mb2faWh3NoDAOdH5qo09jDlsCQ97qKDNHEfsWO5pOysQY-W/exec',
-    CONTACT_EMAIL: 'arun.mandook@gmail.com',
+    CONTACT_EMAIL: 'tech@ignizai.com',
     /* Answer photos: free-licence Unsplash photos (unsplash.com/license), served from Unsplash's
        image CDN at a small cropped size. A file in PHOTO_DIR named <question>-<answer>.jpg
        (e.g. assets/quiz/industry-realestate.jpg) is used instead when PHOTOS has no entry. */
@@ -971,8 +971,8 @@
     'Please enter a valid WhatsApp number, including the country code.': 'يرجى إدخال رقم واتساب صحيح مع رمز الدولة.',
     'Please tick the consent box to continue.': 'يرجى تحديد خانة الموافقة للمتابعة.',
     "Thank you. We've received your details and will reply within one business day.": 'شكراً لك. استلمنا بياناتك وسنرد خلال يوم عمل واحد.',
-    'Something went wrong and your details were not sent. Please try again, or email us at arun.mandook@gmail.com.': 'حدث خطأ ولم تُرسل بياناتك. يرجى المحاولة مرة أخرى أو مراسلتنا على arun.mandook@gmail.com.',
-    "Online submission isn't set up yet. Please email us at arun.mandook@gmail.com or use the Contact page.": 'الإرسال عبر الإنترنت غير مفعّل بعد. يرجى مراسلتنا على arun.mandook@gmail.com أو استخدام صفحة التواصل.',
+    'Something went wrong and your details were not sent. Please try again, or email us at tech@ignizai.com.': 'حدث خطأ ولم تُرسل بياناتك. يرجى المحاولة مرة أخرى أو مراسلتنا على tech@ignizai.com.',
+    "Online submission isn't set up yet. Please email us at tech@ignizai.com or use the Contact page.": 'الإرسال عبر الإنترنت غير مفعّل بعد. يرجى مراسلتنا على tech@ignizai.com أو استخدام صفحة التواصل.',
     'Your Digital Growth Roadmap is ready.': 'خارطة طريق نموّك الرقمي جاهزة.'
   };
   if (window.IgnizAII18n && window.IgnizAII18n.extend) window.IgnizAII18n.extend(AR);
