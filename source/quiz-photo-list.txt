@@ -1,0 +1,49 @@
+Photos for the Digital Growth Quiz
+Save each as a landscape JPG (about 800×500, under 150 KB) in assets/quiz/ with exactly this name:
+
+industry-realestate.jpg  —  Real estate
+industry-health.jpg  —  Healthcare or clinic
+industry-professional.jpg  —  Professional services or consultancy
+industry-retail.jpg  —  Retail or e-commerce
+industry-hospitality.jpg  —  Hospitality
+industry-tourism.jpg  —  Tourism
+industry-education.jpg  —  Education
+industry-other.jpg  —  Other
+website-none.jpg  —  No website yet
+website-outdated.jpg  —  Yes, but it looks outdated
+website-hard.jpg  —  Yes, but it is difficult to update
+website-leads.jpg  —  Yes, but it does not generate enough enquiries
+website-good.jpg  —  Yes, and it works well
+discovery-referrals.jpg  —  Referrals and word of mouth
+discovery-google.jpg  —  Google search
+discovery-social.jpg  —  Social media
+discovery-ads.jpg  —  Paid advertising
+discovery-walkins.jpg  —  Walk-ins or existing contacts
+discovery-unsure.jpg  —  We are not sure
+challenge-enquiries.jpg  —  Getting more customer enquiries
+challenge-trust.jpg  —  Building trust and credibility online
+challenge-content.jpg  —  Updating website content easily
+challenge-performance.jpg  —  Managing website performance and maintenance
+challenge-respond.jpg  —  Responding to customer questions quickly
+challenge-manual.jpg  —  Reducing repetitive manual work
+maintenance-none.jpg  —  We do not have a website
+maintenance-dev.jpg  —  We depend on a developer for every change
+maintenance-self.jpg  —  We manage updates ourselves
+maintenance-provider.jpg  —  We have a dedicated support provider
+maintenance-issues.jpg  —  Our website has technical or performance issues
+afterhours-nextday.jpg  —  We usually respond the next working day
+afterhours-whatsapp.jpg  —  Customers contact us through WhatsApp
+afterhours-forms.jpg  —  We use forms or automated responses
+afterhours-bot.jpg  —  We have a chatbot or automated support
+afterhours-none.jpg  —  We do not have a consistent process
+goal-launch.jpg  —  Launch a professional website
+goal-leads.jpg  —  Generate more qualified leads
+goal-visibility.jpg  —  Improve online visibility
+goal-content.jpg  —  Manage website content independently
+goal-reliability.jpg  —  Improve website reliability and security
+goal-ai.jpg  —  Automate customer interactions using AI
+setup-scratch.jpg  —  Starting from scratch
+setup-basic.jpg  —  Basic website and social media
+setup-regular.jpg  —  Website with regular updates
+setup-crm.jpg  —  Website, CRM, and established digital processes
+setup-unsure.jpg  —  Not sure what we need

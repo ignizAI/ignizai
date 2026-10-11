@@ -481,7 +481,7 @@
       var params = new URLSearchParams(location.search);
       var pkg = params.get('pkg');
       var item = document.querySelector('#svcList .svc-select__item[data-id="8"]');
-      if (item && !item.classList.contains('checked')) item.click();
+      if (pkg && item && !item.classList.contains('checked')) item.click();
       var remark = document.getElementById('remark');
       if (pkg && remark && !remark.value) remark.value = 'Package: ' + pkg + '\n';
       function post(extra) {
@@ -496,6 +496,20 @@
         window.parent.postMessage(Object.assign({ type: 'ignizForm', height: h }, extra || {}), location.origin);
       }
       window.__ignizEmbedPost = post;
+      // Pre-fill sent by the home-page growth quiz (same origin only; nothing travels in the URL)
+      window.addEventListener('message', function (e) {
+        if (e.origin !== location.origin || e.source !== window.parent || !e.data || e.data.type !== 'ignizPrefill') return;
+        var d = e.data, set = function (id, v) { var el = document.getElementById(id); if (el && v && !el.value) el.value = v; };
+        set('fname', d.first_name); set('lname', d.last_name); set('phone', d.phone);
+        var cc = document.getElementById('country_code');
+        if (cc && d.country_code && cc.querySelector('option[value="' + d.country_code + '"]') && !cc.value) cc.value = d.country_code;
+        var rm = document.getElementById('remark'); if (rm && d.remark && !rm.value) rm.value = d.remark;
+        (d.services || []).forEach(function (id) {
+          var li = document.querySelector('#svcList .svc-select__item[data-id="' + id + '"]');
+          if (li && !li.classList.contains('checked')) li.click();
+        });
+        post();
+      });
       post();
       if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { post(); }); ro.observe(document.body); var w = document.querySelector('.contact-form-wrap'); if (w) ro.observe(w); }
       window.addEventListener('load', function () { post(); });

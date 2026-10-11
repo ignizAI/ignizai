@@ -1592,6 +1592,9 @@
   window.IgnizAII18n = {
     applyLang: applyLang,
     reapply:   function () { applyLang(lang); },
+    /* add English→Arabic strings from other scripts (e.g. the growth quiz) */
+    extend:    function (dict) { for (var k in dict) if (Object.prototype.hasOwnProperty.call(dict, k)) AR[norm(k)] = dict[k];
+                 if (lang === 'ar' && document.body) translateTree(document.body); },
     getLang:   function () { return lang; }
   };
 

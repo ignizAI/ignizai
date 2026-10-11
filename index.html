@@ -92,6 +92,8 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="assets/quiz.css">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
   <style id="page-styles">
     /* ===================== NAV ===================== */
@@ -730,9 +732,12 @@
 </section>
 
 <!-- ===== Pinned statement ===== -->
-<section class="section section--dark statement">
+<section class="section section--dark statement statement--quiz" id="growth-quiz">
   <div class="container">
     <p class="statement__text reveal" data-i18n-html="home-statement">We build the <span class="ital">few things</span> that matter <span class="dim">— exceptionally well — instead of everything, adequately.</span></p>
+    <div class="gq reveal" id="growthQuiz">
+      <noscript><p class="gq__noscript">The Digital Growth Quiz needs JavaScript. You can still <a href="contact.html">tell us about your business</a>.</p></noscript>
+    </div>
   </div>
 </section>
 
@@ -855,6 +860,7 @@
 })();
 </script>
 <script src="assets/i18n.js"></script>
+<script src="assets/quiz.js" defer></script>
 <script src="assets/editorial.js" defer></script>
 </body>
 </html>
