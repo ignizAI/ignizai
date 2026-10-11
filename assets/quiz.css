@@ -380,3 +380,47 @@ html[dir="rtl"] .gq__options:not(.gq__options--many) .gq__opt-media:not(.has-pho
 @media (max-width:1000px){
   .gq__options--many .gq__opt-media.is-loading { width:clamp(78px, 14vw, 104px); height:auto; min-height:56px; align-self:stretch; border-radius:15px 0 0 15px; }
 }
+
+/* v4 — rotating Earth on the intro card (globe sits in its own column on the right) */
+.gq__intro { position:relative; --gq-globe:clamp(150px, 18vw, 240px); padding-inline-end:calc(var(--gq-globe) + clamp(24px, 4vw, 56px)); }
+.gq__globe { position:absolute; top:50%; right:0; width:var(--gq-globe); aspect-ratio:1;
+  transform:translateY(-50%); border-radius:50%; pointer-events:none; opacity:0; transition:opacity 1.2s var(--ease); }
+.gq__globe.is-ready { opacity:1; }
+.gq__globe::before { content:''; position:absolute; inset:-14%; border-radius:50%; z-index:-1;      /* atmosphere */
+  background:radial-gradient(circle, rgba(120,170,255,0.30) 44%, rgba(228,192,99,0.22) 56%, rgba(228,192,99,0) 70%);
+  filter:blur(6px); }
+.gq__globe::after { content:''; position:absolute; inset:0; border-radius:50%;                       /* rim light + depth */
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.22), inset -8px -12px 26px rgba(0,0,0,0.22), 0 26px 50px -22px rgba(23,54,42,0.55); }
+.gq__globe-cv { display:block; width:100%; height:100%; border-radius:50%; }
+.gq__intro .gq__promise { margin-inline-end:calc(-1 * (var(--gq-globe) + clamp(24px, 4vw, 56px))); }
+html[dir="rtl"] .gq__globe { right:auto; left:0; }
+@media (max-width:760px){
+  .gq__intro { padding-inline-end:0; }
+  .gq__intro .gq__promise { margin-inline-end:0; }
+  .gq__globe { position:relative; top:auto; right:auto; left:auto; transform:none; width:120px; margin:4px auto 18px; }
+  html[dir="rtl"] .gq__globe { left:auto; }
+}
+
+/* v5 — space backdrop for the statement / quiz section (assets/space.js) */
+.section.statement--quiz { position:relative; overflow:hidden; isolation:isolate; background:#112A20; }
+.space-bg { position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block; cursor:crosshair; }
+.statement--quiz > .container { position:relative; z-index:1; pointer-events:none; }
+.statement--quiz > .container > * { pointer-events:auto; }
+.statement--quiz .statement__text { pointer-events:none; }
+.space-hint { position:absolute; z-index:2; left:clamp(14px, 2vw, 28px); bottom:clamp(12px, 2vh, 22px);
+  display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; cursor:pointer;
+  font:500 .74rem/1 var(--font-body); letter-spacing:.12em; text-transform:uppercase; color:rgba(228,192,99,0.75);
+  background:rgba(10,27,20,0.35); border:1px solid rgba(228,192,99,0.25); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  transition:color .3s, border-color .3s, background .3s; }
+.space-hint:hover, .space-hint:focus-visible, .space-hint.is-on { color:#F3D98B; border-color:rgba(228,192,99,0.6); background:rgba(10,27,20,0.55); outline:none; }
+html[dir="rtl"] .space-hint { left:auto; right:clamp(14px, 2vw, 28px); }
+@media (max-width:640px){ .space-hint { font-size:.66rem; padding:6px 11px; } }
+
+/* phones: while constellations are revealed, let the sky show through the headline;
+   keep the hint pill clear of the card */
+.statement--quiz .statement__text { transition:opacity .6s ease; }
+.statement--quiz.is-stargazing .statement__text { opacity:.35; }
+@media (max-width:719px){
+  .statement--quiz.is-stargazing .statement__text { opacity:.14; }
+  .section.statement--quiz { padding-bottom:72px; }
+}

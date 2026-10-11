@@ -38,6 +38,7 @@
     PHOTO_CDN: 'https://images.unsplash.com/',
     PHOTO_PARAMS: '?auto=format&fit=crop&w=520&h=320&q=68',
     PHOTO_DIR: 'assets/quiz/',
+    GLOBE_TEXTURE: 'assets/quiz/earth.jpg',   /* NASA Blue Marble (public domain), 1200×600 */
     MIN_SCORE: 5,        /* a service needs at least this many points to be recommended */
     REL_SHARE: 0.22,     /* …and at least this share of the top service's score       */
     MAX_RECS: 3
@@ -456,12 +457,14 @@
   /* --- Intro --- */
   function renderIntro() {
     state.step = -1;
+    var globe = el('div', { class: 'gq__globe', 'aria-hidden': 'true' }, [ el('canvas', { class: 'gq__globe-cv' }) ]);
     var node = el('div', { class: 'gq__intro' }, [
+      globe,
       el('span', { class: 'gq__eyebrow', text: 'Digital growth assessment' }),
       el('h2', { class: 'gq__title', tabindex: '-1', text: 'Is Your Business Ready for Its Next Digital Leap?' }),
       el('p', { class: 'gq__lead', text: 'Answer a few quick questions to discover the digital solutions that could help your business grow.' }),
       el('div', { class: 'gq__intro-actions' }, [
-        el('button', { type: 'button', class: 'gq__btn gq__btn--gold', onclick: function () { preloadPhotos(); goTo(0, true); } }, [
+        el('button', { type: 'button', class: 'gq__btn gq__btn--gold gq__btn--glow', onclick: function () { stopGlobe(); preloadPhotos(); goTo(0, true); } }, [
           el('span', { text: 'Discover My Growth Opportunities' }), el('span', { class: 'gq__btn-ic', html: arrow })
         ]),
         el('p', { class: 'gq__note' }, [ el('span', { text: 'Takes about 2 minutes. Get personalized recommendations for your business.' }) ])
@@ -473,6 +476,71 @@
       ])
     ]);
     show(node, null, false);
+    startGlobe(globe.querySelector('canvas'));
+  }
+
+  /* --- Rotating Earth on the intro card ---
+     NASA Blue Marble imagery (public domain, assets/quiz/earth.jpg) mapped onto a lit sphere
+     and drawn to a canvas. It turns once every ~40s, pauses when off screen or in a hidden
+     tab, and shows a still frame for visitors who prefer reduced motion. */
+  var globeRun = null;
+  function stopGlobe() { if (globeRun) { globeRun.stop(); globeRun = null; } }
+  function startGlobe(cv) {
+    stopGlobe();
+    if (!cv || !cv.getContext) return;
+    var tex = new Image();
+    tex.decoding = 'async';
+    tex.onload = function () {
+      if (!cv.isConnected) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var css = cv.getBoundingClientRect().width || 200;
+      var S = Math.round(css * dpr);
+      cv.width = S; cv.height = S;
+      var ctx = cv.getContext('2d');
+      /* texture pixels */
+      var tc = document.createElement('canvas'); tc.width = tex.naturalWidth; tc.height = tex.naturalHeight;
+      var tx = tc.getContext('2d'); tx.drawImage(tex, 0, 0);
+      var TW = tc.width, TH = tc.height, T = tx.getImageData(0, 0, TW, TH).data;
+      /* precompute, for every pixel on the disc: texture row, base longitude, lighting */
+      var r = S / 2, tilt = -0.36, ct = Math.cos(tilt), st = Math.sin(tilt);
+      var L = [-0.55, -0.45, 0.70], ln = Math.hypot(L[0], L[1], L[2]); L = L.map(function (v) { return v / ln; });
+      var n = 0, PIX = new Int32Array(S * S), ROW = new Int32Array(S * S), U = new Float32Array(S * S), SH = new Float32Array(S * S), AL = new Uint8Array(S * S);
+      for (var y = 0; y < S; y++) for (var x = 0; x < S; x++) {
+        var nx = (x + 0.5 - r) / r, ny = (y + 0.5 - r) / r, d2 = nx * nx + ny * ny;
+        if (d2 > 1) continue;
+        var nz = Math.sqrt(1 - d2);
+        var rx = nx * ct - ny * st, ry = nx * st + ny * ct;             /* axial tilt */
+        var lat = Math.asin(-ry), lon = Math.atan2(rx, nz);
+        var v = Math.min(TH - 1, Math.max(0, Math.round((0.5 - lat / Math.PI) * (TH - 1))));
+        var diff = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+        var shade = 0.42 + 0.95 * Math.pow(diff, 0.8) + 0.16 * Math.pow(diff, 18);    /* ambient + sun + glint */
+        shade *= 0.72 + 0.28 * Math.pow(nz, 0.4);                           /* gentle limb darkening */
+        var edge = Math.min(1, (1 - Math.sqrt(d2)) * r * 1.2);              /* anti-aliased rim */
+        PIX[n] = (y * S + x) * 4; ROW[n] = v * TW; U[n] = (lon / (2 * Math.PI) + 0.5) * TW; SH[n] = shade; AL[n] = Math.round(edge * 255); n++;
+      }
+      var img = ctx.createImageData(S, S), D = img.data;
+      var period = 40000, t0 = performance.now(), raf = 0, visible = true, reduce2 = reduce;
+      function draw(now) {
+        var off = ((now - t0) % period) / period * TW;
+        for (var i = 0; i < n; i++) {
+          var u = (U[i] + off) | 0; if (u >= TW) u -= TW;
+          var ti = (ROW[i] + u) * 4, p = PIX[i], s = SH[i];
+          D[p] = Math.min(255, T[ti] * s); D[p + 1] = Math.min(255, T[ti + 1] * s); D[p + 2] = Math.min(255, T[ti + 2] * s + 6); D[p + 3] = AL[i];
+        }
+        ctx.putImageData(img, 0, 0);
+      }
+      function loop(now) { draw(now); if (!reduce2 && visible && !document.hidden) raf = requestAnimationFrame(loop); else raf = 0; }
+      var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting; if (visible && !raf && !reduce2) raf = requestAnimationFrame(loop);
+      }) : null;
+      if (io) io.observe(cv);
+      function onVis() { if (!document.hidden && visible && !raf && !reduce2) raf = requestAnimationFrame(loop); }
+      document.addEventListener('visibilitychange', onVis);
+      raf = requestAnimationFrame(loop);
+      cv.parentNode.classList.add('is-ready');
+      globeRun = { stop: function () { cancelAnimationFrame(raf); raf = 0; reduce2 = true; if (io) io.disconnect(); document.removeEventListener('visibilitychange', onVis); } };
+    };
+    tex.src = CONFIG.GLOBE_TEXTURE;
   }
 
   /* warm the browser cache with every answer photo once the quiz starts (small cropped images) */
