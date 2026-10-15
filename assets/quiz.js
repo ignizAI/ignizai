@@ -513,8 +513,8 @@
         var lat = Math.asin(-ry), lon = Math.atan2(rx, nz);
         var v = Math.min(TH - 1, Math.max(0, Math.round((0.5 - lat / Math.PI) * (TH - 1))));
         var diff = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
-        var shade = 0.42 + 0.95 * Math.pow(diff, 0.8) + 0.16 * Math.pow(diff, 18);    /* ambient + sun + glint */
-        shade *= 0.72 + 0.28 * Math.pow(nz, 0.4);                           /* gentle limb darkening */
+        var shade = 0.62 + 0.88 * Math.pow(diff, 0.8) + 0.14 * Math.pow(diff, 18);    /* ambient + sun + glint (lighter) */
+        shade *= 0.8 + 0.2 * Math.pow(nz, 0.4);                             /* gentle limb darkening */
         var edge = Math.min(1, (1 - Math.sqrt(d2)) * r * 1.2);              /* anti-aliased rim */
         PIX[n] = (y * S + x) * 4; ROW[n] = v * TW; U[n] = (lon / (2 * Math.PI) + 0.5) * TW; SH[n] = shade; AL[n] = Math.round(edge * 255); n++;
       }
@@ -525,7 +525,8 @@
         for (var i = 0; i < n; i++) {
           var u = (U[i] + off) | 0; if (u >= TW) u -= TW;
           var ti = (ROW[i] + u) * 4, p = PIX[i], s = SH[i];
-          D[p] = Math.min(255, T[ti] * s); D[p + 1] = Math.min(255, T[ti + 1] * s); D[p + 2] = Math.min(255, T[ti + 2] * s + 6); D[p + 3] = AL[i];
+          var cr = Math.min(255, T[ti] * s), cg = Math.min(255, T[ti + 1] * s), cb = Math.min(255, T[ti + 2] * s + 6);
+          D[p] = cr + (255 - cr) * 0.14; D[p + 1] = cg + (255 - cg) * 0.14; D[p + 2] = cb + (255 - cb) * 0.16; D[p + 3] = AL[i];   /* soft lift to a lighter shade */
         }
         ctx.putImageData(img, 0, 0);
       }
