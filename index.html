@@ -131,20 +131,11 @@
     .hero__grain { position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.5;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
     .hero__inner { position:relative; z-index:2; max-width:1080px; }
-    /* Hero content sits in a frosted-glass card over the moving gold ribbons */
-    .hero__glass { position:relative; max-width:860px; padding:clamp(28px, 4.5vw, 60px) clamp(24px, 5vw, 64px);
-      border-radius:28px; background:linear-gradient(140deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 60%, rgba(23,54,42,0.03) 100%);
-      border:1px solid rgba(255,255,255,0.65);
-      -webkit-backdrop-filter:blur(3px) saturate(115%); backdrop-filter:blur(3px) saturate(115%);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.75), inset 1px 0 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(23,54,42,0.05),
-        0 24px 60px rgba(23,54,42,0.07); }
-    .hero__glass::before { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-      background:linear-gradient(120deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 38%); }
-    .hero__glass > * { position:relative; }
+    /* Hero content sits directly over the moving gold ribbons (glass card removed) */
+    .hero .hero__inner { max-width:var(--maxw); }               /* align with the nav / logo on the left */
+    .hero__glass { position:relative; max-width:900px; }
     .hero__glass .hero__actions { margin-top:36px; }
-    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) { .hero__glass { background:rgba(247,243,236,0.35); } }
     @media (max-width:600px){
-      .hero__glass { border-radius:22px; padding:26px 22px 24px; }
       .hero__glass .hero__eyebrow { margin-bottom:18px; }
       .hero__glass .hero__rule { margin:20px 0 16px; }
       .hero__glass .hero__lead { font-size:16px; line-height:1.55; }
@@ -861,6 +852,6 @@
 <script src="assets/i18n.js"></script>
 <script src="assets/quiz.js?v=20261015" defer></script>
 <script src="assets/space.js?v=20261011c" defer></script>
-<script src="assets/editorial.js" defer></script>
+<script src="assets/editorial.js?v=20261020" defer></script>
 </body>
 </html>

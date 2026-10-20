@@ -1538,14 +1538,9 @@
       attributes: true, attributeFilter: ATTRS });
   }
 
-  /* Arabic web fonts: loaded only the first time Arabic is used */
-  function ensureArabicFonts() {
-    if (document.getElementById('ignizArFonts')) return;
-    var l = document.createElement('link');
-    l.id = 'ignizArFonts'; l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap';
-    document.head.appendChild(l);
-  }
+  /* Arabic web fonts are now self-hosted in theme.css (unicode-range), so the browser only
+     downloads them when Arabic text appears — nothing to load from Google here. */
+  function ensureArabicFonts() {}
 
   function updateLangButtons(l) {
     var label = l === 'en' ? 'عربي' : 'English';

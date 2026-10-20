@@ -588,8 +588,8 @@
         pts.forEach(function (p, i) { var x = L.x + p[0] * L.s, y = L.y + p[1] * L.s + bob; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
         ctx.closePath();
         var g = ctx.createLinearGradient(L.x, L.y - L.s / 2, L.x, L.y + L.s / 2);
-        g.addColorStop(0, 'rgba(228,192,99,' + (0.16 * amt) + ')');
-        g.addColorStop(1, 'rgba(176,133,40,' + (0.10 * amt) + ')');
+        g.addColorStop(0, 'rgba(228,192,99,' + (0.07 * amt) + ')');
+        g.addColorStop(1, 'rgba(176,133,40,' + (0.04 * amt) + ')');
         ctx.fillStyle = g; ctx.fill();
       });
     }
@@ -611,15 +611,15 @@
         minF = Math.min(minF, f);
         /* the gold gradient narrows from the full width onto the logo as the ribbon forms */
         var gx0 = 0 + (L.x - L.s * 0.45) * f, gx1 = W + (L.x + L.s * 0.45 - W) * f;
-        var a = r.a * (1 - f) + 0.88 * L.dim * f;
+        var a = r.a * (1 - f) + 0.30 * L.dim * f;                     /* formed logo reads as a soft watermark */
         var edge = a * 0.8 * f;
         var grad = ctx.createLinearGradient(gx0, 0, gx1, 0);
         grad.addColorStop(0, 'rgba(176,133,40,' + edge + ')');
         grad.addColorStop(0.26, 'rgba(201,154,58,' + a + ')');
         grad.addColorStop(0.6, 'rgba(228,192,99,' + (a * 0.92) + ')');
         grad.addColorStop(1, 'rgba(176,133,40,' + edge + ')');
-        ctx.strokeStyle = grad; ctx.lineWidth = r.w + f * 0.8;
-        ctx.shadowColor = 'rgba(201,154,58,' + (0.40 + 0.2 * f) + ')'; ctx.shadowBlur = 14;
+        ctx.strokeStyle = grad; ctx.lineWidth = r.w - f * 0.6;
+        ctx.shadowColor = 'rgba(201,154,58,' + (0.40 - 0.28 * f) + ')'; ctx.shadowBlur = 14 - 8 * f;
         if (raw > 0) logoRibbon(r, k, t, raw); else ribbonPath(r, t);
         ctx.stroke(); ctx.shadowBlur = 0;
       });

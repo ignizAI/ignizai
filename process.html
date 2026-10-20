@@ -39,6 +39,57 @@
     .step__desc { color:var(--ink-2); font-size:1.05rem; line-height:1.75; max-width:60ch; }
     @media (max-width:700px){ .step{ grid-template-columns:1fr; gap:12px; } }
 
+
+    /* ===== Journey: five stages along a scroll-drawn path ===== */
+    .journey { position:relative; padding:20px 0 40px; }
+    .journey__svg { position:absolute; left:0; top:0; overflow:visible; pointer-events:none; z-index:0; }
+    .journey__track { fill:none; stroke:var(--line); stroke-width:2; stroke-dasharray:2 9; stroke-linecap:round; }
+    .journey__fill { fill:none; stroke:url(#jgrad); stroke-width:3; stroke-linecap:round; filter:drop-shadow(0 0 6px rgba(201,154,58,.35)); }
+    .journey__marker { position:absolute; left:0; top:0; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; z-index:2; pointer-events:none;
+      background:radial-gradient(circle, #FFF4D6 0 30%, #E4C063 45%, rgba(228,192,99,0) 72%); box-shadow:0 0 18px 6px rgba(228,192,99,.35);
+      opacity:0; transition:opacity .4s; }
+    .journey__marker.is-on { opacity:1; }
+    .journey__steps { list-style:none; margin:0; padding:0; position:relative; z-index:1; }
+    .jstep { display:grid; grid-template-columns:1fr 120px 1fr; align-items:center; min-height:clamp(180px, 25vh, 240px); }
+    .jstep__node { grid-column:2; grid-row:1; justify-self:center; position:relative; width:60px; height:60px; border-radius:50%;
+      display:grid; place-items:center; background:var(--bg); border:1px solid var(--line); color:var(--ink-3);
+      box-shadow:0 10px 30px rgba(23,54,42,.06); transition:background .5s, color .5s, border-color .5s, box-shadow .5s, transform .5s var(--ease); }
+    .jstep:nth-child(odd) .jstep__node { transform:translateX(-34px); }
+    .jstep:nth-child(even) .jstep__node { transform:translateX(34px); }
+    .jstep__node svg { width:24px; height:24px; }
+    .jstep__n { position:absolute; bottom:-22px; font-size:.62rem; letter-spacing:.2em; color:var(--ink-3); font-weight:600; }
+    .jstep__card { grid-row:1; max-width:360px; padding:20px 24px; border-radius:18px; background:rgba(255,255,255,.55); border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(23,54,42,.05); opacity:.32; transform:translateY(18px);
+      transition:opacity .6s var(--ease), transform .6s var(--ease), border-color .6s, box-shadow .6s; }
+    .jstep:nth-child(odd) .jstep__card { grid-column:1; justify-self:end; text-align:end; }
+    .jstep:nth-child(even) .jstep__card { grid-column:3; justify-self:start; }
+    .jstep__top { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+    .jstep:nth-child(odd) .jstep__top { justify-content:flex-end; }
+    .jstep__num { font-family:var(--font-display); font-size:1.45rem; line-height:1; color:var(--gold); }
+    .jstep .step__title { font-size:clamp(1.2rem, 1.6vw, 1.45rem); margin-bottom:8px; }
+    .jstep .step__k { margin:0; }
+    .jstep .step__desc { max-width:none; font-size:.92rem; line-height:1.65; }
+    .jstep:nth-child(odd) .step__desc { margin-inline-start:auto; }
+    /* reached */
+    .jstep.is-active .jstep__card { opacity:1; transform:none; }
+    .jstep.is-active .jstep__node { background:var(--forest); color:var(--gold-2, #E4C063); border-color:var(--forest);
+      box-shadow:0 14px 34px rgba(23,54,42,.22), 0 0 0 6px rgba(201,154,58,.12); }
+    .jstep.is-active .jstep__n { color:var(--gold); }
+    /* the stage the visitor is on right now */
+    .jstep.is-current .jstep__card { border-color:rgba(201,154,58,.55); box-shadow:0 22px 50px rgba(23,54,42,.10); background:#fff; }
+    .jstep.is-current .jstep__node::after { content:''; position:absolute; inset:-8px; border-radius:50%; border:1px solid rgba(201,154,58,.55);
+      animation:jpulse 2.4s var(--ease) infinite; }
+    @keyframes jpulse { 0% { transform:scale(.92); opacity:.9; } 100% { transform:scale(1.25); opacity:0; } }
+    @media (max-width:760px){
+      .jstep { grid-template-columns:60px 1fr; min-height:0; padding:16px 0 22px; align-items:start; }
+      .jstep__node, .jstep:nth-child(odd) .jstep__node, .jstep:nth-child(even) .jstep__node { grid-column:1; transform:none; width:46px; height:46px; margin-top:4px; }
+      .jstep__node svg { width:20px; height:20px; }
+      .jstep__n { bottom:-22px; }
+      .jstep:nth-child(odd) .jstep__card, .jstep:nth-child(even) .jstep__card { grid-column:2; justify-self:stretch; text-align:start; padding:16px 18px; max-width:none; }
+      .jstep:nth-child(odd) .jstep__top { justify-content:flex-start; }
+      .jstep:nth-child(odd) .step__desc { margin-inline-start:0; }
+    }
+    @media (prefers-reduced-motion: reduce){ .jstep__card { transition:none; } .jstep.is-current .jstep__node::after { animation:none; } }
     .cta-band { text-align:center; }
     .cta-band h2 { font-size:clamp(2.2rem,4vw,3.4rem); color:#F7F3EC; max-width:20ch; margin:22px auto 0; font-weight:400; }
     .cta-band h2 .ital { color:var(--gold); }
@@ -100,27 +151,36 @@
   </div>
 </header>
 
-<section class="section">
+<section class="section journey-sec">
   <div class="container">
-    <div class="step reveal">
-      <div class="step__num">01</div>
-      <div><div class="step__k">Discover</div><h2 class="step__title">Understand the business first</h2><p class="step__desc">Before a single pixel, we learn how you actually make money, who you serve, and what "better" looks like. Clear goals now save expensive detours later.</p></div>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">02</div>
-      <div><div class="step__k">Design</div><h2 class="step__title">Shape it before we build it</h2><p class="step__desc">We design the structure and the look together, so you can see and feel the direction early — and change it while it's still cheap to change.</p></div>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">03</div>
-      <div><div class="step__k">Build</div><h2 class="step__title">Engineer it to last</h2><p class="step__desc">Senior hands write clean, fast, accessible code. You get regular check-ins and a working link to watch it come together — never a black box.</p></div>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">04</div>
-      <div><div class="step__k">Launch</div><h2 class="step__title">Ship with confidence</h2><p class="step__desc">We test across devices, tune performance and SEO, and launch carefully — then make sure your team knows how to run it.</p></div>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">05</div>
-      <div><div class="step__k">Care</div><h2 class="step__title">Stay, and keep it sharp</h2><p class="step__desc">Launch is the beginning. We monitor, maintain, and improve — so the work keeps paying off long after it goes live.</p></div>
+    <div class="journey" id="journey">
+      <svg class="journey__svg" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B08528"/><stop offset=".55" stop-color="#C99A3A"/><stop offset="1" stop-color="#E4C063"/></linearGradient></defs>
+        <path class="journey__track"/><path class="journey__fill"/>
+      </svg>
+      <span class="journey__marker" aria-hidden="true"></span>
+      <ol class="journey__steps">
+      <li class="jstep">
+        <div class="jstep__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4 13.4 13.4 8.4 15.6 10.6 10.6z"/><circle cx="12" cy="12" r=".6"/></svg><span class="jstep__n">01</span></div>
+        <div class="jstep__card"><div class="jstep__top"><span class="jstep__num">01</span><span class="step__k">Discover</span></div><h2 class="step__title">Understand the business first</h2><p class="step__desc">Before a single pixel, we learn how you actually make money, who you serve, and what "better" looks like. Clear goals now save expensive detours later.</p></div>
+      </li>
+      <li class="jstep">
+        <div class="jstep__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.2-4.2L15.6 5.4a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M13.8 7.2l3 3"/><path d="M4 20l4.2-1.2"/></svg><span class="jstep__n">02</span></div>
+        <div class="jstep__card"><div class="jstep__top"><span class="jstep__num">02</span><span class="step__k">Design</span></div><h2 class="step__title">Shape it before we build it</h2><p class="step__desc">We design the structure and the look together, so you can see and feel the direction early — and change it while it's still cheap to change.</p></div>
+      </li>
+      <li class="jstep">
+        <div class="jstep__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6.5 2.5 12 8 17.5"/><path d="M16 6.5l5.5 5.5-5.5 5.5"/><path d="M14 4l-4 16"/></svg><span class="jstep__n">03</span></div>
+        <div class="jstep__card"><div class="jstep__top"><span class="jstep__num">03</span><span class="step__k">Build</span></div><h2 class="step__title">Engineer it to last</h2><p class="step__desc">Senior hands write clean, fast, accessible code. You get regular check-ins and a working link to watch it come together — never a black box.</p></div>
+      </li>
+      <li class="jstep">
+        <div class="jstep__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2.6 4.4 6.2 4.2 10.6L14 16h-4l-2.2-3.4C7.6 8.2 9 4.6 12 2z"/><circle cx="12" cy="8.6" r="1.6"/><path d="M9.4 12.6 6 15l1 4 3-2.4"/><path d="M14.6 12.6 18 15l-1 4-3-2.4"/><path d="M11 19l1 3 1-3"/></svg><span class="jstep__n">04</span></div>
+        <div class="jstep__card"><div class="jstep__top"><span class="jstep__num">04</span><span class="step__k">Launch</span></div><h2 class="step__title">Ship with confidence</h2><p class="step__desc">We test across devices, tune performance and SEO, and launch carefully — then make sure your team knows how to run it.</p></div>
+      </li>
+      <li class="jstep">
+        <div class="jstep__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.4 7.5 10 4.3-1.6 7.5-5.4 7.5-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="jstep__n">05</span></div>
+        <div class="jstep__card"><div class="jstep__top"><span class="jstep__num">05</span><span class="step__k">Care</span></div><h2 class="step__title">Stay, and keep it sharp</h2><p class="step__desc">Launch is the beginning. We monitor, maintain, and improve — so the work keeps paying off long after it goes live.</p></div>
+      </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -158,5 +218,6 @@
 </a>
 <script src="assets/i18n.js"></script>
 <script src="assets/editorial.js" defer></script>
+<script src="assets/journey.js?v=20261020" defer></script>
 </body>
 </html>
