@@ -91,7 +91,7 @@
   </script>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="assets/theme.css?v=20261103u">
   <link rel="stylesheet" href="assets/quiz.css?v=20261011b">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
@@ -468,6 +468,9 @@
     .jcard-swipe.anim-reset { transition:none !important; }
     @media (prefers-reduced-motion: reduce){ .jcard-swipe { opacity:1 !important; translate:none !important; } }
   </style>
+<link rel="stylesheet" href="assets/hero.css?v=20261103c">
+<link rel="stylesheet" href="assets/home.css?v=20261103i">
+<link rel="stylesheet" href="assets/process-dial.css?v=20261103d">
 </head>
 <body>
 
@@ -522,28 +525,244 @@
 </div>
 
 <!-- ===== Hero ===== -->
-<header class="hero" id="hero">
-  <canvas class="aura" data-logo aria-hidden="true"></canvas>
-  <div class="hero__grain" aria-hidden="true"></div>
-  <div class="container hero__inner">
-    <div class="hero__glass">
-      <span class="hero__eyebrow eyebrow" data-i18n="hero-eyebrow">UAE Technology Studio</span>
-      <h1 class="hero__title hero__title--split" data-i18n-html="hero-title" aria-label="Built to be noticed. Engineered to perform.">
-        <span class="tw-line">Built to be noticed.</span>
-        <span class="tw-line">Engineered to <span class="ital gold-text">perform.</span></span>
-      </h1>
-      <div class="hero__rule"></div>
-      <p class="hero__lead" data-i18n="hero-lead">Technology that simplifies complexity, accelerates growth, and transforms the way you do business.</p>
-      <div class="hero__actions">
+<header class="hero hx" id="hero">
+  <div class="hx__bg" aria-hidden="true"><span class="hx__glow hx__glow--a"></span><span class="hx__glow hx__glow--b"></span></div>
+  <div class="container hx__inner">
+
+    <!-- LEFT: one fixed promise -->
+    <div class="hx__card">
+      <span class="eyebrow hx__eyebrow" data-i18n="hero-eyebrow">UAE Technology Studio</span>
+      <h1 class="sr-only">IgnizAI — we build the website, automations and lead systems that grow your revenue</h1>
+      <div class="hx__slides" aria-live="polite">
+        <article class="hx__slide is-active" data-slide="0">
+          <span class="hx__kicker"><i>01</i>Website building</span>
+          <h2 class="hx__title">Websites built to be noticed — <span class="ital gold-text">and to perform.</span></h2>
+          <p class="hx__lead">Fast, mobile-first websites designed around what you want every visitor to do next.</p>
+        </article>
+        <article class="hx__slide" data-slide="1" aria-hidden="true">
+          <span class="hx__kicker"><i>02</i>Digital presence</span>
+          <h2 class="hx__title">Be found where your customers <span class="ital gold-text">are looking.</span></h2>
+          <p class="hx__lead">Google Search, Maps and social profiles that work together, so the right people find you first.</p>
+        </article>
+        <article class="hx__slide" data-slide="2" aria-hidden="true">
+          <span class="hx__kicker"><i>03</i>AI automation</span>
+          <h2 class="hx__title">Let AI handle <span class="ital gold-text">the busywork.</span></h2>
+          <p class="hx__lead">Assistants and workflows that answer enquiries, update your CRM and book appointments — day and night.</p>
+        </article>
+        <article class="hx__slide" data-slide="3" aria-hidden="true">
+          <span class="hx__kicker"><i>04</i>Lead generation</span>
+          <h2 class="hx__title">Turn visitors into <span class="ital gold-text">qualified enquiries.</span></h2>
+          <p class="hx__lead">Clear calls to action, smart forms and instant follow-ups that bring you better leads, consistently.</p>
+        </article>
+        <article class="hx__slide" data-slide="4" aria-hidden="true">
+          <span class="hx__kicker"><i>05</i>Revenue growth</span>
+          <h2 class="hx__title">Grow revenue <span class="ital gold-text">you can measure.</span></h2>
+          <p class="hx__lead">See what's working with clear analytics — then double down on the channels that pay.</p>
+        </article>
+      </div>
+      <div class="hx__actions">
         <a href="contact.html" class="btn btn--gold"><span data-i18n="hero-cta-1">Start a Project</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#work-showcase" class="btn btn--ghost"><span class="btn__line" data-i18n="hero-cta-2">See our work</span></a>
+        <a href="https://wa.me/971507894113?text=Hi%20IgnizAI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="hx__wa" target="_blank" rel="noopener"><span class="hx__wa-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span><span>Chat on WhatsApp</span></a>
+      </div>
+      <ul class="hx__proof">
+        <li><b>From AED 6,250</b><span>Website packages</span></li>
+        <li><b>5-in-1</b><span>Web · SEO · AI · Leads · Analytics</span></li>
+        <li><b>UAE-based</b><span>Studio in Ras Al Khaimah</span></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: the growth engine -->
+    <div class="hx__viz">
+      <div class="hx__panel">
+        <div class="hx__panel-head">
+          <span class="hx__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="hx__panel-title">Your growth engine</span>
+          <span class="hx__panel-tag">Example</span>
+          <button class="hx__pause" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+        </div>
+        <div class="hx__rail" role="tablist" aria-label="How we grow your business">
+          <span class="hx__rail-line" aria-hidden="true"><i class="hx__rail-fill"></i></span>
+          <button class="hx__step is-active" id="hx-tab-0" role="tab" aria-selected="true" aria-controls="hx-cap-0"><span class="hx__step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><span class="hx__step-l">Build</span></button>
+          <button class="hx__step" id="hx-tab-1" role="tab" aria-selected="false" aria-controls="hx-cap-1" tabindex="-1"><span class="hx__step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span><span class="hx__step-l">Get found</span></button>
+          <button class="hx__step" id="hx-tab-2" role="tab" aria-selected="false" aria-controls="hx-cap-2" tabindex="-1"><span class="hx__step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><span class="hx__step-l">Automate</span></button>
+          <button class="hx__step" id="hx-tab-3" role="tab" aria-selected="false" aria-controls="hx-cap-3" tabindex="-1"><span class="hx__step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></svg></span><span class="hx__step-l">Capture</span></button>
+          <button class="hx__step" id="hx-tab-4" role="tab" aria-selected="false" aria-controls="hx-cap-4" tabindex="-1"><span class="hx__step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="hx__step-l">Grow</span></button>
+        </div>
+        <div class="hx__stage" aria-hidden="true">
+        <!-- 0 · Website -->
+        <div class="hx__scene is-active" data-scene="0">
+          <div class="sc-web">
+            <div class="sc-web__browser">
+              <div class="sc-web__url"><i></i><span>yourbrand.ae</span></div>
+              <div class="sc-web__page">
+                <div class="b b-nav"><span></span><span></span><span></span><span></span></div>
+                <div class="b b-hero"><span class="l1"></span><span class="l2"></span><span class="btn-s"></span></div>
+                <div class="b b-img"></div>
+                <div class="b-cards"><div class="b b-c"></div><div class="b b-c"></div><div class="b b-c"></div></div>
+              </div>
+            </div>
+            <div class="sc-web__score">
+              <svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="50"/><circle class="ring" cx="60" cy="60" r="50" pathLength="100"/></svg>
+              <b data-count="98">0</b><span>Performance</span>
+            </div>
+            <div class="chip chip--1"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></em> Mobile-ready</div>
+            <div class="chip chip--2"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></em> SEO <b data-count="100">0</b></div>
+            <div class="chip chip--3"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z"/></svg></em> Loads in <b data-count="1.2" data-dec="1">0</b>s</div>
+          </div>
+        </div>
+
+        <!-- 1 · Presence -->
+        <div class="hx__scene" data-scene="1">
+          <div class="sc-pres">
+            <div class="sc-pres__top">
+              <div class="kpi"><span>Search visibility</span><b data-count="86">0</b><small>/100</small></div>
+              <svg class="spark" viewBox="0 0 200 60" preserveAspectRatio="none"><path class="spark__line" pathLength="100" d="M0 52 C20 50 30 44 50 42 S80 36 100 30 S140 22 160 16 S190 8 200 6"/></svg>
+            </div>
+            <ul class="sc-pres__bars">
+              <li><span class="lbl">Google Search</span><span class="bar"><i style="--w:88%"></i></span><b data-count="88">0</b></li>
+              <li><span class="lbl">Google Maps</span><span class="bar"><i style="--w:74%"></i></span><b data-count="74">0</b></li>
+              <li><span class="lbl">Instagram</span><span class="bar"><i style="--w:61%"></i></span><b data-count="61">0</b></li>
+              <li><span class="lbl">WhatsApp</span><span class="bar"><i style="--w:92%"></i></span><b data-count="92">0</b></li>
+            </ul>
+            <div class="sc-pres__pin"><span class="pin"></span><span class="pulse"></span><em>Top result near you</em></div>
+          </div>
+        </div>
+
+        <!-- 2 · AI automation -->
+        <div class="hx__scene" data-scene="2">
+          <div class="sc-ai">
+            <svg class="sc-ai__wires" viewBox="0 0 520 300" preserveAspectRatio="none">
+              <path class="w" d="M128 150 C170 150 190 150 214 150"/>
+              <path class="w" d="M306 150 C340 150 350 70 388 70"/>
+              <path class="w" d="M306 150 C340 150 350 150 388 150"/>
+              <path class="w" d="M306 150 C340 150 350 230 388 230"/>
+              <path class="w w--flow" pathLength="100" d="M128 150 C170 150 190 150 214 150"/>
+              <path class="w w--flow f2" pathLength="100" d="M306 150 C340 150 350 70 388 70"/>
+              <path class="w w--flow f3" pathLength="100" d="M306 150 C340 150 350 150 388 150"/>
+              <path class="w w--flow f4" pathLength="100" d="M306 150 C340 150 350 230 388 230"/>
+            </svg>
+            <div class="node node--in"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg></em><span>New enquiry</span><small>WhatsApp · 9:42 pm</small></div>
+            <div class="node node--ai"><span class="core">AI</span><small>Assistant</small></div>
+            <div class="node node--out o1"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 6 6v4"/></svg></em><span>Reply sent</span></div>
+            <div class="node node--out o2"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></em><span>CRM updated</span></div>
+            <div class="node node--out o3"><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></em><span>Slot booked</span></div>
+            <div class="sc-ai__stat">Hours saved this week <b data-count="18">0</b></div>
+          </div>
+        </div>
+
+        <!-- 3 · Leads -->
+        <div class="hx__scene" data-scene="3">
+          <div class="sc-lead">
+            <ul class="funnel">
+              <li style="--w:100%"><span>Visitors</span><b data-count="4820">0</b></li>
+              <li style="--w:84%"><span>Engaged</span><b data-count="1240">0</b></li>
+              <li style="--w:68%"><span>Enquiries</span><b data-count="186">0</b></li>
+              <li style="--w:54%"><span>Qualified</span><b data-count="64">0</b></li>
+            </ul>
+            <div class="toasts">
+              <div class="toast t1"><i></i><span><b>New enquiry</b> · Contact form</span></div>
+              <div class="toast t2"><i></i><span><b>New lead</b> · WhatsApp</span></div>
+              <div class="toast t3"><i></i><span><b>Call booked</b> · Tomorrow 11:00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 · Revenue -->
+        <div class="hx__scene" data-scene="4">
+          <div class="sc-rev">
+            <div class="kpis">
+              <div class="kpi"><span>Revenue</span><b>+<i data-count="32">0</i>%</b></div>
+              <div class="kpi"><span>Conversion</span><b><i data-count="4.8" data-dec="1">0</i>%</b></div>
+              <div class="kpi"><span>Repeat clients</span><b><i data-count="41">0</i>%</b></div>
+            </div>
+            <svg class="chart" viewBox="0 0 480 200" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="hxArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4C063" stop-opacity=".38"/><stop offset="1" stop-color="#E4C063" stop-opacity="0"/></linearGradient>
+              </defs>
+              <g class="grid"><line x1="0" y1="50" x2="480" y2="50"/><line x1="0" y1="100" x2="480" y2="100"/><line x1="0" y1="150" x2="480" y2="150"/></g>
+              <path class="area" d="M0 170 L40 162 L80 158 L120 148 L160 150 L200 132 L240 124 L280 112 L320 96 L360 84 L400 66 L440 52 L480 34 L480 200 L0 200 Z" fill="url(#hxArea)"/>
+              <path class="line" pathLength="100" d="M0 170 L40 162 L80 158 L120 148 L160 150 L200 132 L240 124 L280 112 L320 96 L360 84 L400 66 L440 52 L480 34"/>
+              <circle class="dot" cx="480" cy="34" r="5"/>
+            </svg>
+            <div class="months"><span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hx__cap">
+          <p class="hx__cap-item is-active" id="hx-cap-0" role="tabpanel" aria-labelledby="hx-tab-0"><b>01 · Build</b><span>A fast, mobile-first website that turns visits into action.</span></p>
+          <p class="hx__cap-item" id="hx-cap-1" role="tabpanel" aria-labelledby="hx-tab-1"><b>02 · Get found</b><span>Google Search, Maps and social profiles working together.</span></p>
+          <p class="hx__cap-item" id="hx-cap-2" role="tabpanel" aria-labelledby="hx-tab-2"><b>03 · Automate</b><span>AI answers enquiries, updates your CRM and books appointments — 24/7.</span></p>
+          <p class="hx__cap-item" id="hx-cap-3" role="tabpanel" aria-labelledby="hx-tab-3"><b>04 · Capture</b><span>Smart forms and instant follow-up turn visitors into qualified leads.</span></p>
+          <p class="hx__cap-item" id="hx-cap-4" role="tabpanel" aria-labelledby="hx-tab-4"><b>05 · Grow</b><span>Clear analytics show what pays, so you can double down on it.</span></p>
+        </div>
       </div>
     </div>
   </div>
 </header>
 
 <!-- ===== Work showcase ===== -->
+<!-- ===== Sectors strip ===== -->
+<section class="hm-sectors" aria-label="Who we build for">
+  <div class="container hm-sectors__head reveal"><span class="hm-sectors__label">Built for growing UAE businesses</span></div>
+  <div class="hm-marquee reveal">
+    <div class="hm-marquee__track">
+      <ul class="hm-sectors__list"><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M9 11h6M12 8v6"/></svg></span><span class="hm-sector__t">Clinics &amp; healthcare</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z"/></svg></span><span class="hm-sector__t">Real estate</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1631511258193-252ab3da6b8b?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-5 9 5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></span><span class="hm-sector__t">Finance &amp; banking</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span><span class="hm-sector__t">Education</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1677129667171-92abd8740fa3?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h16M6 17a6 6 0 0 1 12 0M12 8V6M10 6h4M3 20h18"/></svg></span><span class="hm-sector__t">Hospitality</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1549944850-84e00be4203b?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l1.5-1.5 7.5 1L16 6.5a2 2 0 0 1 3 3L15 13.5l1 7.5-1.5 1.5L12 15z"/></svg></span><span class="hm-sector__t">Travel &amp; tourism</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1567123498814-e333c1aaa793?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 9h1.5a2.5 2.5 0 0 1 0 5H16M8 3v2M11 3v2"/></svg></span><span class="hm-sector__t">Food &amp; beverage</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="hm-sector__t">Retail &amp; e-commerce</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/></svg></span><span class="hm-sector__t">Professional services &amp; consultancy</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1609867271967-a82f85c48531?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0M2 15h20v3H2zM12 7V4M9.5 7.5l-1-2.5M14.5 7.5l1-2.5"/></svg></span><span class="hm-sector__t">Engineering &amp; infrastructure</span></li></ul>
+      <ul class="hm-sectors__list" aria-hidden="true"><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M9 11h6M12 8v6"/></svg></span><span class="hm-sector__t">Clinics &amp; healthcare</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z"/></svg></span><span class="hm-sector__t">Real estate</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1631511258193-252ab3da6b8b?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-5 9 5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></span><span class="hm-sector__t">Finance &amp; banking</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span><span class="hm-sector__t">Education</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1677129667171-92abd8740fa3?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h16M6 17a6 6 0 0 1 12 0M12 8V6M10 6h4M3 20h18"/></svg></span><span class="hm-sector__t">Hospitality</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1549944850-84e00be4203b?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l1.5-1.5 7.5 1L16 6.5a2 2 0 0 1 3 3L15 13.5l1 7.5-1.5 1.5L12 15z"/></svg></span><span class="hm-sector__t">Travel &amp; tourism</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1567123498814-e333c1aaa793?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 9h1.5a2.5 2.5 0 0 1 0 5H16M8 3v2M11 3v2"/></svg></span><span class="hm-sector__t">Food &amp; beverage</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="hm-sector__t">Retail &amp; e-commerce</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/></svg></span><span class="hm-sector__t">Professional services &amp; consultancy</span></li><li class="hm-sector" style="--img:url('https://images.unsplash.com/photo-1609867271967-a82f85c48531?w=480&amp;h=300&amp;fit=crop&amp;q=70&amp;auto=format')"><span class="hm-sector__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0M2 15h20v3H2zM12 7V4M9.5 7.5l-1-2.5M14.5 7.5l1-2.5"/></svg></span><span class="hm-sector__t">Engineering &amp; infrastructure</span></li></ul>
+    </div>
+  </div>
+</section>
+<!-- ===== Services (bento) ===== -->
+<section class="section section--alt hm-svc" id="services">
+  <div class="container">
+    <div class="sec-head hm-head reveal">
+      <div>
+        <span class="eyebrow" data-i18n="svc-eyebrow">What we do</span>
+        <h2>One team for your whole <span class="ital gold-text">growth engine.</span></h2>
+      </div>
+      <p class="lead">Five connected services that build on each other — from the first visit to the next sale.</p>
+    </div>
+    <div class="hm-svc__grid">
+      <a class="hm-svc__card hm-svc__card--feature reveal reveal-d1" href="services.html">
+        <span class="hm-svc__top"><span class="hm-svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><span class="hm-svc__num">01</span></span>
+        <h3 class="hm-svc__title">Website building</h3>
+        <p class="hm-svc__desc">Fast, mobile-first websites and web apps — designed and built from scratch around what you want visitors to do next.</p>
+        <span class="hm-svc__tags"><i>Custom design</i><i>Mobile-first</i><i>Speed & SEO</i></span>
+        <div class="hm-svc__mock" aria-hidden="true"><div class="hm-svc__mock-bar"><i></i><i></i><i></i><span>yourbrand.ae</span></div><div class="hm-svc__mock-body"><span class="m1"></span><span class="m2"></span><span class="m3"></span><div class="hm-svc__mock-row"><span></span><span></span><span></span></div></div><div class="hm-svc__mock-score"><b>98</b><small>Performance</small></div></div>
+        <span class="hm-svc__more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="hm-svc__card hm-pop" href="services.html">
+        <span class="hm-svc__top"><span class="hm-svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span><span class="hm-svc__num">02</span></span>
+        <h3 class="hm-svc__title">Digital presence</h3>
+        <p class="hm-svc__desc">Google Search, Maps and social profiles that work together, so the right people find you first.</p>
+        <span class="hm-svc__tags"><i>Google Business Profile</i><i>Local SEO</i></span>
+        <span class="hm-svc__more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="hm-svc__card hm-pop" href="services.html">
+        <span class="hm-svc__top"><span class="hm-svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><span class="hm-svc__num">03</span></span>
+        <h3 class="hm-svc__title">AI automation</h3>
+        <p class="hm-svc__desc">Assistants and workflows that answer enquiries, update your CRM and book appointments — day and night.</p>
+        <span class="hm-svc__tags"><i>AI chat</i><i>WhatsApp</i><i>CRM</i></span>
+        <span class="hm-svc__more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="hm-svc__card hm-pop" href="services.html">
+        <span class="hm-svc__top"><span class="hm-svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></svg></span><span class="hm-svc__num">04</span></span>
+        <h3 class="hm-svc__title">Lead generation</h3>
+        <p class="hm-svc__desc">Clear calls to action, smart forms and instant follow-up that turn visitors into qualified enquiries.</p>
+        <span class="hm-svc__tags"><i>Smart forms</i><i>Lead magnets</i></span>
+        <span class="hm-svc__more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="hm-svc__card hm-pop" href="services.html">
+        <span class="hm-svc__top"><span class="hm-svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="hm-svc__num">05</span></span>
+        <h3 class="hm-svc__title">Revenue growth</h3>
+        <p class="hm-svc__desc">Simple dashboards and monthly insights show what pays — then we double down on it with you.</p>
+        <span class="hm-svc__tags"><i>Analytics</i><i>Care & SEO</i></span>
+        <span class="hm-svc__more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="work-showcase">
   <div class="container">
     <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:24px;flex-wrap:wrap">
@@ -556,6 +775,38 @@
       <div class="work-carousel__stage">
       <div class="work-carousel__viewport">
       <div class="work-carousel__track">
+
+      <article class="work-card work-card--product" role="group" aria-roledescription="slide" data-href="https://banksview.com/">
+        <div class="work-card__shot">
+          <img src="assets/showcase/banksview.jpg" width="2400" height="1700" alt="BanksView — bank statement analysis SaaS built by IgnizAI" loading="lazy" decoding="async">
+          <span class="work-card__visit" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="work-card__body">
+          <span class="work-card__badge">Our product · FinTech SaaS</span>
+          <span class="work-card__name">BanksView</span>
+          <p class="work-card__desc">Our own SaaS for lenders in India: it turns a password-locked bank statement PDF into a 141-metric Excel report, a risk score and a dashboard — in about a minute.</p>
+          <div class="work-card__actions"><a class="work-card__cta" href="https://banksview.com/" target="_blank" rel="noopener noreferrer">Visit site
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button type="button" class="work-card__more" aria-expanded="false">Key features <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+        <div class="work-card__features">
+          <button type="button" class="work-card__close" aria-label="Close key features"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <span class="eyebrow-sm">Key features</span>
+          <ul>
+            <li>Reads statements from 15 Indian banks</li>
+            <li>13 validation checks before any charge</li>
+            <li>141 metrics in an 8-sheet Excel report</li>
+            <li>Risk score and on-screen dashboard</li>
+            <li>Pay-per-report wallet, ₹50 per report</li>
+            <li>Consent logging and audit trail</li>
+          </ul>
+          <dl class="work-card__meta">
+            <div><dt>Project type</dt><dd>FinTech SaaS · built and run by IgnizAI</dd></div>
+            <div><dt>Goal</dt><dd>Turn hours of manual statement checking into a report in about a minute</dd></div>
+          </dl>
+          <a class="work-card__cta" href="https://banksview.com/" target="_blank" rel="noopener noreferrer">Visit site
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div></article>
+
 
       <article class="work-card" role="group" aria-roledescription="slide" data-href="https://connecttheworld.vercel.app/">
         <div class="work-card__shot">
@@ -690,35 +941,106 @@
   </div>
 </section>
 
-<!-- ===== Services ===== -->
-<section class="section section--alt" id="services">
+<!-- ===== How we work: scroll-driven stage dial ===== -->
+<section class="hm-proc hpx" id="how-we-work" style="--n:5">
+  <div class="hpx__pin">
+    <div class="hpx__sticky">
+      <div class="container">
+        <div class="sec-head hm-head hpx__head">
+          <div>
+            <span class="eyebrow">How we work</span>
+            <h2>Five clear steps, <span class="ital gold-text">no black box.</span></h2>
+          </div>
+          <a href="process.html" class="link-gold">See our process →</a>
+        </div>
+        <div class="hpx__stage">
+        <div class="hpx__dial" aria-hidden="true">
+          <svg class="hpx__ring" viewBox="0 0 300 300"><circle class="hpx__ring-inner" cx="150" cy="150" r="104"/><path class="hpx__seg-bg" d="M158.79 24.31 A126 126 0 0 1 266.83 102.80"/><path class="hpx__seg" pathLength="100" d="M158.79 24.31 A126 126 0 0 1 266.83 102.80"/><circle class="hpx__node" cx="150.00" cy="24.00" r="5"/><path class="hpx__seg-bg" d="M272.26 119.52 A126 126 0 0 1 230.99 246.52"/><path class="hpx__seg" pathLength="100" d="M272.26 119.52 A126 126 0 0 1 230.99 246.52"/><circle class="hpx__node" cx="269.83" cy="111.06" r="5"/><path class="hpx__seg-bg" d="M216.77 256.85 A126 126 0 0 1 83.23 256.85"/><path class="hpx__seg" pathLength="100" d="M216.77 256.85 A126 126 0 0 1 83.23 256.85"/><circle class="hpx__node" cx="224.06" cy="251.94" r="5"/><path class="hpx__seg-bg" d="M69.01 246.52 A126 126 0 0 1 27.74 119.52"/><path class="hpx__seg" pathLength="100" d="M69.01 246.52 A126 126 0 0 1 27.74 119.52"/><circle class="hpx__node" cx="75.94" cy="251.94" r="5"/><path class="hpx__seg-bg" d="M33.17 102.80 A126 126 0 0 1 141.21 24.31"/><path class="hpx__seg" pathLength="100" d="M33.17 102.80 A126 126 0 0 1 141.21 24.31"/><circle class="hpx__node" cx="30.17" cy="111.06" r="5"/><circle class="hpx__comet" cx="150" cy="24" r="7"/></svg>
+          <div class="hpx__core">
+            <span class="hpx__core-label">Stage</span>
+            <span class="hpx__digits"><span class="hpx__digits-col"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i></span></span>
+            <span class="hpx__icons"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.1 2.1 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/><path d="M8 12h2l1.5-3 2 6 1.5-3h1"/></svg></i></span>
+          </div>
+        </div>
+        <div class="hpx__cards">
+          <article class="hpx__card" data-i="0">
+            <span class="hpx__card-kicker"><b>01</b> · Discover</span>
+            <h3 class="hpx__card-title">Understand the business first</h3>
+            <p class="hpx__card-desc">Before a single pixel, we learn how you actually make money, who you serve, and what "better" looks like. Clear goals now save expensive detours later.</p>
+            <span class="hpx__card-foot">Next: Design →</span>
+          </article>
+          <article class="hpx__card" data-i="1">
+            <span class="hpx__card-kicker"><b>02</b> · Design</span>
+            <h3 class="hpx__card-title">Shape it before we build it</h3>
+            <p class="hpx__card-desc">We design the structure and the look together, so you can see and feel the direction early — and change it while it's still cheap to change.</p>
+            <span class="hpx__card-foot">Next: Build →</span>
+          </article>
+          <article class="hpx__card" data-i="2">
+            <span class="hpx__card-kicker"><b>03</b> · Build</span>
+            <h3 class="hpx__card-title">Engineer it to last</h3>
+            <p class="hpx__card-desc">Senior hands write clean, fast, accessible code. You get regular check-ins and a working link to watch it come together — never a black box.</p>
+            <span class="hpx__card-foot">Next: Launch →</span>
+          </article>
+          <article class="hpx__card" data-i="3">
+            <span class="hpx__card-kicker"><b>04</b> · Launch</span>
+            <h3 class="hpx__card-title">Ship with confidence</h3>
+            <p class="hpx__card-desc">We test across devices, tune performance and SEO, and launch carefully — then make sure your team knows how to run it.</p>
+            <span class="hpx__card-foot">Next: Care →</span>
+          </article>
+          <article class="hpx__card" data-i="4">
+            <span class="hpx__card-kicker"><b>05</b> · Care</span>
+            <h3 class="hpx__card-title">Stay, and keep it sharp</h3>
+            <p class="hpx__card-desc">Launch is the beginning. We monitor, maintain, and improve — so the work keeps paying off long after it goes live.</p>
+            <span class="hpx__card-foot">And it keeps going — <a class="link-gold" href="process.html">see the full process →</a></span>
+          </article>
+        </div>
+        </div>
+        <ol class="hpx__rail" aria-hidden="true"><span class="hpx__rail-line"><i></i></span><li class="hpx__rail-item"><span class="hpx__rail-dot"></span><span class="hpx__rail-l">Discover</span></li><li class="hpx__rail-item"><span class="hpx__rail-dot"></span><span class="hpx__rail-l">Design</span></li><li class="hpx__rail-item"><span class="hpx__rail-dot"></span><span class="hpx__rail-l">Build</span></li><li class="hpx__rail-item"><span class="hpx__rail-dot"></span><span class="hpx__rail-l">Launch</span></li><li class="hpx__rail-item"><span class="hpx__rail-dot"></span><span class="hpx__rail-l">Care</span></li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== Packages teaser ===== -->
+<section class="section hm-pk" id="packages-teaser">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="svc-eyebrow">What we do</span>
-      <h2 data-i18n-html="home-svc-h">One studio for the whole <span class="ital gold-text">digital picture.</span></h2>
+    <div class="sec-head hm-head reveal">
+      <div>
+        <span class="eyebrow">Packages</span>
+        <h2>Clear packages, <span class="ital gold-text">clear prices.</span></h2>
+      </div>
+      <a href="services.html#packages" class="link-gold">Compare all packages →</a>
     </div>
-    <div class="svc-list">
-      <a class="svc-row svc-rise" href="services.html">
-        <span class="svc-row__num">01</span>
-        <span><span class="svc-row__title">Websites &amp; Platforms</span><span class="svc-row__desc" style="display:block">High-craft, fast, conversion-focused sites and web apps — designed and built from scratch.</span></span>
-        <span class="svc-row__arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="hm-pk__grid">
+      <a class="hm-pk__card reveal reveal-d1" href="services.html#packages">
+        <span class="hm-pk__badge hm-pk__badge--hot">Hot deal</span>
+        <h3 class="hm-pk__name">Ignite Basic</h3>
+        <p class="hm-pk__tag">A sharp, mobile-ready landing page to get you online fast.</p>
+        <span class="hm-pk__price"><small>From AED</small> 6,250</span>
+        <span class="hm-pk__more">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="svc-row svc-rise" href="services.html">
-        <span class="svc-row__num">02</span>
-        <span><span class="svc-row__title">CMS &amp; Content Systems</span><span class="svc-row__desc" style="display:block">Editable, structured platforms your team can actually run — without breaking the design.</span></span>
-        <span class="svc-row__arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <a class="hm-pk__card hm-pk__card--best reveal reveal-d2" href="services.html#packages">
+        <span class="hm-pk__badge hm-pk__badge--best">Bestseller</span>
+        <h3 class="hm-pk__name">Ignite Business</h3>
+        <p class="hm-pk__tag">A complete multi-page website built to win enquiries.</p>
+        <span class="hm-pk__price"><small>From AED</small> 18,050</span>
+        <span class="hm-pk__more">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="svc-row svc-rise" href="services.html">
-        <span class="svc-row__num">03</span>
-        <span><span class="svc-row__title">AI &amp; Automation</span><span class="svc-row__desc" style="display:block">Practical AI where it earns its place — lead capture, support, and workflows that save real hours.</span></span>
-        <span class="svc-row__arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <a class="hm-pk__card reveal reveal-d3" href="services.html#packages">
+        <span class="hm-pk__badge hm-pk__badge--top">Top pick</span>
+        <h3 class="hm-pk__name">Ignite Premium</h3>
+        <p class="hm-pk__tag">A larger, on-brand, bilingual site with advanced motion.</p>
+        <span class="hm-pk__price"><small>From AED</small> 45,250</span>
+        <span class="hm-pk__more">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="svc-row svc-rise" href="services.html">
-        <span class="svc-row__num">04</span>
-        <span><span class="svc-row__title">Care &amp; Growth</span><span class="svc-row__desc" style="display:block">Ongoing maintenance, performance, and SEO — the quiet work that keeps you ahead.</span></span>
-        <span class="svc-row__arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <a class="hm-pk__card reveal reveal-d4" href="services.html#packages">
+        <span class="hm-pk__badge hm-pk__badge--ai">AI-powered</span>
+        <h3 class="hm-pk__name">Ignite Intelligence</h3>
+        <p class="hm-pk__tag">Bookings, payments, CRM and AI — added to your website.</p>
+        <span class="hm-pk__price"><small>From AED</small> 22,100</span>
+        <span class="hm-pk__more">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
+    <p class="hm-pk__note">All prices in AED. Domain and hosting may be billed at the provider's current market rate.</p>
   </div>
 </section>
 
@@ -732,8 +1054,25 @@
   </div>
 </section>
 
+<!-- ===== FAQ ===== -->
+<section class="section hm-faq" id="faq">
+  <div class="container hm-faq__inner">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Good to <span class="ital gold-text">know.</span></h2>
+      <p class="lead">Still unsure? <a class="link-gold" href="contact.html">Ask us directly</a> or message us on WhatsApp.</p>
+    </div>
+    <div class="hm-faq__list reveal">
+      <details class="hm-faq__item" open><summary><span>How much does a website cost?</span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Our packages start at AED 6,250 for Ignite Basic, AED 18,050 for Ignite Business and AED 45,250 for Ignite Premium. Ignite Intelligence — bookings, payments, CRM and AI — is AED 22,100. Domain and hosting may be billed at the provider's current market rate.</p></details>
+      <details class="hm-faq__item"><summary><span>Can my website be in both English and Arabic?</span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Yes. Ignite Premium is a bilingual site and includes English to Arabic translation, and Ignite Intelligence can add a bilingual chatbot.</p></details>
+      <details class="hm-faq__item"><summary><span>Can you add AI to the business I already have?</span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Yes. Ignite Intelligence adds AI to your website — an AI chatbot for FAQs, lead qualification, booking, payments and CRM integration.</p></details>
+      <details class="hm-faq__item"><summary><span>What happens after launch?</span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Launch is the beginning. With Care &amp; Growth we handle maintenance and updates, uptime and performance monitoring, SEO and priority support.</p></details>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Journal ===== -->
-<section class="section" id="journal">
+<section class="section section--alt" id="journal">
   <div class="container">
     <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:24px;flex-wrap:wrap">
       <div>
@@ -767,9 +1106,10 @@
   <div class="container">
     <span class="eyebrow eyebrow--center" style="justify-content:center" data-i18n="cta-eyebrow">Let's begin</span>
     <h2 style="margin-left:auto;margin-right:auto" data-i18n-html="home-cta-h">Tell us what you're <span class="ital">building.</span></h2>
-    <p class="lead" data-i18n="cta-lead">We reply within one business day with a genuine, honest read on your project — no bots, no templated pitch.</p>
-    <a href="contact.html" class="btn btn--gold"><span data-i18n="cta-btn">Start a Project</span>
+    <p class="lead">Tell us the goal, not the spec. We'll come back with an honest read on what's worth building.</p>
+    <div class="cta-band__actions"><a href="contact.html" class="btn btn--gold"><span data-i18n="cta-btn">Start a Project</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="cta-band__wa" href="https://wa.me/971507894113?text=Hi%20IgnizAI%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span><span>Chat on WhatsApp</span></a></div>
   </div>
 </section>
 
@@ -853,5 +1193,8 @@
 <script src="assets/quiz.js?v=20261015" defer></script>
 <script src="assets/space.js?v=20261011c" defer></script>
 <script src="assets/editorial.js?v=20261020" defer></script>
+<script src="assets/hero.js?v=20261103" defer></script>
+<script src="assets/home.js?v=20261103i" defer></script>
+<script src="assets/process-dial.js?v=20261103" defer></script>
 </body>
 </html>

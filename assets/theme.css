@@ -459,3 +459,37 @@ body { font-size:1.0625rem; line-height:1.65; }
 /* Arabic: Naskh headings and Plex text read best a touch larger, with no tracking */
 html[lang="ar"] h1, html[lang="ar"] h2 { font-weight:500; letter-spacing:0; line-height:1.3; }
 html[lang="ar"] body { line-height:1.8; }
+
+/* =====================================================================
+   Unified type scale — every page uses the same size for each level.
+   Page title (h1) · Section heading (h2) · Card / sub-heading (h3) · Lead
+   (Home hero, pop-up modals and long-form article text keep their own scale.)
+   ===================================================================== */
+:root{
+  /* compact scale — matches the home hero */
+  --fs-h1:   clamp(1.8rem, 2.6vw, 2.4rem);
+  --fs-h2:   clamp(1.6rem, 2.35vw, 2.125rem);
+  --fs-h3:   clamp(1.1rem, 1.3vw, 1.25rem);
+  --fs-lead: clamp(0.94rem, 1.05vw, 1rem);
+  --section-y: clamp(56px, 6.5vw, 104px);
+}
+/* page titles */
+.page-hero__title, .article-hero__title { font-size:var(--fs-h1) !important; }
+/* section headings */
+body h2:not(.hx__title):not(.pkg-modal__title):not(.form-success__title):not(.step__title):not(.prose *),
+.cta-band h2 { font-size:var(--fs-h2) !important; }
+.prose h2 { font-size:clamp(1.35rem, 1.9vw, 1.6rem) !important; }
+/* card titles / sub-headings */
+body h3:not(.pkg-modal h3):not(.prose *), .step__title, .form-success__title { font-size:var(--fs-h3) !important; }
+.prose h3 { font-size:clamp(1.15rem, 1.5vw, 1.3rem) !important; }
+/* subheading / lead paragraphs under headings */
+.lead, .page-hero__lead, .article-hero__intro, .gq__lead, .contact-sidebar__sub,
+.form-success__sub, .cta-band .lead { font-size:var(--fs-lead) !important; }
+
+/* compact spacing — every section tightened to match the home hero */
+.page-hero { padding:calc(var(--nav-h) + 48px) 0 56px !important; }
+.page-hero__crumb { margin-bottom:18px; }
+.page-hero__rule { margin:22px 0 20px; }
+.sec-head { margin-bottom:40px; }
+.sec-head h2 { margin-top:14px; }
+.sec-head .lead { margin-top:14px; }

@@ -1,0 +1,78 @@
+/* =====================================================================
+   How we work — scroll-driven "stage dial"
+   The section pins while you scroll. A gold ring fills segment by
+   segment, the stage number rolls like an odometer, the icon morphs,
+   and the stage cards deal in from below and stack away behind.
+   Everything is tied to scroll position, so scrolling up rewinds it.
+   ===================================================================== */
+.hpx{position:relative;background:var(--bg-alt);padding:0 !important}
+.hpx__pin{position:relative;height:calc(100vh + (var(--n) - 1) * 60vh)}
+.hpx__sticky{position:sticky;top:var(--nav-h,72px);height:calc(100vh - var(--nav-h,72px));display:flex;align-items:center;overflow:hidden}
+.hpx__sticky > .container{width:100%}
+.hpx__head{margin-bottom:clamp(20px,4vh,40px) !important}
+.hpx__stage{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center}
+
+/* dial */
+.hpx__dial{position:relative;width:min(100%,320px);aspect-ratio:1;justify-self:center}
+.hpx__ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hpx__ring-inner{fill:#FFFDF8;stroke:var(--line);stroke-width:1}
+.hpx__seg-bg{fill:none;stroke:rgba(176,133,40,.16);stroke-width:10;stroke-linecap:round}
+.hpx__seg{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+.hpx__node{fill:var(--bg-alt);stroke:rgba(176,133,40,.45);stroke-width:2;transition:fill .3s,stroke .3s}
+.hpx__node.is-on{fill:var(--forest);stroke:var(--gold)}
+.hpx__comet{fill:#F3D98B;stroke:var(--forest);stroke-width:3;transform-box:view-box;transform-origin:150px 150px;filter:drop-shadow(0 0 8px rgba(201,154,58,.8))}
+.hpx__core{position:absolute;inset:22%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:radial-gradient(120% 90% at 70% 10%,#1D4434 0%,transparent 60%),linear-gradient(160deg,#0B1F17,#17362A);color:#F4EEE2;
+  box-shadow:0 24px 50px -24px rgba(15,37,28,.6),inset 0 0 0 1px rgba(228,192,99,.25)}
+.hpx__core-label{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#B9B09C}
+.hpx__digits{height:1em;overflow:hidden;font-family:var(--font-display);font-size:clamp(40px,4.6vw,60px);line-height:1;color:#F3D98B}
+.hpx__digits-col{display:flex;flex-direction:column;will-change:transform}
+.hpx__digits-col i{font-style:normal;height:1em;display:block;text-align:center}
+.hpx__icons{position:relative;width:26px;height:26px;margin-top:6px}
+.hpx__icons i{position:absolute;inset:0;color:#6FD3A6;opacity:0}
+.hpx__icons svg{width:26px;height:26px}
+
+/* cards */
+.hpx__cards{position:relative;height:clamp(250px,34vh,300px)}
+.hpx__card{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;padding:clamp(22px,2.6vw,34px);border-radius:22px;
+  background:#FFFDF8;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(23,54,42,.45);will-change:transform,opacity;transform-origin:50% 0}
+.hpx__card-kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hpx__card-kicker b{font-family:var(--font-display);font-weight:500;letter-spacing:.04em}
+.hpx__card-title{font-family:var(--font-display);font-weight:500;margin:0;color:var(--ink)}
+.hpx__card-desc{margin:0;font-size:15px;line-height:1.65;color:var(--ink-2);max-width:52ch}
+.hpx__card-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:13px;font-weight:600;color:var(--forest)}
+
+/* rail */
+.hpx__rail{position:relative;list-style:none;margin:clamp(22px,4vh,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(var(--n),1fr)}
+.hpx__rail-line{position:absolute;left:10%;right:10%;top:6px;height:2px;background:rgba(176,133,40,.18);border-radius:2px}
+.hpx__rail-line i{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),#E4C063);transform:scaleX(0);transform-origin:left;border-radius:inherit}
+.hpx__rail-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
+.hpx__rail-dot{width:14px;height:14px;border-radius:50%;background:var(--bg-alt);border:2px solid rgba(176,133,40,.4);transition:all .35s var(--ease);position:relative;z-index:1}
+.hpx__rail-l{font-size:13px;font-weight:500;color:var(--ink-3);transition:color .3s}
+.hpx__rail-item.is-on .hpx__rail-dot{background:var(--gold);border-color:var(--gold)}
+.hpx__rail-item.is-current .hpx__rail-dot{background:var(--forest);border-color:var(--gold);box-shadow:0 0 0 5px rgba(176,133,40,.18);transform:scale(1.15)}
+.hpx__rail-item.is-current .hpx__rail-l{color:var(--ink);font-weight:600}
+
+/* RTL: keep the mechanics left-to-right, mirror only the text */
+html[dir="rtl"] .hpx__dial,html[dir="rtl"] .hpx__rail{direction:ltr}
+
+@media (max-width:860px){
+  .hpx__stage{grid-template-columns:1fr;gap:18px}
+  .hpx__dial{width:min(46vw,190px)}
+  .hpx__cards{height:clamp(240px,36vh,300px)}
+  .hpx__head .link-gold{display:none}
+  .hpx__rail{margin-top:18px}
+  .hpx__rail-l{font-size:11.5px}
+}
+@media (max-width:860px) and (max-height:760px){ .hpx__dial{width:150px} .hpx__card-desc{font-size:14px} }
+
+/* reduced motion / no JS: a plain list */
+.hpx--static .hpx__pin{height:auto}
+.hpx--static .hpx__sticky{position:static;height:auto;padding:var(--section-y) 0}
+.hpx--static .hpx__dial,.hpx--static .hpx__rail{display:none}
+.hpx--static .hpx__stage{grid-template-columns:1fr}
+.hpx--static .hpx__cards{height:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.hpx--static .hpx__card{position:relative;inset:auto}
+
+/* position:sticky needs a non-scrolling ancestor chain: clip (not hide) horizontal overflow */
+html, body { overflow-x: clip !important; }
