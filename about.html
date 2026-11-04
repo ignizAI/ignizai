@@ -30,6 +30,8 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/theme.css?v=20261104f">
+  <link rel="stylesheet" href="assets/pages.css?v=20261104">
+  <link rel="stylesheet" href="assets/inner-hero.css?v=20261104c">
   <style id="page-styles">
     .manifesto { display:grid; grid-template-columns:5fr 7fr; gap:70px; align-items:start; }
     .manifesto__aside { position:sticky; top:120px; }
@@ -107,7 +109,7 @@
 <body>
 <div id="page-root">
 
-<nav class="nav" id="nav" aria-label="Primary">
+<nav class="nav nav--on-dark" id="nav" aria-label="Primary">
   <div class="container nav__inner">
     <a href="index.html" class="brand" aria-label="Igniz AI home">
       <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
@@ -145,32 +147,29 @@
   </button>
 </div>
 
-<header class="page-hero" id="hero">
-  <canvas class="aura" aria-hidden="true"></canvas>
-  <div class="hero__grain" aria-hidden="true"></div>
-  <div class="container">
-    <div class="page-hero__inner">
-      <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;›&nbsp; About</div>
-      <span class="eyebrow" data-i18n="about-eyebrow">The studio</span>
-      <h1 class="page-hero__title" style="margin-top:18px">Built to <span class="ital gold-text">stay</span>,<br>not just to ship.</h1>
-      <div class="page-hero__rule"></div>
-      <p class="page-hero__lead" data-i18n="about-lead">Igniz AI is a small, senior studio for businesses that want their digital work handled with real care — designed with intent, built to last, and looked after long after launch.</p>
+<header class="ph" id="hero" data-word="About">
+  <div class="container ph__inner">
+    <div class="ph__copy">
+      <div class="ph__crumb"><a href="index.html">Home</a> <span aria-hidden="true">›</span> About</div>
+      <span class="eyebrow">The studio</span>
+      <h1 class="ph__title">Built to <span class="ital gold-text">stay</span>, not just to ship.</h1>
+      <p class="ph__lead">Igniz AI is a small, senior studio for businesses that want their digital work handled with real care — designed with intent, built to last, and looked after long after launch.</p>
+      <div class="ph__actions"><a href="contact.html" class="btn btn--gold"><span>Start a Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="work.html" class="ph__ghost">See our work</a></div>
     </div>
+    <div class="ph__viz"><div class="pnl" aria-hidden="true"><div class="pnl__head"><span class="pnl__dots"><i></i><i></i><i></i></span><span>IgnizAI at a glance</span></div><ul class="pnl__rows"><li style="--i:0"><span class="pnl__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span class="pnl__t"><small>Studio</small><b>Ras Al Khaimah, UAE</b></span></li><li style="--i:1"><span class="pnl__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="pnl__t"><small>Languages</small><b>English &amp; Arabic</b></span></li><li style="--i:2"><span class="pnl__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span class="pnl__t"><small>What we do</small><b>5 connected services</b></span></li><li style="--i:3"><span class="pnl__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span><span class="pnl__t"><small>Our own product</small><b>BanksView</b></span></li><li style="--i:4"><span class="pnl__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="pnl__t"><small>Who you work with</small><b>The people doing the work</b></span></li></ul></div></div>
   </div>
 </header>
 
-<section class="section">
-  <div class="container">
-    <div class="manifesto">
-      <div class="manifesto__aside reveal">
-        <span class="num">( 01 — Our story )</span>
-        <p class="manifesto__big">We turn your story into visibility.<br>We turn visibility into <span class="ital">trust.</span></p>
-      </div>
-      <div class="manifesto__body reveal reveal-d1">
-        <p><strong>Good businesses deserve to be seen, understood, and trusted.</strong></p>
-        <p>At IgnizAI, we help genuine businesses build a strong digital presence that reflects who they truly are. Every business has a story, and we turn that story into a beautiful digital experience that people can discover, understand, and trust.</p>
-        <p>We believe visibility is more than simply being online. It’s about presenting your business with clarity, showing what makes you different, and creating an experience that gives customers confidence to take the next step.</p>
-      </div>
+<section class="section ab-story">
+  <div class="container ab-story__inner">
+    <div class="ab-story__quote reveal">
+      <span class="eyebrow">Our story</span>
+      <p class="ab-story__big">We turn your story into visibility. We turn visibility into <span class="ital gold-text">trust.</span></p>
+    </div>
+    <div class="ab-story__body reveal reveal-d1">
+      <p class="ab-story__lede">Good businesses deserve to be seen, understood, and trusted.</p>
+      <p>At IgnizAI, we help genuine businesses build a strong digital presence that reflects who they truly are. Every business has a story, and we turn that story into a beautiful digital experience that people can discover, understand, and trust.</p>
+      <p>We believe visibility is more than simply being online. It’s about presenting your business with clarity, showing what makes you different, and creating an experience that gives customers confidence to take the next step.</p>
     </div>
   </div>
 </section>
@@ -198,43 +197,58 @@
   </div>
 </section>
 
-<section class="section section--alt">
+<section class="section section--alt ab-mv">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">What drives us</span>
-      <h2>Purpose over <span class="ital gold-text">promises.</span></h2>
-    </div>
-    <div class="mv">
-      <div class="mv__card reveal"><div class="mv__k">Mission</div><h3 class="mv__h">Make premium digital work reachable.</h3><p class="mv__p">Give ambitious businesses the craft, reliability, and long-term care usually reserved for enterprise budgets — without the enterprise runaround.</p></div>
-      <div class="mv__card reveal reveal-d1"><div class="mv__k">Vision</div><h3 class="mv__h">Be the partner people keep.</h3><p class="mv__p">To be the studio businesses stay with for years — because the work performs and the people behind it are still there when it matters.</p></div>
+    <div class="sec-head reveal"><span class="eyebrow">What drives us</span><h2>Purpose over <span class="ital gold-text">promises.</span></h2></div>
+    <div class="ab-mv__grid">
+      <article class="ab-mv__card ab-mv__card--dark reveal"><span class="ab-mv__k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Mission</span><h3>Make premium digital work reachable.</h3><p>Give ambitious businesses the craft, reliability, and long-term care usually reserved for enterprise budgets — without the enterprise runaround.</p></article>
+      <article class="ab-mv__card reveal reveal-d1"><span class="ab-mv__k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Vision</span><h3>Be the partner people keep.</h3><p>To be the studio businesses stay with for years — because the work performs and the people behind it are still there when it matters.</p></article>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section ab-values">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">How we work</span>
-      <h2>The principles behind the <span class="ital gold-text">craft.</span></h2>
-    </div>
-    <div class="values">
-      <div class="value reveal"><div class="value__num">01</div><div class="value__title">Craft over noise</div><p class="value__desc">Fast, considered, well-built work — not templates dressed up as bespoke.</p></div>
-      <div class="value reveal reveal-d1"><div class="value__num">02</div><div class="value__title">We stay</div><p class="value__desc">Launch is the start of the relationship, not the end of it.</p></div>
-      <div class="value reveal reveal-d2"><div class="value__num">03</div><div class="value__title">Plain honesty</div><p class="value__desc">Clear scope, clear pricing, and a straight answer even when it's not the easy one.</p></div>
-      <div class="value reveal"><div class="value__num">04</div><div class="value__title">Senior hands</div><p class="value__desc">The people you meet are the people who do the work.</p></div>
-      <div class="value reveal reveal-d1"><div class="value__num">05</div><div class="value__title">AI with intent</div><p class="value__desc">We use AI where it earns real time back — not because it's fashionable.</p></div>
-      <div class="value reveal reveal-d2"><div class="value__num">06</div><div class="value__title">Own the outcome</div><p class="value__desc">We measure ourselves on whether your business is better off, not on deliverables.</p></div>
+    <div class="sec-head reveal"><span class="eyebrow">How we work</span><h2>The principles behind the <span class="ital gold-text">craft.</span></h2></div>
+    <div class="ab-values__grid">
+      <div class="ab-value reveal reveal-d1"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><circle cx="11" cy="11" r="2"/></svg></span><span class="ab-value__n">01</span></span><h3>Craft over noise</h3><p>Fast, considered, well-built work — not templates dressed up as bespoke.</p></div>
+      <div class="ab-value reveal reveal-d2"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/></svg></span><span class="ab-value__n">02</span></span><h3>We stay</h3><p>Launch is the start of the relationship, not the end of it.</p></div>
+      <div class="ab-value reveal reveal-d3"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><span class="ab-value__n">03</span></span><h3>Plain honesty</h3><p>Clear scope, clear pricing, and a straight answer even when it's not the easy one.</p></div>
+      <div class="ab-value reveal reveal-d1"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="ab-value__n">04</span></span><h3>Senior hands</h3><p>The people you meet are the people who do the work.</p></div>
+      <div class="ab-value reveal reveal-d2"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span><span class="ab-value__n">05</span></span><h3>AI with intent</h3><p>We use AI where it earns real time back — not because it's fashionable.</p></div>
+      <div class="ab-value reveal reveal-d3"><span class="ab-value__top"><span class="ab-value__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="ab-value__n">06</span></span><h3>Own the outcome</h3><p>We measure ourselves on whether your business is better off, not on deliverables.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--dark cta-band">
+<section class="section section--alt ab-built">
   <div class="container">
-    <span class="eyebrow eyebrow--center" style="justify-content:center">Let's begin</span>
-    <h2 style="margin-left:auto;margin-right:auto">Let's build something worth <span class="ital">keeping.</span></h2>
-    <p class="lead">Tell us what you're working on. We'll reply within one business day with a genuine, honest read.</p>
-    <a href="contact.html" class="btn btn--gold"><span>Start a Project</span>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="sec-head hm-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;max-width:none">
+      <div><span class="eyebrow">What we've built</span><h2>Proof, not <span class="ital gold-text">promises.</span></h2></div>
+      <a href="work.html" class="link-gold">See all our work →</a>
+    </div>
+    <div class="ab-built__grid">
+      <a class="ab-built__card reveal reveal-d1" href="work.html#banksview"><span class="ab-built__img"><img src="assets/showcase/banksview.jpg" alt="" loading="lazy" decoding="async"></span><span class="ab-built__t"><b>BanksView</b><small>FinTech SaaS</small></span></a>
+      <a class="ab-built__card reveal reveal-d2" href="work.html#connecttheworld"><span class="ab-built__img"><img src="assets/showcase/connecttheworld.jpg" alt="" loading="lazy" decoding="async"></span><span class="ab-built__t"><b>Connect The World</b><small>Travel</small></span></a>
+      <a class="ab-built__card reveal reveal-d3" href="work.html#meridiandental"><span class="ab-built__img"><img src="assets/showcase/meridian.jpg" alt="" loading="lazy" decoding="async"></span><span class="ab-built__t"><b>Meridian Dental</b><small>Healthcare</small></span></a>
+      <a class="ab-built__card reveal reveal-d4" href="work.html#aureliaestates"><span class="ab-built__img"><img src="assets/showcase/aurelia.jpg" alt="" loading="lazy" decoding="async"></span><span class="ab-built__t"><b>Aurelia Estates</b><small>Real estate</small></span></a>
+      <a class="ab-built__card reveal reveal-d5" href="work.html#roaste"><span class="ab-built__img"><img src="assets/showcase/roaste.jpg" alt="" loading="lazy" decoding="async"></span><span class="ab-built__t"><b>Roasté</b><small>Food &amp; beverage</small></span></a>
+    </div>
+  </div>
+</section>
+<section class="section pg-cta">
+  <div class="container">
+    <div class="pg-cta__box reveal">
+      <div>
+        <span class="eyebrow">Let's begin</span>
+        <h2>Let's build something worth <span class="ital gold-text">keeping.</span></h2>
+        <p class="lead">Tell us what you're working on. We'll come back with a genuine, honest read.</p>
+      </div>
+      <div class="pg-cta__actions">
+        <a href="contact.html" class="btn btn--gold"><span>Start a Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://wa.me/971507894113?text=Hi%20IgnizAI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="pg-cta__wa" target="_blank" rel="noopener"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span>Chat on WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -261,5 +275,6 @@
 </a>
 <script src="assets/i18n.js"></script>
 <script src="assets/editorial.js" defer></script>
+<script src="assets/pages.js?v=20261104" defer></script>
 </body>
 </html>

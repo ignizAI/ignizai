@@ -31,6 +31,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/theme.css?v=20261104f">
   <link rel="stylesheet" href="assets/services-page.css?v=20261104c">
+  <link rel="stylesheet" href="assets/inner-hero.css?v=20261104c">
   <style id="page-styles">
     .svc { display:grid; grid-template-columns:5fr 7fr; gap:60px; align-items:start; padding:70px 0; border-bottom:1px solid var(--line); }
     .svc:last-child { border-bottom:none; }
@@ -209,7 +210,7 @@
 <body>
 <div id="page-root">
 
-<nav class="nav" id="nav" aria-label="Primary">
+<nav class="nav nav--on-dark" id="nav" aria-label="Primary">
   <div class="container nav__inner">
     <a href="index.html" class="brand" aria-label="Igniz AI home">
       <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
@@ -247,7 +248,7 @@
   </button>
 </div>
 
-<header class="sv-hero" id="hero">
+<header class="sv-hero" id="hero" data-word="Services">
   <div class="sv-hero__glow" aria-hidden="true"></div>
   <div class="container sv-hero__inner">
     <div class="sv-hero__copy">

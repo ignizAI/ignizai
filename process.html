@@ -30,6 +30,8 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/theme.css?v=20261104f">
+  <link rel="stylesheet" href="assets/pages.css?v=20261104">
+  <link rel="stylesheet" href="assets/inner-hero.css?v=20261104c">
   <style id="page-styles">
     .step { display:grid; grid-template-columns:130px 1fr; gap:40px; padding:56px 0; border-top:1px solid var(--line); align-items:start; }
     .step:last-child { border-bottom:1px solid var(--line); }
@@ -99,7 +101,7 @@
 <body>
 <div id="page-root">
 
-<nav class="nav" id="nav" aria-label="Primary">
+<nav class="nav nav--on-dark" id="nav" aria-label="Primary">
   <div class="container nav__inner">
     <a href="index.html" class="brand" aria-label="Igniz AI home">
       <img class="brand__mark" src="assets/Ignizailogo-nav.png" alt="" width="27" height="36">
@@ -137,17 +139,16 @@
   </button>
 </div>
 
-<header class="page-hero" id="hero">
-  <canvas class="aura" aria-hidden="true"></canvas>
-  <div class="hero__grain" aria-hidden="true"></div>
-  <div class="container">
-    <div class="page-hero__inner">
-      <div class="page-hero__crumb"><a href="index.html" class="link-gold">Home</a> &nbsp;›&nbsp; Process</div>
-      <span class="eyebrow" data-i18n="proc-eyebrow">How we work</span>
-      <h1 class="page-hero__title" style="margin-top:18px">No black boxes.<br>No <span class="ital gold-text">surprises.</span></h1>
-      <div class="page-hero__rule"></div>
-      <p class="page-hero__lead" data-i18n="proc-lead">From the first call to long-term care, every stage is designed to keep you informed, in control, and confident about what happens next.</p>
+<header class="ph" id="hero" data-word="Process">
+  <div class="container ph__inner">
+    <div class="ph__copy">
+      <div class="ph__crumb"><a href="index.html">Home</a> <span aria-hidden="true">›</span> Process</div>
+      <span class="eyebrow">How we work</span>
+      <h1 class="ph__title">No black boxes. No <span class="ital gold-text">surprises.</span></h1>
+      <p class="ph__lead">From the first call to long-term care, every stage is designed to keep you informed, in control, and confident about what happens next.</p>
+      <div class="ph__actions"><a href="contact.html" class="btn btn--gold"><span>Start a Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#journey" class="ph__ghost">Walk through the five stages</a></div>
     </div>
+    <div class="ph__viz"><div class="pnl" aria-hidden="true"><div class="pnl__head"><span class="pnl__dots"><i></i><i></i><i></i></span><span>Your project, stage by stage</span><span class="pnl__live"><i></i>On track</span></div><ul class="prg"><li style="--i:0"><span class="prg__l"><small>01</small>Discover</span><span class="prg__track"><i class="prg__bar" style="--x:0%;--w:18%"></i></span></li><li style="--i:1"><span class="prg__l"><small>02</small>Design</span><span class="prg__track"><i class="prg__bar" style="--x:14%;--w:26%"></i></span></li><li style="--i:2"><span class="prg__l"><small>03</small>Build</span><span class="prg__track"><i class="prg__bar" style="--x:34%;--w:36%"></i></span></li><li style="--i:3"><span class="prg__l"><small>04</small>Launch</span><span class="prg__track"><i class="prg__bar" style="--x:66%;--w:14%"></i></span></li><li style="--i:4"><span class="prg__l"><small>05</small>Care</span><span class="prg__track"><i class="prg__bar prg__bar--care" style="--x:78%;--w:22%"></i></span></li></ul><div class="prg__foot"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg> Regular check-ins</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg> Live preview link</span></div></div></div>
   </div>
 </header>
 
@@ -185,13 +186,31 @@
   </div>
 </section>
 
-<section class="section section--dark cta-band">
+<section class="section section--alt pr-exp">
   <div class="container">
-    <span class="eyebrow eyebrow--center" style="justify-content:center">Let's begin</span>
-    <h2 style="margin-left:auto;margin-right:auto">Ready when <span class="ital">you are.</span></h2>
-    <p class="lead">Tell us what you're building. We'll walk you through exactly how we'd approach it — no obligation.</p>
-    <a href="contact.html" class="btn btn--gold"><span>Start a Project</span>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="sec-head reveal"><span class="eyebrow">What you can expect</span><h2>Informed, in control, <span class="ital gold-text">confident.</span></h2></div>
+    <div class="pr-exp__grid">
+      <div class="pr-exp__item reveal reveal-d1"><span class="pr-exp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg></span><h3>Regular check-ins</h3><p>You hear from us throughout the project — not just at the start and the end.</p></div>
+      <div class="pr-exp__item reveal reveal-d2"><span class="pr-exp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h3>A working link from early on</h3><p>Watch your site come together and give feedback while change is still cheap.</p></div>
+      <div class="pr-exp__item reveal reveal-d3"><span class="pr-exp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><h3>Clear scope and pricing</h3><p>You know what is included and what it costs before we start.</p></div>
+      <div class="pr-exp__item reveal reveal-d4"><span class="pr-exp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></svg></span><h3>A team that can run it</h3><p>At launch we make sure your team knows how to update and run what we built.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section pg-cta">
+  <div class="container">
+    <div class="pg-cta__box reveal">
+      <div>
+        <span class="eyebrow">Let's begin</span>
+        <h2>Ready when <span class="ital gold-text">you are.</span></h2>
+        <p class="lead">Tell us what you're building. We'll walk you through exactly how we'd approach it — no obligation.</p>
+      </div>
+      <div class="pg-cta__actions">
+        <a href="contact.html" class="btn btn--gold"><span>Start a Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://wa.me/971507894113?text=Hi%20IgnizAI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="pg-cta__wa" target="_blank" rel="noopener"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span>Chat on WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -218,6 +237,7 @@
 </a>
 <script src="assets/i18n.js"></script>
 <script src="assets/editorial.js" defer></script>
+<script src="assets/pages.js?v=20261104" defer></script>
 <script src="assets/journey.js?v=20261020" defer></script>
 </body>
 </html>

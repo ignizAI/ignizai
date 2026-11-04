@@ -1,0 +1,87 @@
+/* =====================================================================
+   Inner-page masthead — Services · Work · Process · About · Journal
+   Deliberately different from the home hero (light canvas + dark card):
+   inner pages open on a deep-forest masthead with rounded lower corners,
+   a large outlined page-name watermark, a fine gold grid and glass panels.
+   ===================================================================== */
+.ph, .sv-hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#F4EEE2;
+  background:radial-gradient(80% 90% at 85% 0%,#1F4A38 0%,transparent 60%),radial-gradient(60% 70% at 0% 100%,rgba(201,154,58,.16) 0%,transparent 60%),linear-gradient(165deg,#0B1F17 0%,#13301F 55%,#17362A 100%);
+  border-radius:0 0 clamp(28px,4vw,56px) clamp(28px,4vw,56px);
+  padding:calc(var(--nav-h) + clamp(32px,5vh,64px)) 0 clamp(44px,7vh,84px);
+}
+/* outlined page name, bottom-left */
+.ph[data-word]::before, .sv-hero[data-word]::before{content:attr(data-word);position:absolute;z-index:-1;left:-.04em;bottom:-.2em;pointer-events:none;
+  font-family:var(--font-display);font-weight:500;font-size:clamp(110px,17vw,260px);line-height:1;letter-spacing:-.03em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(228,192,99,.16)}
+html[dir="rtl"] .ph[data-word]::before, html[dir="rtl"] .sv-hero[data-word]::before{left:auto;right:-.04em}
+
+/* copy on dark */
+.ph__crumb, .sv-hero__crumb{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:100px;border:1px solid rgba(244,238,226,.14);
+  background:rgba(255,255,255,.04);color:#B9B09C}
+.ph__crumb a, .sv-hero__crumb a{color:#E9E1D2}
+.ph__crumb a:hover, .sv-hero__crumb a:hover{color:#E4C063}
+.ph .eyebrow, .sv-hero .eyebrow{color:#E4C063}
+.ph__title, .sv-hero__title{color:#F7F3EC}
+.ph__title .gold-text, .sv-hero__title .gold-text{background:linear-gradient(100deg,#F3D98A,#E4C063 45%,#C99A3A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph__lead, .sv-hero__lead{color:#C9C0AC}
+.ph .btn--gold, .sv-hero .btn--gold{background:var(--grad-gold);color:#0F251C}
+.ph .btn--gold:hover, .sv-hero .btn--gold:hover{color:#0F251C}
+.ph__ghost, .sv-hero__ghost{color:#F4EEE2;border-bottom-color:#E4C063}
+.ph__ghost:hover, .sv-hero__ghost:hover{color:#E4C063}
+.sv-hero__chips{border-top-color:rgba(244,238,226,.12)}
+.sv-hero__chips a{background:rgba(255,255,255,.05);border-color:rgba(244,238,226,.16);color:#E9E1D2}
+.sv-hero__chips a:hover{background:rgba(255,255,255,.1);border-color:#E4C063;color:#fff}
+.sv-hero__chips a svg{color:#E4C063}
+.sv-hero__glow{display:none}
+
+/* panels become glass on the dark masthead */
+.ph .pnl, .sv-hero .svh__panel, .ph .jr-feat{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.6),inset 0 0 0 1px rgba(228,192,99,.24)}
+.ph .wkh__stats{background:rgba(11,31,23,.88);box-shadow:0 20px 40px -20px rgba(0,0,0,.6),inset 0 0 0 1px rgba(228,192,99,.22)}
+.ph .wkh__shot{box-shadow:0 36px 70px -30px rgba(0,0,0,.7)}
+
+/* the section right after the masthead gets a little breathing room */
+.ph + section, .sv-hero + section{margin-top:clamp(8px,2vh,20px)}
+@media (max-width:640px){
+  .ph[data-word]::before, .sv-hero[data-word]::before{font-size:34vw;bottom:-.1em}
+}
+.ph__crumb, .sv-hero__crumb{display:flex;width:fit-content;margin-bottom:22px}
+
+/* ---- Infographic panels: warm ivory cards on the dark masthead ---- */
+.ph .pnl, .sv-hero .svh__panel, .ph .jr-feat{
+  background:linear-gradient(180deg,#FBF8F2,#F3ECE0) !important;color:var(--ink);backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 0 0 1px rgba(201,154,58,.35) !important}
+.ph .pnl__head, .sv-hero .svh__head{color:var(--ink-3);border-bottom-color:var(--line)}
+.ph .pnl__dots i, .sv-hero .svh__dots i{background:#DED4C4}
+.ph .pnl__dots i:first-child, .sv-hero .svh__dots i:first-child{background:var(--gold)}
+.ph .pnl__live, .sv-hero .svh__live{color:#2E7D5B}
+.ph .pnl__live i, .sv-hero .svh__live i{background:#2E7D5B}
+.ph .pnl__ic, .sv-hero .svh__tile-ic{background:rgba(176,133,40,.12);color:var(--gold)}
+.ph .pnl__rows li{border-bottom-color:var(--line)}
+.ph .pnl__t small{color:var(--ink-3)}
+.ph .pnl__t b{color:var(--ink)}
+/* services growth stack */
+.sv-hero .svh__tile{background:#FFFDF8;border-color:var(--line);box-shadow:0 8px 20px -14px rgba(23,54,42,.35)}
+.sv-hero .svh__tile-t b{color:var(--ink)}
+.sv-hero .svh__tile-t small{color:var(--ink-3)}
+.sv-hero .svh__tile-st{background:rgba(46,125,91,.12);color:#2E7D5B}
+.sv-hero .svh__tile:last-child{background:linear-gradient(100deg,rgba(228,192,99,.32),rgba(228,192,99,.1));border-color:rgba(176,133,40,.45)}
+.sv-hero .svh__foot{border-top-color:var(--line)}
+.sv-hero .svh__foot small{color:var(--ink-3)}
+.sv-hero .svh__foot b{color:var(--forest)}
+/* process timeline */
+.ph .prg__l{color:var(--ink)}
+.ph .prg__l small{color:var(--ink-3)}
+.ph .prg__track{background:rgba(23,54,42,.08)}
+.ph .prg__bar{background:linear-gradient(90deg,#B08528,#C99A3A)}
+.ph .prg__bar--care{background:repeating-linear-gradient(90deg,#2E7D5B 0 10px,rgba(46,125,91,.3) 10px 16px)}
+.ph .prg__foot{color:var(--ink-2);border-top-color:var(--line)}
+.ph .prg__foot svg{color:var(--gold)}
+/* journal featured article */
+.ph .jr-feat__title{color:var(--ink)}
+.ph .jr-feat__ex{color:var(--ink-2)}
+.ph .jr-feat__meta{color:var(--ink-3)}
+.ph .jr-feat__go{color:var(--forest);border-top-color:var(--line)}
