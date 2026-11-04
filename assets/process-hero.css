@@ -1,0 +1,21 @@
+/* =====================================================================
+   Process hero — "the machine at work"
+   Interlocking gold gears turn slowly (meshing in opposite directions),
+   while a pulse of light travels along a dashed workflow line through
+   three glowing checkpoints. Everything sits behind the copy.
+   ===================================================================== */
+.ph[data-word="Process"] > .container{position:relative;z-index:2}
+.prx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 8%,#000 22%,#000 100%);mask-image:linear-gradient(180deg,transparent 0,transparent 8%,#000 22%,#000 100%)}
+.prx::after{content:"";position:absolute;inset:0;background:radial-gradient(42% 60% at 24% 52%,rgba(11,31,23,.8) 0%,rgba(11,31,23,.35) 55%,transparent 80%)}
+.prx__svg{position:absolute;inset:0;width:100%;height:100%}
+.pg{transform-box:view-box;animation:pgSpin var(--t) linear infinite}
+.pg--b,.pg--c,.pg--e{animation-direction:reverse}
+@keyframes pgSpin{to{transform:rotate(360deg)}}
+.prx__flow{stroke-dasharray:14 86;stroke-dashoffset:100;animation:prxFlow 7s linear infinite}
+.prx__flow--2{animation-delay:-3.5s}
+@keyframes prxFlow{to{stroke-dashoffset:0}}
+.prx__ping{transform-box:fill-box;transform-origin:center;animation:prxPing 2.6s ease-out infinite;animation-delay:calc(var(--k) * .8s)}
+@keyframes prxPing{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+@media (max-width:760px){ .prx::after{background:linear-gradient(180deg,rgba(11,31,23,.55),rgba(11,31,23,.35) 50%,rgba(11,31,23,.6))} }
+@media (prefers-reduced-motion:reduce){ .pg,.prx__flow,.prx__ping{animation:none !important} }
