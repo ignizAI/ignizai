@@ -4,7 +4,9 @@
   var root = document.getElementById('how-we-work');
   if (!root || !root.classList.contains('hpx')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { root.classList.add('hpx--static'); return; }
+  /* reduced motion, or a phone: show the five stages as a plain list instead of a long pinned scroll */
+  var phone = window.matchMedia && matchMedia('(max-width: 600px)').matches;
+  if (reduce || phone) { root.classList.add('hpx--static'); return; }
   var pin = root.querySelector('.hpx__pin'), sticky = root.querySelector('.hpx__sticky');
   var cards = [].slice.call(root.querySelectorAll('.hpx__card')),
       segs = [].slice.call(root.querySelectorAll('.hpx__seg')),
@@ -38,6 +40,7 @@
       c.style.zIndex = String(100 - Math.round(Math.abs(d) * 10) - (d > 0 ? 5 : 0));
       c.style.pointerEvents = i === cur ? 'auto' : 'none';
       c.setAttribute('aria-hidden', i === cur ? 'false' : 'true');
+      c.inert = i !== cur;
     });
     segs.forEach(function (s, i) { s.style.strokeDashoffset = (100 * (1 - clamp(x + 1 - i, 0, 1))).toFixed(2); });
     nodes.forEach(function (n, i) { n.classList.toggle('is-on', i <= x + 0.02); });

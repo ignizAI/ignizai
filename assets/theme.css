@@ -49,9 +49,10 @@
   --espresso:  var(--forest);   /* back-compat alias (was brown) */
   --ink:       #1A1712;   /* headings */
   --ink-2:     #4A443B;   /* body */
-  --ink-3:     #8A8172;   /* muted */
+  --ink-3:     #6B6356;   /* muted (4.5:1+ on every ivory surface) */
   --line:      #DED4C4;   /* hairline */
-  --gold:      #B08528;   /* forged gold accent */
+  --gold:      #B08528;   /* forged gold accent (large text, lines, icons) */
+  --gold-ink:  #80600F;   /* gold for small text on ivory: 4.8:1+ */
   --gold-2:    #C99A3A;   /* bright gold (hover / gradient top) */
   --gold-soft: rgba(176,133,40,0.12);
   --ok:        #4F7A52;
@@ -127,7 +128,7 @@ h1,h2,h3,h4 { font-family:var(--font-display); color:var(--ink); font-weight:500
 .eyebrow {
   display:inline-flex; align-items:center; gap:12px;
   font-family:var(--font-body); font-size:var(--fs-eyebrow); font-weight:600;
-  letter-spacing:0.24em; text-transform:uppercase; color:var(--gold);
+  letter-spacing:0.24em; text-transform:uppercase; color:var(--gold-ink);
 }
 .eyebrow::before { content:''; width:26px; height:1px; background:var(--grad-gold); }
 .eyebrow--center::after { content:''; width:26px; height:1px; background:var(--grad-gold); }
@@ -203,7 +204,7 @@ h1,h2,h3,h4 { font-family:var(--font-display); color:var(--ink); font-weight:500
 .brand { display:inline-flex; align-items:center; gap:11px; }
 .brand__mark { width:auto; height:36px; flex-shrink:0; display:block; }
 .brand__name { font-family:var(--font-display); font-size:1.4rem; font-weight:500; color:var(--ink); letter-spacing:-0.01em; }
-.brand__name .ital { color:var(--gold); }
+.brand__name .ital { color:var(--gold-ink); }
 .nav__links { display:flex; align-items:center; gap:34px; }
 .nav__links a { font-size:0.92rem; font-weight:500; color:var(--ink-2); transition:color .3s; }
 .nav__links a:hover, .nav__links a.active { color:var(--ink); }
@@ -295,7 +296,7 @@ h1,h2,h3,h4 { font-family:var(--font-display); color:var(--ink); font-weight:500
 .prose h3 { font-family:var(--font-display); font-weight:500; font-size:1.35rem; color:var(--ink); margin-top:1.4em; margin-bottom:.4em; }
 .prose h2 .ital, .prose h3 .ital { color:var(--gold); font-style:italic; }
 .prose strong { color:var(--ink); font-weight:600; }
-.prose a { color:var(--gold); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.prose a { color:var(--gold-ink); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
 .prose ul, .prose ol { padding-left:1.3em; }
 .prose li { margin-bottom:.55em; }
 .prose ul li::marker { color:var(--gold); }
@@ -311,7 +312,7 @@ h1,h2,h3,h4 { font-family:var(--font-display); color:var(--ink); font-weight:500
 .prose .back-to-blog { display:none; }
 .prose .highlight { background:var(--bg-alt); border-left:2px solid var(--gold); padding:18px 24px;
   border-radius:0 var(--radius-sm) var(--radius-sm) 0; color:var(--ink); font-size:1rem; }
-.prose .highlight strong { color:var(--gold); }
+.prose .highlight strong { color:var(--gold-ink); }
 
 /* ============================================================
    RTL / ARABIC
@@ -395,7 +396,11 @@ html[dir="rtl"] .wa-float:hover .wa-float__label { margin-left:4px; }
   .wa-float:hover { transform:none; }
   .wa-float:active { transform:scale(.94); }
   body .footer { padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
+  /* while the page scrolls, the button shrinks and fades so it never sits on the text being read */
+  .wa-float { transition:opacity .25s ease, transform .25s ease, box-shadow .25s ease; }
+  .wa-float.is-scrolling { opacity:.18; transform:scale(.72); pointer-events:none; }
 }
+@media (prefers-reduced-motion: reduce){ .wa-float.is-scrolling { transform:none; } }
 @media print { .wa-float { display:none; } }
 
 /* ---------- Nav links: forest-green glass tab on hover ---------- */
@@ -512,3 +517,6 @@ body .footer .footer__brand .brand__name{color:var(--ink) !important}
 body .footer .footer__brand .brand__name .ital{color:var(--gold)}
 body .footer .footer__brand p{color:var(--ink-3) !important}
 body .footer .footer__bottom{border-top-color:var(--line) !important;color:var(--ink-3) !important}
+
+/* Contrast: eyebrows on the dark closing band use the bright gold */
+.cta-band .eyebrow, .section--dark .eyebrow { color:#E4C063; }

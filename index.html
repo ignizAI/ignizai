@@ -91,7 +91,7 @@
   </script>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/theme.css?v=20261104f">
+  <link rel="stylesheet" href="assets/theme.css?v=20261107">
   <link rel="stylesheet" href="assets/quiz.css?v=20261011b">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
@@ -105,7 +105,7 @@
     .brand { display:inline-flex; align-items:center; gap:11px; }
     .brand__mark { width:auto; height:36px; flex-shrink:0; display:block; }
     .brand__name { font-family:var(--font-display); font-size:1.4rem; font-weight:500; color:var(--ink); letter-spacing:-0.01em; }
-    .brand__name .ital { color:var(--gold); }
+    .brand__name .ital { color:var(--gold-ink); }
     .nav__links { display:flex; align-items:center; gap:34px; }
     .nav__links a { font-size:0.92rem; font-weight:500; color:var(--ink-2); }
     .nav__links a.active { color:var(--ink); }
@@ -258,7 +258,7 @@
       display:flex; flex-direction:column; transition:transform .5s var(--ease), box-shadow .5s var(--ease); }
     .jcard:hover { transform:translateY(-6px); box-shadow:0 26px 50px rgba(33,28,21,0.12); }
     .jcard__top { padding:28px 28px 0; }
-    .jcard__tag { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+    .jcard__tag { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-ink); font-weight:600; }
     .jcard__title { font-family:var(--font-display); font-size:1.4rem; line-height:1.2; color:var(--ink); margin:16px 0 12px; font-weight:400; }
     .jcard__ex { color:var(--ink-2); font-size:.96rem; padding:0 28px; flex:1; }
     .jcard__foot { padding:20px 28px 26px; display:flex; align-items:center; justify-content:space-between;
@@ -469,8 +469,8 @@
     @media (prefers-reduced-motion: reduce){ .jcard-swipe { opacity:1 !important; translate:none !important; } }
   </style>
 <link rel="stylesheet" href="assets/hero.css?v=20261103c">
-<link rel="stylesheet" href="assets/home.css?v=20261103i">
-<link rel="stylesheet" href="assets/process-dial.css?v=20261103d">
+<link rel="stylesheet" href="assets/home.css?v=20261107">
+<link rel="stylesheet" href="assets/process-dial.css?v=20261107">
 </head>
 <body>
 
@@ -523,6 +523,7 @@
     <span id="langBtnLabelMobile">عربي</span>
   </button>
 </div>
+<main id="main">
 
 <!-- ===== Hero ===== -->
 <header class="hero hx" id="hero">
@@ -768,7 +769,7 @@
     <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:24px;flex-wrap:wrap">
       <div>
         <span class="eyebrow" data-i18n="show-eyebrow">Selected work</span>
-        <h2 style="margin-top:20px" data-i18n-html="show-h" data-typewriter aria-label="Turning Ideas Into Working Digital Products">Turning Ideas Into <span class="ital gold-text">Working Digital Products</span></h2>
+        <h2 style="margin-top:20px" data-i18n-html="show-h" data-typewriter aria-label="Turning ideas into working digital products">Turning ideas into <span class="ital gold-text">working digital products</span></h2>
       </div>
     </div>
     <div class="work-carousel reveal" id="workCarousel" role="region" aria-roledescription="carousel" aria-label="Selected work">
@@ -1012,7 +1013,7 @@
     </div>
     <div class="hm-pk__grid">
       <a class="hm-pk__card reveal reveal-d1" href="services.html#packages">
-        <span class="hm-pk__badge hm-pk__badge--hot">Hot deal</span>
+        <span class="hm-pk__badge hm-pk__badge--hot">Starter</span>
         <h3 class="hm-pk__name">Ignite Basic</h3>
         <p class="hm-pk__tag">A sharp, mobile-ready landing page to get you online fast.</p>
         <span class="hm-pk__price"><small>From AED</small> 6,250</span>
@@ -1114,6 +1115,7 @@
 </section>
 
 <!-- ===== Footer ===== -->
+</main>
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
@@ -1189,12 +1191,12 @@
   replay('.jcard-swipe', 260);
 })();
 </script>
-<script src="assets/i18n.js"></script>
+<script src="assets/i18n.js?v=20261107"></script>
 <script src="assets/quiz.js?v=20261015" defer></script>
 <script src="assets/space.js?v=20261011c" defer></script>
-<script src="assets/editorial.js?v=20261020" defer></script>
+<script src="assets/editorial.js?v=20261107" defer></script>
 <script src="assets/hero.js?v=20261103" defer></script>
-<script src="assets/home.js?v=20261103i" defer></script>
-<script src="assets/process-dial.js?v=20261103" defer></script>
+<script src="assets/home.js?v=20261107" defer></script>
+<script src="assets/process-dial.js?v=20261107" defer></script>
 </body>
 </html>

@@ -247,6 +247,7 @@
         var on = i === 1;
         el.classList.toggle('is-active', on);
         el.setAttribute('aria-hidden', on ? 'false' : 'true');
+        el.inert = !on;   /* off-screen slides: no focusable links */
         el.tabIndex = on ? 0 : -1;
       });
       var c = +track.children[1].dataset.idx;
@@ -461,15 +462,32 @@
   function onScroll() { if (nav) nav.classList.toggle('is-solid', window.scrollY > 40); }
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ---- WhatsApp button: step aside while the page scrolls on touch screens ---- */
+  var wa = document.querySelector('.wa-float');
+  if (wa && window.matchMedia && matchMedia('(hover:none), (max-width:600px)').matches) {
+    var waT = 0;
+    window.addEventListener('scroll', function () {
+      wa.classList.add('is-scrolling');
+      clearTimeout(waT);
+      waT = setTimeout(function () { wa.classList.remove('is-scrolling'); }, 650);
+    }, { passive: true });
+  }
+
   /* ---- Mobile menu ---- */
   var burger = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
   if (burger && mm) {
+    /* closed menu is invisible, so keep it out of the tab order and the accessibility tree */
+    mm.inert = true;
     burger.addEventListener('click', function () {
       var open = mm.classList.toggle('open'); burger.classList.toggle('open', open);
+      mm.inert = !open;
       burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : '';
     });
     mm.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { mm.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; });
+      a.addEventListener('click', function () { mm.classList.remove('open'); burger.classList.remove('open'); mm.inert = true; burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mm.classList.contains('open')) { burger.click(); burger.focus(); }
     });
   }
 

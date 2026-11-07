@@ -14,7 +14,7 @@
   /* Selected work: give each slide its own screenshot as a blurred backdrop tint */
   [].forEach.call(document.querySelectorAll('#work-showcase .work-card'), function (c) {
     var img = c.querySelector('.work-card__shot img');
-    if (img) c.style.setProperty('--shot', 'url("' + img.getAttribute('src') + '")');
+    if (img) c.style.setProperty('--shot', 'url("' + img.src + '")');   /* absolute URL: a relative one resolves against home.css */
   });
   if (!window.IgnizAII18n || !IgnizAII18n.extend) return;
   IgnizAII18n.extend({
@@ -30,7 +30,7 @@
     'Clear calls to action, smart forms and instant follow-up that turn visitors into qualified enquiries.': 'دعوات واضحة لاتخاذ إجراء ونماذج ذكية ومتابعة فورية تحوّل الزوار إلى استفسارات مؤهّلة.',
     'Simple dashboards and monthly insights show what pays — then we double down on it with you.': 'لوحات بسيطة ورؤى شهرية تُظهر ما يحقّق العائد — ثم نضاعف الجهد فيه معك.',
     'Custom design': 'تصميم مخصّص', 'Mobile-first': 'الجوال أولاً', 'Speed & SEO': 'السرعة وتحسين البحث', 'Google Business Profile': 'ملف Google التجاري',
-    'Local SEO': 'تحسين البحث المحلي', 'AI chat': 'محادثة ذكية', 'WhatsApp': 'واتساب', 'CRM': 'CRM', 'Smart forms': 'نماذج ذكية', 'Lead magnets': 'محفّزات جذب',
+    'Local SEO': 'تحسين البحث المحلي', 'AI chat': 'محادثة ذكية', 'WhatsApp': 'واتساب', 'Smart forms': 'نماذج ذكية', 'Lead magnets': 'محفّزات جذب',
     'Analytics': 'التحليلات', 'Care & SEO': 'الرعاية وتحسين البحث', 'Explore': 'اكتشف',
     'How we work': 'كيف نعمل', 'Five clear steps,': 'خمس خطوات واضحة،', 'no black box.': 'بلا غموض.', 'See our process →': 'تعرّف على منهجيتنا ←',
     'Discover': 'الاكتشاف', 'Design': 'التصميم', 'Build': 'البناء', 'Launch': 'الإطلاق', 'Care': 'الرعاية',
@@ -40,7 +40,7 @@
     'Tested across devices, tuned for speed and SEO, launched carefully.': 'اختبار على جميع الأجهزة، وضبط للسرعة وتحسين البحث، وإطلاق مدروس.',
     'We monitor, maintain and improve, so the work keeps paying off.': 'نراقب ونصون ونحسّن، ليستمر العمل في تحقيق العائد.',
     'Packages': 'الباقات', 'Clear packages,': 'باقات واضحة،', 'clear prices.': 'وأسعار واضحة.', 'Compare all packages →': 'قارن جميع الباقات ←',
-    'Hot deal': 'عرض مميّز', 'Bestseller': 'الأكثر مبيعاً', 'Top pick': 'الخيار الأفضل', 'AI-powered': 'مدعوم بالذكاء الاصطناعي',
+    'Starter': 'باقة الانطلاق', 'Bestseller': 'الأكثر مبيعاً', 'Top pick': 'الخيار الأفضل', 'AI-powered': 'مدعوم بالذكاء الاصطناعي',
     'A sharp, mobile-ready landing page to get you online fast.': 'صفحة هبوط أنيقة وجاهزة للجوال لتنطلق على الإنترنت بسرعة.',
     'A complete multi-page website built to win enquiries.': 'موقع متكامل متعدد الصفحات مصمّم لكسب الاستفسارات.',
     'A larger, on-brand, bilingual site with advanced motion.': 'موقع أكبر بهوية علامتك وبلغتين مع حركة متقدّمة.',

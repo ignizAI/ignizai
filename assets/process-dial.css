@@ -6,7 +6,7 @@
    Everything is tied to scroll position, so scrolling up rewinds it.
    ===================================================================== */
 .hpx{position:relative;background:var(--bg-alt);padding:0 !important}
-.hpx__pin{position:relative;height:calc(100vh + (var(--n) - 1) * 60vh)}
+.hpx__pin{position:relative;height:calc(100vh + (var(--n) - 1) * 38vh)}
 .hpx__sticky{position:sticky;top:var(--nav-h,72px);height:calc(100vh - var(--nav-h,72px));display:flex;align-items:center;overflow:hidden}
 .hpx__sticky > .container{width:100%}
 .hpx__head{margin-bottom:clamp(20px,4vh,40px) !important}
@@ -36,7 +36,7 @@
 .hpx__cards{position:relative;height:clamp(250px,34vh,300px)}
 .hpx__card{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;padding:clamp(22px,2.6vw,34px);border-radius:22px;
   background:#FFFDF8;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(23,54,42,.45);will-change:transform,opacity;transform-origin:50% 0}
-.hpx__card-kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hpx__card-kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);font-weight:600}
 .hpx__card-kicker b{font-family:var(--font-display);font-weight:500;letter-spacing:.04em}
 .hpx__card-title{font-family:var(--font-display);font-weight:500;margin:0;color:var(--ink)}
 .hpx__card-desc{margin:0;font-size:15px;line-height:1.65;color:var(--ink-2);max-width:52ch}

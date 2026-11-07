@@ -390,7 +390,7 @@
       'journal-lead': 'Straight talk on websites, digital growth, and what it actually takes to win customers online across the UAE and India.',
       'contact-eyebrow': 'Let\'s talk',
       'show-eyebrow': 'Selected work',
-      'show-h': 'Turning Ideas Into <span class="ital gold-text">Working Digital Products</span>',
+      'show-h': 'Turning ideas into <span class="ital gold-text">working digital products</span>',
       'show-all': 'See all work →',
     ar: {
       /* ── Navigation ── */
@@ -794,7 +794,7 @@
     "Interested in Ignite Packages": "مهتم بباقات إغنايت",
     "AI-powered": "مدعومة بالذكاء الاصطناعي",
     "From": "يبدأ من",
-    "Hot deal": "عرض مميز",
+    "Starter": "باقة الانطلاق",
     "Bestseller": "الأكثر مبيعاً",
     "Top pick": "الخيار الأفضل",
     "What’s included": "ما تتضمنه الباقة",
@@ -945,7 +945,7 @@
       "Read →": "اقرأ ←",
       "July 2026": "يوليو 2026",
       "Built to be noticed. Engineered to perform.": "مصمَّم ليُلفت الأنظار. ومهندَس ليُحقق النتائج.",
-      "Turning Ideas Into Working Digital Products": "نحوّل الأفكار إلى منتجات رقمية فعّالة",
+      "Turning ideas into working digital products": "نحوّل الأفكار إلى منتجات رقمية فعّالة",
       "A responsive travel agency website that makes it easy for customers to explore destinations, discover travel packages, and get in touch with the agency.": "موقع متجاوب لوكالة سفر يسهّل على العملاء استكشاف الوجهات، واكتشاف الباقات السياحية، والتواصل مع الوكالة.",
       "Key features": "أبرز الميزات",
       "Destination and package showcase": "عرض الوجهات والباقات",
@@ -1465,8 +1465,11 @@
     var ar = toAr(n.nodeValue);
     if (ar === null) return;
     var lead = n.nodeValue.match(/^\s*/)[0], trail = n.nodeValue.match(/\s*$/)[0];
+    var next = lead + ar + trail;
+    /* never rewrite a node with identical text: the write would fire the observer again (loop) */
+    if (next === n.nodeValue) return;
     origText.set(n, n.nodeValue);
-    n.nodeValue = lead + ar + trail;
+    n.nodeValue = next;
   }
   function translateAttrs(el) {
     for (var i = 0; i < ATTRS.length; i++) {

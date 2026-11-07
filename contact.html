@@ -30,7 +30,7 @@
   <meta name="twitter:image" content="https://ignizai.com/assets/seo/og-image.jpg">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/theme.css?v=20261104f">
+  <link rel="stylesheet" href="assets/theme.css?v=20261107">
   <style id="page-styles">
     .contact-layout { display:grid; grid-template-columns:5fr 7fr; gap:64px; align-items:start; }
     @media (max-width:900px){ .contact-layout{ grid-template-columns:1fr; gap:40px; } }
@@ -122,6 +122,9 @@
     html.is-embed .contact-layout { display:block; }
     html.is-embed .reveal { opacity:1 !important; transform:none !important; }
     html.is-embed .contact-form-wrap { border:0; border-radius:0; background:transparent; padding:4px 2px 8px; box-shadow:none; }
+    /* field-level errors */
+    .form-input.is-invalid, .form-select.is-invalid, .svc-select__trigger.is-invalid, .svc-select__trigger.error { border-color:#C0392B !important; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .field-err { margin:6px 0 0; font-size:12.5px; line-height:1.4; color:#A12B1F; }
   </style>
 </head>
 <body>
@@ -164,6 +167,7 @@
     <span id="langBtnLabelMobile">عربي</span>
   </button>
 </div>
+<main id="main">
 
 <header class="page-hero" id="hero">
   <canvas class="aura" aria-hidden="true"></canvas>
@@ -226,11 +230,11 @@
               </ul>
             </div>
           </div>
-          <div class="svc-tags" id="svcTags" aria-label="Selected services"></div>
+          <div class="svc-tags" id="svcTags" role="group" aria-label="Selected services"></div>
           <input type="hidden" id="services"/>
         </div>
         <div class="form-group form-group--full"><label class="form-label" for="remark">Tell us about the project</label><textarea class="form-input form-textarea" id="remark" placeholder="What are you building, what's not working today, or where are you stuck? The more specific, the faster we can help." rows="4"></textarea></div>
-        <div id="formError" style="display:none;color:rgba(255,100,100,0.9);font-size:13px;margin-bottom:12px;padding:10px 14px;background:rgba(255,100,100,0.07);border:1px solid rgba(255,100,100,0.2);border-radius:8px;"></div>
+        <div id="formError" role="alert" style="display:none;color:#A12B1F;font-size:13px;margin-bottom:12px;padding:10px 14px;background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.25);border-radius:8px;"></div>
         <button type="button" class="form-submit" id="submitBtn" data-i18n="form-submit">Send it over →</button>
         <p class="form-note" data-i18n="form-note">No bots, no templated replies — a real engineer reads every message.</p>
       </div>
@@ -241,6 +245,7 @@
   </div>
 </section>
 
+</main>
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
@@ -263,7 +268,7 @@
   <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.86 3 3.02 8.83 3.02 16c0 2.29.6 4.53 1.74 6.5L3 29l6.68-1.75A13 13 0 0 0 16.04 29C23.2 29 29 23.17 29 16S23.2 3 16.04 3Zm0 23.8c-1.98 0-3.92-.53-5.61-1.53l-.4-.24-3.96 1.04 1.06-3.86-.26-.4A10.76 10.76 0 0 1 5.23 16c0-5.95 4.85-10.8 10.81-10.8 5.95 0 10.78 4.85 10.78 10.8 0 5.96-4.83 10.8-10.78 10.8Zm5.92-8.09c-.32-.16-1.92-.95-2.22-1.06-.3-.11-.51-.16-.73.16-.21.32-.84 1.06-1.03 1.28-.19.21-.38.24-.7.08-.32-.16-1.37-.5-2.6-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.32-.02-.5.14-.66.15-.14.32-.38.49-.57.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.86.4-.3.32-1.13 1.1-1.13 2.69 0 1.58 1.16 3.12 1.32 3.33.16.21 2.28 3.48 5.52 4.88.77.33 1.37.53 1.84.68.77.25 1.48.21 2.03.13.62-.09 1.92-.78 2.19-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38Z"/></svg>
   <span class="wa-float__label">Chat on WhatsApp</span>
 </a>
-<script src="assets/i18n.js"></script>
+<script src="assets/i18n.js?v=20261107"></script>
 <script>
 (function(){
   'use strict';
@@ -337,6 +342,10 @@
     }
 
     function renderTags() {
+      if (selectedIds.length) {
+        trigger.classList.remove('error', 'is-invalid'); trigger.removeAttribute('aria-invalid');
+        const n = document.getElementById('svcTrigger-err'); if (n) n.remove();
+      }
       tagsWrap.innerHTML = '';
       selectedNames.forEach((name, i) => {
         const tag = document.createElement('span');
@@ -585,6 +594,43 @@
       errBox.style.display = 'block';
     }
 
+    /* Per-field errors: mark the field, say what is wrong right under it, and link the two */
+    function tr(msg) {
+      return (window.IgnizAII18n && IgnizAII18n.getLang() === 'ar' && FIELD_AR[msg]) ? FIELD_AR[msg] : msg;
+    }
+    const FIELD_AR = {
+      'Please fill in this field.': 'يرجى تعبئة هذا الحقل.',
+      'Please choose at least one service.': 'يرجى اختيار خدمة واحدة على الأقل.',
+      'Please enter a valid email address.': 'يرجى إدخال بريد إلكتروني صحيح.'
+    };
+    function markField(el, msg) {
+      el.setAttribute('aria-invalid', 'true');
+      el.classList.add('is-invalid');
+      const group = el.closest('.form-group') || el.parentElement;
+      let note = group.querySelector('.field-err');
+      if (!note) {
+        note = document.createElement('p');
+        note.className = 'field-err';
+        note.id = (el.id || 'field') + '-err';
+        group.appendChild(note);
+      }
+      note.textContent = tr(msg);
+      const ids = (el.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+      if (ids.indexOf(note.id) < 0) { ids.push(note.id); el.setAttribute('aria-describedby', ids.join(' ')); }
+    }
+    function clearField(el) {
+      el.removeAttribute('aria-invalid');
+      el.classList.remove('is-invalid');
+      el.style.borderColor = '';
+      const group = el.closest('.form-group') || el.parentElement;
+      const note = group && group.querySelector('.field-err');
+      if (note) note.remove();
+    }
+    document.getElementById('contactForm').querySelectorAll('.form-input, .form-select').forEach(el => {
+      el.addEventListener('input', () => { if (el.value.trim()) clearField(el); });
+      el.addEventListener('change', () => { if (el.value.trim()) clearField(el); });
+    });
+
     btn.addEventListener('click', async () => {
       errBox.style.display = 'none';
       const fields = {
@@ -598,36 +644,45 @@
         organization_name: document.getElementById('org'),
       };
 
-      let valid = true;
+      let valid = true, firstBad = null;
       Object.values(fields).forEach(el => {
-        if (!el.value.trim()) { el.style.borderColor = 'rgba(255,100,100,0.6)'; valid = false; }
-        else el.style.borderColor = '';
+        if (!el.value.trim()) { markField(el, 'Please fill in this field.'); valid = false; firstBad = firstBad || el; }
+        else clearField(el);
       });
 
       // Validate multi-select
       if (selectedIds.length === 0) {
         trigger.classList.add('error');
-        valid = false;
+        markField(trigger, 'Please choose at least one service.');
+        valid = false; firstBad = firstBad || trigger;
       } else {
         trigger.classList.remove('error');
+        clearField(trigger);
       }
 
-      if (!valid) { showErr('Please fill in all required fields.'); return; }
+      if (!valid) {
+        showErr('Please fill in all required fields.');
+        if (firstBad) firstBad.focus();
+        return;
+      }
 
       // Validate phone digit count against selected country code
       const digits = fields.contact_number.value.replace(/\D/g, '');
       const rule   = PHONE_RULES[fields.country_code.value];
       if (rule && (digits.length < rule[0] || digits.length > rule[1])) {
-        fields.contact_number.style.borderColor = 'rgba(255,100,100,0.6)';
         const expected = rule[0] === rule[1] ? rule[0] : `${rule[0]}–${rule[1]}`;
-        showErr(`Contact number must be ${expected} digits for ${fields.country_code.value}.`);
+        const m = `Contact number must be ${expected} digits for ${fields.country_code.value}.`;
+        markField(fields.contact_number, m);
+        showErr(m);
+        fields.contact_number.focus();
         return;
       }
 
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRe.test(fields.email.value.trim())) {
-        fields.email.style.borderColor = 'rgba(255,100,100,0.6)';
+        markField(fields.email, 'Please enter a valid email address.');
         showErr('Please enter a valid email address.');
+        fields.email.focus();
         return;
       }
 
@@ -676,6 +731,6 @@
   })();
 })();
 </script>
-<script src="assets/editorial.js" defer></script>
+<script src="assets/editorial.js?v=20261107" defer></script>
 </body>
 </html>
